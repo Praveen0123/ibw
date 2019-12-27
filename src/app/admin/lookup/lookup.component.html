@@ -1,0 +1,46 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="w-100">
+        <div class="row" style="margin-bottom:14px;">
+            <div class="col-sm-7" style="padding-right: 0px;">
+                <div class="w-100 flex-p">
+                    <button mat-raised-button class="pull-right add-hover-help-lookup btn-success-help-lookup" style="margin-left: 10px;">
+                        <mat-icon>help_outline</mat-icon> Help
+                    </button>
+                    <button mat-raised-button class="add-hover pull-right" style="background:#229494;color: white;" (click)="openLookupDialog(null)"
+                        [ngClass]="{'disable-custom' : permissions.write == false}" [matTooltip]="!permissions.write ? 'You dont have write permissions' : ''">
+                        <mat-icon>add</mat-icon>&nbsp;Add Lookup
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive col-sm-7" style="padding:0px !important">
+            <table id="example2" class="table table-bordered table-hover table-striped">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th>Code</th>
+                        <th>Lookups</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of tableListLookup">
+                        <td>{{item.CodeMasterName}}</td>
+                        <td>{{item.LookupName}}</td>
+                        <td class="text-center">
+                            <a [matTooltip]="permissions.write==false ? 'You dont have write permissions' : 'Update Details'" [ngClass]="{'disable-custom' : permissions.write == false}"
+                                (click)="openLookupDialog(item)" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a [matTooltip]="permissions.delete==false ? 'You dont have delete permissions' : 'Delete'" [ngClass]="{'disable-custom' : permissions.delete == false}">
+                                <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red" (click)="deleteLookup(item.LookupId)"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

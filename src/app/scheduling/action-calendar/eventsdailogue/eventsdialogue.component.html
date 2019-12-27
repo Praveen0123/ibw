@@ -1,0 +1,66 @@
+<div class="main">
+    <div class="header col-sm-12">
+        <h1 mat-dialog-title>
+            <span>Scheduled Actions</span>
+        </h1>
+    </div>
+    <div class="w-100 flex-p">
+        <div class="col-sm-12 no-padding">
+            <div fxLayout="row wrap" style="margin-top:-3px;">
+                <div class="table-responsive w-100 flex-p" id="reviews" style="padding-left:0px!important;padding-right:0px!important">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr class="tr-grid-header">
+                                <th style="padding-left: 5px!important;">Action Title</th>
+                                <th style="padding-left: 5px!important;">Task</th>
+                                <th style="padding-left: 5px!important;">SOW</th>
+                                <th style="padding-left: 5px!important; text-align: center !important;">
+                                    Site</th>
+                                <th style="padding-left: 5px!important;">Project</th>
+                                <th style="padding-left: 5px!important;">Staff Assigned</th>
+                                <th style="padding-left: 5px!important;">From Date</th>
+                                <th style="padding-left: 5px!important;">From Time</th>
+                                <th style="padding-left: 5px!important;">To Date</th>
+                                <th style="padding-left: 5px!important;">To Time</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding-left: 5px!important;">CAD Drafting</td>
+                                <td style="padding-left: 5px!important;">Calcs & CAD</td>
+                                <td style="padding-left: 5px!important;">SoW-1</td>
+                                <td style="padding-left: 5px!important;">71 Mearns </td>
+                                <td style="padding-left: 5px!important;">5-12564</td>
+                                <td style="padding-left: 5px!important;">Ken J</td>
+                                <td style="padding-left: 5px!important;">2019-07-27</td>
+                                <td style="padding-left: 5px!important;">12:00 PM</td>
+                                <td style="padding-left: 5px!important;text-align: center !important;">2019-07-27</td>
+                                <td style="padding-left: 5px!important;text-align: center !important;">2:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 5px!important;">Operations Assist</td>
+                                <td style="padding-left: 5px!important;">Administration</td>
+                                <td style="padding-left: 5px!important;">SoW-2</td>
+                                <td style="padding-left: 5px!important;">20 Mearns Ct </td>
+                                <td style="padding-left: 5px!important;">4-24642</td>
+                                <td style="padding-left: 5px!important;">Carl W</td>
+                                <td style="padding-left: 5px!important;">2019-07-28</td>
+                                <td style="padding-left: 5px!important;">12:00 PM</td>
+                                <td style="padding-left: 5px!important;text-align: center !important;">2019-07-27</td>
+                                <td style="padding-left: 5px!important;text-align: center !important;">3:00 PM
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer col-sm-12" style="padding-bottom:6px;padding-top:5px">
+        <mat-dialog-actions align="end">
+            <!-- <button mat-raised-button class="pull-right add-hover btn-success"><span>Assign</span></button> -->
+            <button mat-raised-button class="pull-right add-dark-hover btn-default" (click)="close()" style="margin-bottom: 3px!important;">Cancel</button>
+        </mat-dialog-actions>
+    </div>
+</div>

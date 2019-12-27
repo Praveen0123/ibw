@@ -1,0 +1,66 @@
+<h2 class="example-h2" style="margin-left: 0px">
+    Grid veiw configuration</h2>
+<small>Please select the required columns in the grid, to view grid with specific columns</small>
+
+
+<div mat-dialog-content>
+    <form class="form-horizontal">
+        <div class="form-group" style="margin-top: 20px">
+            <mat-checkbox class="col-sm-6" color='warn'>Quote Number</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Survey Type</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Client Name</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'> Quote Admin</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'> Account Manager</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Existing Project</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Sites</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>SOW</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Received Date</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Qualified Date</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'> Quoted Date</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Decision Date</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Timeline</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'> Quoted ($)</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Awarded ($)</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'> Phone</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Contact(s)</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Municipality</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>City</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Docs</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Potential</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Stage</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn'>Status</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn'>Actions</mat-checkbox>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<mat-dialog-actions align="end" class="col-sm-12">
+    <button mat-raised-button class="btn-success" (click)="close()">Configure</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions>

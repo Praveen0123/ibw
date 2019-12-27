@@ -1,0 +1,48 @@
+<div class="custom-header">
+        <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+            <span *ngIf="data['configQuestion'].ConfigQuestionId">Update</span>
+            <span *ngIf="!data['configQuestion'].ConfigQuestionId">Add</span> Question</h3>
+    </div>
+    
+    <div mat-dialog-content>
+        <form [formGroup]="configQuestionForm" class="form-horizontal">
+    
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Survey Purpose:</label>
+            <div class="col-sm-8">
+                    <mat-select formControlName="SurveyPurposeId"  placeholder="-- Select Survey Purpose --" class="form-control">
+                            <mat-option *ngFor="let option of surveyPurposes" [value]="option.CommonMasterDataId">{{option.CommonMasterDataName}}</mat-option>
+                          </mat-select>
+                <mat-error *ngIf="configQuestionForm.controls.SurveyPurposeId.errors?.required && configQuestionForm.controls.SurveyPurposeId.touched">Please select survey purpose</mat-error>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Question:</label>
+            <div class="col-sm-8">
+                <textarea formControlName="ConfigQuestion" class="txtarea form-control" placeholder="Enter Question" rows="2"></textarea>
+                <mat-error *ngIf="configQuestionForm.controls.ConfigQuestion.errors?.required && configQuestionForm.controls.ConfigQuestion.touched ">Please enter question</mat-error>
+                <mat-error *ngIf="configQuestionForm.controls.ConfigQuestion.hasError('invalidInput') && configQuestionForm.controls.ConfigQuestion.touched ">Please enter valid input</mat-error>
+            </div>
+        </div>
+        </form>
+    </div>
+    
+    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button type="button" mat-raised-button class="add-dark-hover btn-default" 
+        (click)="close()" style="cursor: pointer;">
+            <mat-icon>cancel</mat-icon>
+            <span>&nbsp;Cancel</span>
+        </button>
+        <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="submitConfigQuestionForm(configQuestionForm.value)">
+    
+            <mat-icon *ngIf="!data['configQuestion'].ConfigQuestionId" >send</mat-icon>
+    
+            <span *ngIf="!data['configQuestion'].ConfigQuestionId" >&nbsp;Save</span>
+    
+            <mat-icon *ngIf="data['configQuestion'].ConfigQuestionId">update</mat-icon>
+    
+            <span *ngIf="data['configQuestion'].ConfigQuestionId">&nbsp;Update</span>
+    
+        </button>
+    </mat-dialog-actions>
+    

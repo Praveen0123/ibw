@@ -1,0 +1,600 @@
+<div class="flex-p" style="margin-top: -10px; margin-bottom: 10px;">
+    <div class="row wrap">
+        <div class="col-xs-12">
+            <div class="">
+                <button mat-raised-button (click)="openSiteDailog(null)" class="pull-left add-hover btn-success margin-right-10" style="margin-left: 5px !important;">
+                            <mat-icon>add</mat-icon> Add Site
+                          </button>
+                <button mat-raised-button (click)="openSowDailog(null)" class="pull-left add-hover btn-success margin-right-10">
+                              <mat-icon>add</mat-icon> Add SOW
+                            </button>
+                <button mat-raised-button (click)="openTaskModal()" class="pull-left add-hover btn-success margin-right-10">
+                                <mat-icon>add</mat-icon> Add Task
+                              </button>
+                <button mat-raised-button class="pull-right add-hover-help-job btn-success-help-job" style="margin-right: 6px;">
+              <mat-icon>help_outline</mat-icon> Help
+            </button>
+                <button mat-raised-button color="primary" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                    <mat-icon>filter_list</mat-icon> Filter
+                </button>
+                <button mat-raised-button (click)="opengridColDialog(null)" class="pull-right btn-primary" style="color:white; background:#3b7bb8;margin-right:10px;">
+                <mat-icon>view_column</mat-icon> Grid Columns
+            </button>
+                <button mat-raised-button color="primary" style="min-width: 110px;background-color: #e0e0e0;
+            color: black;" class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+            Next<mat-icon>skip_next</mat-icon>
+        </button>
+                <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="background-color: #e0e0e0;
+            color: black;" (click)="scrollActions('right');">
+            <mat-icon>skip_previous</mat-icon> Previous
+        </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div fxLayout="row wrap">
+    <div *ngIf="filterToggle" class="col-sm-12" style="margin-bottom:15px;">
+        <mat-card class="filter">
+            <mat-card-content>
+                <div class="row col-sm-12">
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">Status</div>
+                        <div class="col-sm-8">
+                            <mat-select class='select-option form-control' placeholder="--Search by Status--">
+                                <mat-option [value]="1">Any</mat-option>
+                                <mat-option [value]="2">Pending</mat-option>
+                                <mat-option [value]="3">Approved</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">From Date</div>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">To Date</div>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row col-sm-12" style="margin-top:20px">
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">Keyword</div>
+                        <div class="col-sm-8">
+                            <input class="form-control" placeholder="Enter keyword" type="text">
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">Action</div>
+                        <div class="col-sm-8">
+                            <mat-select class='select-option form-control' placeholder="--Select Action--">
+                                <mat-option [value]="1">CAD Drafting</mat-option>
+                                <mat-option [value]="2"> Field Work</mat-option>
+                            </mat-select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                        </a>
+
+                        <button mat-raised-button class="pull-right btn-success-gray" style="margin-left: 10px;margin-right: 8px;">
+                                            <mat-icon>settings_backup_restore</mat-icon> Reset
+                                        </button>
+                        <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                            <mat-icon>cloud_download</mat-icon> Download CSV
+                                        </button> -->
+                        <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                            <mat-icon>youtube_searched_for</mat-icon> Search
+                                        </button>
+                    </div>
+
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="col-sm-12 w-100">
+
+        <button mat-raised-button style="color:white; background:#3b7bb8;margin-right:10px;" (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+        <mat-drawer-container class="custom-sidenav" hasBackdrop="false" class="margin-top-10">
+            <mat-drawer #drawer mode="side" opened="true">
+                <div class="col-sm-12" style="padding-left:0px;">
+                    <mat-card class="col-sm-12" style="background: #dbe8f3 !important">
+                        <p-tree [value]="files" class="ptreecustom" selectionMode="single" [(selection)]="selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
+                    </mat-card>
+                </div>
+            </mat-drawer>
+            <mat-drawer-content>
+                <div class="col-sm-12 no-padding">
+                    <mat-card class="col-sm-12">
+                        <div class="col-sm-4">
+                            <label>Award Date :</label>
+                            <span>&nbsp;&nbsp;2019-06-24</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Due Date :</label>
+                            <span>&nbsp;&nbsp;2019-07-29</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Project Manager :</label>
+                            <span>&nbsp;&nbsp;Alycia Robonson</span>
+                        </div>
+                        <div class="col-sm-4 margin-top-10">
+                            <label>Budget Hours :</label>
+                            <span>&nbsp;&nbsp;21:00</span>
+                        </div>
+                        <div class="col-sm-4 margin-top-10">
+                            <label>Actual Hours :</label>
+                            <span>&nbsp;&nbsp;{{OverallActHours}}</span>
+                        </div>
+                        <div class="col-sm-4 margin-top-10">
+                            <label>Overall Cost :</label>
+                            <span>&nbsp;&nbsp;{{OverallCost | currency}}</span>
+                        </div>
+                    </mat-card>
+                    <mat-card class="col-sm-12 margin-top-10">
+                        <div class="w-100">
+                            <div class="">
+                                <button mat-raised-button style="color:white; background:#3b7bb8;" (click)="openAllAccordians()">Expand All</button>
+                                <button mat-raised-button style="color:white; background:#f35353; margin-left: 7px;" (click)="closeAllAccordians()">Collapse All</button>
+                                <div class="col-sm-12" style="padding: 0px !important; margin-top: 10px;">
+                                    <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabClose($event)" class="customAccordian">
+                                        <p-accordionTab *ngFor="let item of taskData" [selected]="item.selected">
+                                            <p-header>
+                                                <label class="margin-left-7">Task :</label>
+                                                <span>
+                                              &nbsp; {{item.name}}
+                                            </span>
+                                                <label class="margin-left-20">Site :</label>
+                                                <span>
+                                              &nbsp; 71 Mearns
+                                            </span>
+                                                <label class="margin-left-20">SOW :</label>
+                                                <span>
+                                              &nbsp; Reference Plan
+                                            </span>
+                                                <label class="margin-left-20">Budget Hours :</label>
+                                                <span>
+              &nbsp; 12
+            </span>
+                                                <label class="margin-left-20">Budget :</label>
+                                                <span>
+                      &nbsp; {{'800' | currency}}
+                    </span>
+                                                <label class="margin-left-20">Billed :</label>
+                                                <span>
+          &nbsp; {{'500' | currency}}
+        </span>
+                                            </p-header>
+                                            <button mat-raised-button class="pull-right" style="color:white; background:#3b7bb8;margin-bottom: 10px; margin-top: -5px;" (click)="openActionModal()">Add Action</button>
+
+                                            <div class="table-responsive" id="{{item.id}}">
+                                                <table id="example2" class="table table-bordered table-striped table-hover no-padding" style="margin-bottom: 10px !important">
+                                                    <thead>
+                                                        <tr class="thead-color">
+                                                            <th class="text-center">Add</th>
+                                                            <th style="min-width: 200px;">Action</th>
+                                                            <th style="min-width: 100px;">Due Date</th>
+                                                            <th style="min-width: 100px;">Completion Date</th>
+                                                            <th style="min-width: 120px;">Job Code</th>
+                                                            <th style="min-width: 100px;" class="text-center">Rate</th>
+                                                            <th style="min-width: 120px;" class="text-center">Planned Hours</th>
+                                                            <th style="min-width: 120px;">Actual Hours</th>
+                                                            <th style="min-width: 100px;" class="text-center">Budget</th>
+                                                            <th style="min-width: 100px;" class="text-center">Manage</th>
+                                                            <th style="min-width: 100px;" class="text-center">Upload</th>
+                                                            <th style="min-width: 100px;" class="text-center">Total Hours</th>
+                                                            <th style="min-width: 100px;" class="text-center">Total Cost</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngIf="item.Data?.length == 0">
+
+                                                            <td style="text-align: center;" colspan="7">
+                                                                No records Found
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngFor="let tData of item.Data; let i = index">
+                                                            <td class="text-center">
+                                                                <a matTooltip="Add Action" (click)="addRowTask1(item.id)" style="cursor: pointer;font-size:16px!important;color:rgba(73, 177, 104, 0.82)">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </a>
+                                                            </td>
+                                                            <td><input type="text" class="form-control" placeholder="Enter Action" [(ngModel)]="tData.actionName"></td>
+                                                            <td>
+                                                                    <input type="text" placeholder="Enter Due Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                    <input type="text" placeholder="Enter Completion Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+                                                            </td>
+                                                            <td>
+                                                                <mat-select class="form-control" placeholder="Job Code" (selectionChange)="jobCodeChange($event.value, item.id, tData.id)">
+                                                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}</mat-option>
+                                                                </mat-select>
+                                                            </td>
+                                                            <td class="text-center" style="vertical-align: middle"> {{tData.rate | currency}} </td>
+                                                            <td> <input type="number" (ngModelChange)="getQuantityValue(tData.quantity, item.id, tData.id)" class="form-control" placeholder="Enter Planned Hours"> </td>
+                                                            <td> <input type="number" [(ngModel)]="tData.quantity" (ngModelChange)="getQuantityValue(tData.quantity, item.id, tData.id)" class="form-control" placeholder="Enter Actual Hours"> </td>
+                                                            <td style="vertical-align: middle" class="text-center">{{tData.totals | currency}} </td>
+                                                            <td class="text-center" style="vertical-align: middle">
+                                                                <a matTooltip="Save Action">
+                                                                    <i style="cursor: pointer;font-size:16px!important;" class="fa fa-floppy-o blue"></i>
+                                                                </a>
+
+                                                                <a *ngIf="item.Data.length != 1" matTooltip="Delete Action" (click)="deleteRowTask(item.id, tData.id)">
+                                                                    <i style="cursor: pointer;font-size:16px!important;" class="fa fa-trash red"></i>
+                                                                </a>
+                                                            </td>
+                                                            <td class="text-center" style="vertical-align: middle">
+                                                                <p-fileUpload mode="basic" (onUpload)="onBasicUpload($event)"></p-fileUpload>
+                                                            </td>
+                                                            <td class="text-center" style="vertical-align: middle" [attr.rowspan]="item.Data.length" *ngIf="i == 0">{{item.budgetHours}}</td>
+                                                            <td class="text-center" style="vertical-align: middle" [attr.rowspan]="item.Data.length" *ngIf="i == 0">{{item.budgetFee | currency}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </p-accordionTab>
+                                        <p-accordionTab>
+                                            <p-header>
+                                                <label class="margin-left-7">Expenses</label>
+                                            </p-header>
+                                            <table id="example2" class="table table-bordered table-striped table-hover">
+                                                <thead>
+                                                    <tr style="background: #586958 !important; color:#fff !important;">
+                                                        <th>
+                                                            Item
+                                                        </th>
+                                                        <th class="text-center">
+                                                            Rate
+                                                        </th>
+                                                        <th style="width: 150px !important">
+                                                            Quantity
+                                                        </th>
+                                                        <th class="text-center">
+                                                            Totals
+                                                        </th>
+                                                        <th class="text-center">
+                                                            Budget Fee
+                                                        </th>
+                                                        <th class="text-center">
+                                                            Manage
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- <tr>
+                                                                <td>Surveyor Search</td>
+                                                                <td class="text-center">$200</td>
+                                                                <td> <input type="number" [(ngModel)]="quantity1" class="form-control" placeholder="Enter Quantity"> </td>
+                                                                <td class="text-center">$0</td>
+                                                                <td class="text-center" style="vertical-align: middle" rowspan="6">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Mileage</td>
+                                                                <td class="text-center">$0.50</td>
+                                                                <td> <input type="number" [(ngModel)]="quantity1" class="form-control" placeholder="Enter Quantity"> </td>
+                                                                <td class="text-center">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Bars/Spikes/Stakes</td>
+                                                                <td class="text-center">$25</td>
+                                                                <td> <input type="number" [(ngModel)]="quantity1" class="form-control" placeholder="Enter Quantity"> </td>
+                                                                <td class="text-center">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Integration Fee</td>
+                                                                <td class="text-center">$500</td>
+                                                                <td> <input type="number" [(ngModel)]="quantity1" class="form-control" placeholder="Enter Quantity"> </td>
+                                                                <td class="text-center">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RO Fee</td>
+                                                                <td class="text-center">$100</td>
+                                                                <td> <input type="number" [(ngModel)]="quantity1" class="form-control" placeholder="Enter Quantity"> </td>
+                                                                <td class="text-center">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="text" [(ngModel)]="quantity1" class="form-control" placeholder="Enter Custom"> </td>
+                                                                <td class="text-center">$100</td>
+                                                                <td> <input type="number" [(ngModel)]="quantity1" class="form-control" placeholder="Enter Quantity"> </td>
+                                                                <td class="text-center">$0</td>
+                                                            </tr> -->
+                                                    <tr *ngFor="let item of expenses; let i = index">
+                                                        <td *ngIf="item.name != ''">{{item.name}}</td>
+                                                        <td *ngIf="item.name == ''"> <input type="text" [(ngModel)]="item.name" class="form-control" placeholder="Enter Name">
+                                                        </td>
+                                                        <td class="text-center" *ngIf="item.rate != null">{{item.rate | currency}}</td>
+                                                        <td *ngIf="item.rate == null"> <input type="number" [(ngModel)]="item.rate" class="form-control" placeholder="Enter Rate"> </td>
+                                                        <td> <input type="number" [(ngModel)]="item.quantity" class="form-control" placeholder="Enter Quantity"> </td>
+                                                        <td class="text-center">{{item.totals | currency}}</td>
+                                                        <td *ngIf="i == 0" [attr.rowspan]="expenses.length" style="vertical-align: middle; text-align: center">{{totalBudget | currency}}</td>
+                                                        <td class="text-center" style="vertical-align: middle">
+                                                            <a matTooltip="Save">
+                                                                <i style="cursor: pointer;font-size:16px!important;" class="fa fa-floppy-o blue"></i>
+                                                            </a>
+                                                            <a matTooltip="Add" (click)="addExpenseItem()" style="cursor: pointer;font-size:16px!important;color:rgba(73, 177, 104, 0.82)">
+                                                                <i class="fa fa-plus"></i>
+                                                            </a>
+                                                            <a *ngIf="expenses.length != 1" matTooltip="Delete" (click)="deleteExpenseItem(item.id)">
+                                                                <i style="cursor: pointer;font-size:16px!important;" class="fa fa-trash red"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </p-accordionTab>
+
+                                    </p-accordion>
+                                </div>
+                            </div>
+                            <div class="flex-p">
+                                <div class="col-sm-12" style="padding: 0px !important;">
+                                    <button mat-raised-button class="btn-success pull-right">Submit</button>
+
+                                    <button style="background: #3a8cab; color: #fff !important; margin-right: 10px !important" mat-raised-button class="pull-right">Save Draft</button>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </mat-drawer-content>
+        </mat-drawer-container>
+
+    </div>
+</div>
+
+
+
+
+<div bsModal #addSowModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">Add New SOW</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Site: </label>
+                        <div class="col-sm-8">
+                            <mat-select placeholder="--Select Site--" class="form-control">
+                                <mat-option *ngFor="let option of sites" [value]="option">{{option}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Type: </label>
+                        <div class="col-sm-8">
+                            <mat-select placeholder="--Select Type--" class="form-control">
+                                <mat-option *ngFor="let option of SowTypes" [value]="option">{{option}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-4 control-label col-sm-4 add-member-label">SOW Title: </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" placeholder="Enter SOW Name" type="text">
+                        </div>
+                    </div>
+
+                </form>
+
+
+
+            </div>
+            <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+                <button mat-raised-button class="add-dark-hover btn-default" (click)="hideChildModal()">Cancel</button>
+                <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideChildModal()">Save</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>
+
+<div bsModal #addTasModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title text-center">Add Task</h4>
+
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-12 control-label add-member-label">Select SOW </label>
+                        <div class="col-sm-12">
+                            <mat-select class="form-control" placeholder="Select SOW">
+                                <mat-option value="1">Reference Plan</mat-option>
+                                <mat-option value="2">Topographic</mat-option>
+                                <mat-option value="3">SRPR</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-12 control-label add-member-label">Task </label>
+                        <div class="col-sm-12">
+                            <input class="form-control" [(ngModel)]="taskName" placeholder="Enter Task Name" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-dialog-actions align="center" style="margin: -10px 0px 9px 0px">
+                <button mat-raised-button class="add-dark-hover btn-default" (click)="hideChildModal()"><mat-icon>cancel</mat-icon><span>&nbsp;Cancel</span></button>
+                <button mat-raised-button style="margin-left: 10px;color:#fff; background: #286ba5" class="" (click)="saveTask()"><mat-icon>done</mat-icon><span>&nbsp;Save</span></button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div *ngIf="!leads" fxLayout="column" fxLayoutAlign="center center" class="lead-spinner">
+        <mat-spinner color="primary"></mat-spinner>
+        </div> -->
+
+<!-- <div class="col-sm-12 w-100">
+          <div class="flex-p">
+            <div class="row wrap">
+              <div class="col-xs-12">
+                <div class="col-sm-9" style="padding: 0px 0px 20px 0px !important;">
+                  <button mat-raised-button class="pull-right add-hover-help-job btn-success-help-job" style="margin-left: 2px;">
+                    <mat-icon>help_outline</mat-icon> Help
+                  </button>
+                  
+                  <button *ngIf="userType == 'admin'" mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="showChildModal()">
+                    <mat-icon>add</mat-icon> Add New SOW
+                  </button>
+        
+                </div>
+              </div>
+            </div>
+          </div>
+        
+            <div class="table-responsive w-100 flex-p col-sm-9" style="padding: 0px !important;">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead class="tbl-head">
+                  <tr class="tr-grid-header">
+                    <th>SOW Title</th>
+                    <th>Site Name</th>
+                    <th>Type</th>
+                    <th class="text-center">Tasks</th>
+                    <th class="text-center">Start Date</th>
+                    <th class="text-center">Due Date</th>
+                    <th class="text-center">Completion</th>
+                    <th class="text-center">Completion Date</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of SOWData">
+                    <td>{{item.sowName}}</td>
+                    <td>{{item.siteName}}</td>
+                    <td>{{item.sowType}}</td>
+                    <td class="text-center">{{item.tasks}}</td>
+                    <td class="text-center">{{item.startdate}}</td>
+                    <td class="text-center">{{item.duedate}}</td>
+                    <td class="text-center">{{item.completion}}</td>
+                    <td class="text-center">{{item.completiondate}}</td>
+                    <td class="pad-left inner-screen text-center">
+                      <a (click)="item.status = ! item.status">
+                          <span *ngIf="!item.status" style="color:red">Inactive</span>
+                          <span *ngIf="item.status">Active</span>
+                      </a>
+                  </td>
+                    <td class="text-center">
+                      <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                      <a>
+                        <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div> -->
+
+
+<div bsModal #addActionModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title">
+                    <b>Add Action</b>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Select Job Code (s): </label>
+                        <div class="col-sm-7">
+                            <mat-select placeholder="--Select Job Code--" class="form-control" multiple>
+                                <mat-option *ngFor="let option of JobCodes" [value]="option">{{option}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Select Site: </label>
+                        <div class="col-sm-7">
+                            <mat-select placeholder="--Select Site--" class="form-control">
+                                <mat-option *ngFor="let option of Sites" [value]="option">{{option}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Select SOW Name: </label>
+                        <div class="col-sm-7">
+                            <mat-select placeholder="--Select SOW Name--" class="form-control">
+                                <mat-option *ngFor="let option of SOWs" [value]="option">{{option}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Select Task: </label>
+                        <div class="col-sm-7">
+                            <mat-select placeholder="--Select Task--" class="form-control">
+                                <mat-option *ngFor="let option of Tasks" [value]="option">{{option}}</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Planned Hours: </label>
+                        <div class="col-sm-7">
+                            <input class="form-control" placeholder="Enter Planned Hours" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Select Due Date: </label>
+                        <div class="col-sm-7">
+                            <!-- <input type="date" class="form-control" id="price" placeholder="Enter Due Date"> -->
+                            <input type="text" placeholder="Select Due Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Instructions: </label>
+                        <div class="col-sm-7">
+                            <!-- <textarea class="form-control txtarea" rows="2" placeholder="Enter Instructions" autocomplete="off"></textarea> -->
+                            <app-ngx-editor height="100px" minHeight="50px" [placeholder]="'Enter Instructions'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-5 control-label add-member-label">Upload: </label>
+                        <div class="col-sm-7">
+                            <input type="file" multiple>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+                <button mat-raised-button class="add-dark-hover btn-default" (click)="hideChildModal()" style="margin-right: 3px;">Cancel</button>
+                <button mat-raised-button style="margin-left: 5px;margin-right: 3px;" class="btn-success" (click)="hideChildModal()">Save  & Create</button>
+                <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideChildModal()">Save</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>

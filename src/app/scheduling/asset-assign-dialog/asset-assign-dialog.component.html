@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Assign Action</h1>
+<div mat-dialog-content>
+
+    <form class="form-horizontal">
+        <div class="form-group col-sm-12">
+            <label class="col-sm-4">Staff Name: </label>
+            <div class="col-sm-8">
+                <span>Peter</span>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-4">Selected Date: </label>
+            <div class="col-sm-8">
+                <span>2019-07-15</span>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-4">Available Hours: </label>
+            <div class="col-sm-8">
+                <span>4 Hours</span>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-4">Remarks: </label>
+            <div class="col-sm-8">
+                <textarea class="form-control" placeholder="Enter Remarks" type="text"></textarea>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+    <button mat-raised-button class="add-hover btn-success" (click)="saveInfo()"><span>Assign</span></button>
+</mat-dialog-actions>

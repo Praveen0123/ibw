@@ -1,0 +1,27 @@
+<div>
+    <mat-card>
+        <mat-card-header fxLayoutAlign="center">                
+            <mat-card-subtitle><h2>Weekly Revenue Trend</h2></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="w-100 h-300p">
+                    <div class="col-sm-12" [chart]="barChart"></div>
+
+              <!-- <ngx-charts-bar-vertical
+              [scheme]="colorScheme"
+              [results]="week"
+              [gradient]="gradient"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
+              (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>              -->
+            </div>
+        </mat-card-content>
+    </mat-card>
+  </div>
+  

@@ -1,0 +1,198 @@
+<div class="w-100">
+    <div class="flex-p">
+        <div class="row wrap">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="pills w-100 flex-p">
+                    <ul class="nav nav-pills ">
+                        <li routerLinkActive="active">
+                            <a routerLink="/IBW/analytics/dashboard/time-entry-user" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">border_color</mat-icon>
+                  Time & Entry
+                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+
+                        <li *ngIf="userType == 'admin'" routerLinkActive="active">
+                            <a routerLink="/IBW/analytics/dashboard/project-manager-user" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">business_center</mat-icon>
+                  Project Manager
+                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="w-100 flex-p">
+                    <button mat-raised-button class="pull-right add-hover-help btn-success-help">
+            <!-- (click)="openHelpVideo(null)" -->
+            <mat-icon>help_outline</mat-icon> Help
+          </button>
+
+                    <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="margin-left: 10px;" (click)="filterToggle = !filterToggle">
+            <mat-icon>filter_list</mat-icon> Filter
+          </button>
+                    <div class="no-padding pull-right" style="margin: 8px 0px 0px 8px!important" *ngIf="result != null && result != 0">
+                        <input type="week" name="week" class="form-control" id="camp-week" placeholder="Select Week" min="2019-W20" max="2019-W42" required>
+                    </div>
+                    <div class="no-padding pull-right" style="margin: 8px 0px 0px 8px!important" *ngIf="result != null && result != 1">
+                        <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                        </div>
+                    <!-- <div class="no-padding pull-right" style="padding-top: 6px;"> -->
+                    <div class="pull-right" style="width: 100px!important;margin-top: 8px;margin-left: 9px;">
+                        <mat-select placeholder="--Filter by--" class="form-control" [(ngModel)]="result">
+                            <mat-option *ngFor="let option of rangeTypes" [value]="option.id">{{option.value}}</mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="pull-right">
+                        <label style="margin: 17px 0 0px 24px!important;">Filter by:</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-xs-6">
+        </div>
+    </div>
+    <div fxLayout="row wrap" *ngIf="filterToggle">
+        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Project Type</div>
+                            <div class="col-sm-8">
+                                <input type="text" style="padding:5px;" class="form-control" placeholder="Search by Project" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                        {{option}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Site</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select Site" [(ngModel)]='siteOptionSelected' (ngModelChange)='onSiteOptionsSelected($event)'>
+                                    <mat-option class='option' *ngFor='let option of siteOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Region</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select Region" [(ngModel)]='regionOptionSelected' (ngModelChange)='onRegionOptionsSelected($event)'>
+                                    <mat-option class='option' *ngFor='let option of regionOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row col-sm-12" style="margin-top:20px">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">City</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select City" [(ngModel)]='cityOptionSelected' (ngModelChange)='onCityOptionsSelected($event)'>
+                                    <mat-option class='option' *ngFor='let option of cityOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">From Date</div>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">To Date</div>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row col-sm-12" style="margin-top:20px">
+
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Role</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select Role" [(ngModel)]='roleOptionSelected' (ngModelChange)='onRoleOptionsSelected($event)'>
+                                    <mat-option class='option custom-size-autofill' *ngFor='let option of roleOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Staff</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select Staff" [(ngModel)]='staffOptionSelected' (ngModelChange)='onStaffOptionsSelected($event)'>
+                                    <mat-option class='option' *ngFor='let option of staffOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Project Stage</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select Project Stage" [(ngModel)]='projectstageOptionSelected' (ngModelChange)='onProjectstageOptionsSelected($event)'>
+                                    <mat-option class='option' *ngFor='let option of projectstageOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12" style="margin-top:20px">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Billing Status</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select Billing Status" [(ngModel)]='billingstatusOptionSelected' (ngModelChange)='onBillingstatusOptionsSelected($event)'>
+                                    <mat-option class='option' *ngFor='let option of billingstatusOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Archival Status</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="Select Archival Status" [(ngModel)]='archivalstatusOptionSelected' (ngModelChange)='onArchivalstatusOptionsSelected($event)'>
+                                    <mat-option class='option' *ngFor='let option of archivalstatusOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                            </a>
+
+                            <button mat-raised-button class="pull-right" style="margin-left: 10px;margin-right: 8px;">
+                                <span style="color: #000000;">
+                                    <mat-icon style="vertical-align: inherit;">settings_backup_restore</mat-icon> Reset
+                                </span>
+                            </button>
+                            <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                <mat-icon >youtube_searched_for</mat-icon>
+                                Search
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<h1 mat-dialog-title>
+    Add Hours</h1>
+<div mat-dialog-content>
+    <div class="form-horizontal">
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label add-member-label">Select Project: </label>
+            <div class="col-sm-6">
+                <mat-select placeholder="--Select Project--" class="form-control">
+                    <mat-option *ngFor="let option of projects" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">Select Site: </label>
+            <div class="col-sm-6">
+                <mat-select placeholder="--Select Site--" class="form-control">
+                    <mat-option *ngFor="let option of Sites" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">Select SOW: </label>
+            <div class="col-sm-6">
+                <mat-select placeholder="--Select SOW--" class="form-control">
+                    <mat-option *ngFor="let option of SOWs" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label ">Select Task: </label>
+            <div class="col-sm-6">
+                <mat-select placeholder="--Select Task--" class="form-control">
+                    <mat-option *ngFor="let option of Tasks" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label  ">Select Action: </label>
+            <div class="col-sm-6">
+                <mat-select placeholder="--Select Action--" class="form-control">
+                    <mat-option *ngFor="let option of Actions" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label add-member-label">Select Worked Date: </label>
+            <div class="col-sm-6">
+                <input type="date" class="form-control" id="price" placeholder="Enter Worked Date">
+                <!-- <p-calendar class="width" appendTo="body" (onSelect)="select($event)" [styleClass]="'customCalendar'" placeholder="Select Worked Date" [inputStyleClass]="'form-control'" [(ngModel)]="values" [locale]="en"></p-calendar> -->
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label add-member-label">Enter Worked Hours: </label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" id="price" placeholder="Enter Worked Hours">
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">PDF File(s): </label>
+            <div class="col-sm-6">
+                <input type="file" name="pic">
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">DWG File(s): </label>
+            <div class="col-sm-6">
+                <input type="file" name="pic">
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">MSZ File(s): </label>
+            <div class="col-sm-6">
+                <input type="file" name="pic">
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">Other File(s): </label>
+            <div class="col-sm-6">
+                <input type="file" name="pic">
+            </div>
+        </div>
+    </div>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+    <button mat-raised-button class="add-hover btn-success" (click)="saveInfo()">
+        <span>Save</span>
+    </button>
+</mat-dialog-actions>

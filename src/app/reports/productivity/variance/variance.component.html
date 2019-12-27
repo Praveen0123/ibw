@@ -1,0 +1,137 @@
+<div class="w-100">
+  <div class="flex-p" style="padding:0px 0px 0px 1!important">
+    <div class="row wrap">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:8px">
+        <div class="pills w-100 flex-p">
+          <ul class="nav nav-pills ">
+            <li routerLinkActive="active">
+              <a  routerLink="/IBW/reports/productivity/variance/withinbudget" style="margin-right: 8px; padding: 0px 10px;"
+                mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">event_available</mat-icon>
+                 Within Budget
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li>
+            <li routerLinkActive="active">
+              <a  routerLink="/IBW/reports/productivity/variance/overrun" style="margin-right: 8px; padding: 0px 10px;"
+                mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">event_busy</mat-icon>
+                  Over Run
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:8px 23px 0px 74px !important">
+          <a mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+            <mat-icon>help_outline</mat-icon> Help
+          </a>
+          <button mat-raised-button class="pull-right add-hover btn-success">
+              <mat-icon>cloud_download</mat-icon> Download CSV
+            </button>
+          <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="filterToggle = !filterToggle">
+            <mat-icon>filter_list</mat-icon> Filter
+          </button>
+          <button mat-raised-button color="primary" style="min-width: 110px;" class="pull-right filters-hover margin-right-10">
+            Next<mat-icon>skip_next</mat-icon>
+          </button>
+          <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+            <mat-icon>skip_previous</mat-icon> Previous
+          </button>
+          <!-- <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="background-color: #179617;">
+            GO
+          </button> -->
+          <!-- <label class="flex-p context-text">Select Context:</label>
+          <mat-select [(value)]="selected" class='pull-right select-option form-control level' placeholder="Select Level">
+            <mat-option [value]="1">Sites</mat-option>
+            <mat-option [value]="2">SOW</mat-option>
+            <mat-option [value]="3">Tasks</mat-option>
+            <mat-option [value]="4">Actions</mat-option>
+          </mat-select> -->
+        </div>
+        <div fxLayout="row wrap" class="col-sm-12" style="padding-left:0px!important" *ngIf="filterToggle">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" style="padding-left:15px!important;padding-top:15px!important">
+                <mat-card class="filter">
+                    <mat-card-content>
+                <div class="row col-sm-12">
+                  <div class="col-sm-4">
+                    <div class="col-sm-4">Project</div>
+                    <div class="col-sm-8">
+                      <mat-select class='select-option form-control' placeholder="--Search Project--">
+                        <mat-option [value]="1">5-12564</mat-option>
+                        <mat-option [value]="2">4-24642</mat-option>
+                        <mat-option [value]="3">6-10235</mat-option>
+                        <mat-option [value]="4">2-51152</mat-option>
+                        <mat-option [value]="5">A7-14164</mat-option>
+                        <mat-option [value]="6">2-25986</mat-option>
+                        <mat-option [value]="7">4-82324</mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="col-sm-4">Site</div>
+                    <div class="col-sm-8">
+                      <mat-select class='select-option form-control' placeholder="--Search by Site--">
+                        <mat-option [value]="1">71 Mearns</mat-option>
+                        <mat-option [value]="2">20 Mearns Ct</mat-option>
+                        <mat-option [value]="3">60 Mearns</mat-option>
+                        <mat-option [value]="4">71 Mearns 249</mat-option>
+                        <mat-option [value]="5">55 Mearns Ct</mat-option>
+                        <mat-option [value]="6">85 Mearns Ct</mat-option>
+                        <mat-option [value]="7">71 Mearns Ct 20</mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="col-sm-4">Task</div>
+                    <div class="col-sm-8">
+                      <mat-select class='select-option form-control' placeholder="--Search by Task--">
+                        <mat-option [value]="1">Calcs & CAD</mat-option>
+                        <mat-option [value]="2">Administration</mat-option>
+                        <mat-option [value]="3">Fieldwork</mat-option>
+                        <mat-option [value]="4">Management</mat-option>
+                        <mat-option [value]="5">Disbursments</mat-option>
+                        <mat-option [value]="6">Calcs & CAD</mat-option>
+                        <mat-option [value]="7">Fieldwork</mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row col-sm-12" style="margin-top:20px">
+                  <div class="col-sm-4">
+                      <div class="col-sm-4">Keyword</div>
+                      <div class="col-sm-8">
+                        <input class="form-control" placeholder="Enter keyword" type="text">
+                      </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                          <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                        </a>
+                        <button mat-raised-button class="pull-right" style="margin:0px 10px;">
+                          <mat-icon>settings_backup_restore</mat-icon> Reset
+                      </button>
+                       
+                        <button mat-raised-button color="primary" class="pull-right filters-hover">
+                          <mat-icon>youtube_searched_for</mat-icon> Search
+                        </button>
+                      </div>
+                </div>
+                
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+    </div>
+  </div>
+<div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

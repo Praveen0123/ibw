@@ -1,0 +1,34 @@
+:host ::ng-deep tr:hover td a {
+    background-color: #ccccff;
+}
+
+//For DAte Picker Prime Ng
+::ng-deep .customCalendar>.ui-inputtext {
+    background: #fff !important;
+    color: #5d5d5d !important;
+}
+
+::ng-deep .customCalendar {
+    width: 100% !important;
+}
+
+::ng-deep .ng-trigger .ng-trigger-overlayAnimation .ng-tns-c28-11 .ui-helper-clearfix .ui-corner-all .ui-shadow .ui-datepicker .ui-widget .ui-widget-content {
+    display: block !important;
+}
+
+::ng-deep .customCalendar>.ui-datepicker.ui-widget .ui-datepicker-calendar td a {
+    border: 0 none;
+    text-align: center;
+    padding: 8px;
+    border-radius: 0px;
+    color: #105488 !important;
+    background: white !important;
+}
+
+::ng-deep .customCalendar>.ui-datepicker:not(.ui-state-disabled) table td a:not(.ui-state-active):not(.ui-state-highlight):hover {
+    background-color: 105488 !important;
+    color: #fff !important;
+    background: #105488 !important;
+}
+
+//Ends herez

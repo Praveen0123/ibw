@@ -1,0 +1,55 @@
+<h2 class="example-h2" style="margin-left: 0px">
+    Grid veiw configuration</h2>
+  <small>Please select the required columns in the grid, to view grid with specific columns</small>
+  
+  
+  <div mat-dialog-content>
+      <form class="form-horizontal">
+          <div class="form-group" style="margin-top: 20px">
+              <mat-checkbox class="col-sm-6">Contact Name</mat-checkbox>
+              <mat-checkbox class="col-sm-6">Client Name</mat-checkbox>
+          </div>
+          <div class="form-group">
+              <mat-checkbox class="col-sm-6">Position Title</mat-checkbox>
+              <mat-checkbox class="col-sm-6">	Phone No.</mat-checkbox>
+          </div>
+  
+          <div class="form-group">
+              <mat-checkbox class="col-sm-6">	Email</mat-checkbox>
+              <mat-checkbox class="col-sm-6">Primary Contact</mat-checkbox>
+              
+          </div>
+          <div class="form-group">
+                <mat-checkbox class="col-sm-6">Billing Contact</mat-checkbox>
+                <mat-checkbox class="col-sm-6">Municipality</mat-checkbox>
+             
+          </div>
+          <div class="form-group">
+                <mat-checkbox class="col-sm-6">City</mat-checkbox>
+                <mat-checkbox class="col-sm-6">	Post Code</mat-checkbox>
+          </div>
+          <div class="form-group">
+              <mat-checkbox class="col-sm-6">Quotes</mat-checkbox>
+              <mat-checkbox class="col-sm-6">projects</mat-checkbox>
+          </div>
+          <div class="form-group">
+                <mat-checkbox class="col-sm-6">Created Date</mat-checkbox>
+                <mat-checkbox class="col-sm-6">Activity</mat-checkbox>
+            </div>
+          <div class="form-group">
+                <mat-checkbox class="col-sm-6">	Status</mat-checkbox>
+              <mat-checkbox class="col-sm-6">	Manage</mat-checkbox>
+          </div>
+        
+  
+      </form>
+  </div>
+  
+  
+  
+  
+  
+  <mat-dialog-actions align="end" class="col-sm-12">
+    <button mat-raised-button class="btn-success"  (click)="close()">Configure</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+  </mat-dialog-actions>

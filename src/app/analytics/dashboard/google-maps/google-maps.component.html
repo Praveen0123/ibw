@@ -1,0 +1,60 @@
+<!-- <div fxLayout="row wrap">
+    <div fxFlex="100" class="flex-p"> 
+        
+    </div>
+</div> -->
+
+
+
+<div fxLayout="column">
+ 
+  
+    <!-- <div class="flex-p">  -->
+    <mat-card>
+        <mat-card-header fxLayoutAlign="center center">
+            <mat-card-subtitle>
+                <h2>Actions Map</h2>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <div class="w-100 h-300p">
+            <agm-map [fullscreenControl]="true" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false">
+                            <agm-marker  [latitude]="lat" [longitude]="lng" [markerDraggable]="true"
+                            (mouseOver)="onMouseOver(infoWindow)" (mouseOut)="onMouseOut(infoWindow)">
+                                <agm-info-window [disableAutoPan]="true" #infoWindow>
+                                    <strong>5-98091</strong>
+                                </agm-info-window>
+                            </agm-marker>
+                         <!-- <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true"
+                (mouseOver)="onMouseOver(infoWindow,AgmMap)" (mouseOut)="onMouseOut(infoWindow,AgmMap)">
+                    <agm-info-window [disableAutoPan]="true" #infoWindow>
+                        <strong>test</strong>
+                    </agm-info-window>
+                </agm-marker> -->
+                <!-- <agm-marker [latitude]="latnew" [longitude]="lngnew" [markerDraggable]="true">
+ 
+                </agm-marker>
+                <agm-marker [latitude]="latnew2" [longitude]="lngnew2" [markerDraggable]="true"></agm-marker>
+                <agm-marker [latitude]="latnew3" [longitude]="lngnew3" [markerDraggable]="true"></agm-marker>
+                <agm-marker [latitude]="latnew4" [longitude]="lngnew4" [markerDraggable]="true"></agm-marker> -->
+            </agm-map>
+
+
+
+
+
+<!-- 
+            <agm-map #AgmMap [minZoom]="1" [maxZoom]="14" [zoom]="1" [streetViewControl]="false" [latitude]="lat"
+                [longitude]="lng" [zoomControlOptions]="zoomControlOptions" [fullscreenControl]="true">
+                <agm-marker-cluster [imagePath]="'https://googlemaps.github.io/js-marker-clusterer/images/m'">
+                    <agm-marker *ngFor="let pointer of pointers" [latitude]="pointer.lat" [longitude]="pointer.lng"
+                        (mouseOver)="onMouseOver(infoWindow,AgmMap)" (mouseOut)="onMouseOut(infoWindow,AgmMap)">
+                        <agm-info-window [disableAutoPan]="true" #infoWindow>
+                            <strong>{{pointer.label}}</strong>
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-marker-cluster>
+            </agm-map> -->
+        </div>
+    </mat-card>
+    <!-- </div>   -->
+</div>

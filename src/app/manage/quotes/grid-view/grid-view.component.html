@@ -1,0 +1,173 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div>
+            <div fxLayout="row wrap" style="margin-top:-3px;">
+                <div class="table-responsive w-100 flex-p">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr class="tr-grid-header">
+                                <th class="min-width120">Quote Number</th>
+                                <th>Potential</th>
+                                <th style="min-width: 155px;text-align:center!important">Stage</th>
+                                <th class="min-width120 text-center">Days Old</th>
+                                <th class="min-width120">Project Type</th>
+                                <th style="min-width: 135px">Client Name</th>
+                                <!-- <th class="min-width120">Quote Admin</th> -->
+                                <!-- <th style="min-width: 225px">Project Manager</th>
+                                <th class="min-width120 text-center">Existing Project</th> -->
+                                <th class="min-width120 text-center">Project</th>
+                                <!-- <th class="min-width120 text-center">Sites</th>
+                                <th class="min-width120 text-center">SOW</th> -->
+                                <th class="min-width120 center">Received</th>
+                                <!-- <th class="min-width120">Qualified Date</th> -->
+                                <th class="min-width120 center">Quoted</th>
+                                <th class="min-width120 center">Due Date</th>
+                                <th class="min-width120 center">Decision</th>
+                                <!-- <th class="text-center">Timeline</th> -->
+                                <th class="text-center min-width120">Quoted</th>
+                                <!-- <th class="text-center min-width120">Awarded</th> -->
+                                <!-- <th style="min-width: 110px;">Phone</th> -->
+                                <!-- <th class="text-center">Contact(s)</th> -->
+                                <th>Municipality</th>
+                                <!-- <th>City</th> -->
+                                <th>Docs</th>
+
+                                <th class="text-center">Status</th>
+                                <!-- <th>Due Date</th> -->
+                                <th style="min-width: 110px;" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of clients">
+                                <td class="inner-screen text-center">
+                                    <a target="_blank" routerLink="/IBW/manage/quotes-dashboard">{{item.quoteNumber}}</a>
+                                </td>
+                                <td>
+                                    <span class="change-icon" [matMenuTriggerFor]="menustage" #menuTrigger="matMenuTrigger">
+                                        <i class="fa fa-circle dot {{item.colorCode}}" style="color:#53a508;margin-right: 26px;"></i>
+                                        <i class="fa fa-chevron-circle-down dot dot-arrow {{item.colorCode}}" style="color:#53a508;margin-right: 26px;"></i>
+                                    </span>
+                                    <br>
+                                    <mat-menu #menustage="matMenu">
+                                        <span mat-menu-item class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Green"></i>
+                                            &nbsp;&nbsp;Fast</span>
+                                        <span mat-menu-item class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Blue"></i>
+                                            &nbsp;&nbsp;Moderate</span>
+                                        <span mat-menu-item class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Gray"></i>
+                                            &nbsp;&nbsp;Slow</span>
+                                        <span mat-menu-item class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Red"></i>
+                                            &nbsp;&nbsp;Stagnant</span>
+                                    </mat-menu>
+                                </td>
+                                <td>
+                                    <mat-select placeholder="--Select Stage --" class='form-control' required>
+                                        <mat-option class='option' *ngFor='let option of stageManager' [value]="option">{{option}}</mat-option>
+                                    </mat-select>
+                                </td>
+                                <td class="text-center">{{item.daysOld}}</td>
+                                <td>{{item.subject}}</td>
+                                <td>{{item.clientName}}</td>
+                                <!-- <td>{{item.quoteAdmin}}</td> -->
+                                <td>
+                                    <!-- {{item.projectmanager}} -->
+                                    <mat-select placeholder="--Select Project Manager --" class='form-control' required>
+                                        <mat-option class='option' *ngFor='let option of projectManager' [value]="option">{{option}}</mat-option>
+                                    </mat-select>
+                                </td>
+                                <!-- <td class="text-center">{{item.Existing_Project}}</td>
+                                <td class="text-center">{{item.project}}</td> -->
+                                <!-- <td class="text-center">{{item.sites}}</td>
+                                <td class="text-center">{{item.SOW}}</td> -->
+
+                                <td class="center">{{item.date}}</td>
+                                <!-- <td>{{item.date}}</td> -->
+                                <td class="center">{{item.date}}</td>
+                                <td class="center">{{item.date}}</td>
+                                <td class="center">{{item.date}}</td>
+                                <!-- <td class="text-center">
+                                    <span class="inner-screen">{{item.timeline}}</span>
+                                </td> -->
+                                <td style="text-align:center!important" class="inner-screen">{{item.quotedamt | currency : 'USD'}}</td>
+                                <!-- <td style="text-align:center!important" class="inner-screen">{{item.awardedamt |
+                                    currency : 'USD'}}</td> -->
+                                <!-- <td>{{item.phone}}</td> -->
+                                <!-- <td class="text-center">
+                                    <span class="inner-screen">{{item.timeline}}</span>
+                                </td> -->
+                                <td>{{item.city}}</td>
+                                <!-- <td>{{ item.city }}</td> -->
+                                <td style="text-align: center!important" class="inner-screen"><a href="https://docs.google.com/document/u/0/" target="_blank">View</a></td>
+
+                                <td class="pad-left inner-screen" style="text-align: center!important">
+                                    <a (click)="item.status = ! item.status">
+                                        <span *ngIf="!item.status" style="color:red">Inactive</span>
+                                        <span *ngIf="item.status">Active</span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a matTooltip="Edit Details" (click)="openleadDialog(null)" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a matTooltip="Quote Decision" (click)="openReturnModal()" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#2f941cd1">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                    <a>
+                                        <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 
+        <div *ngIf='mapview'>
+            <app-map-view></app-map-view>
+        </div>
+        <div *ngIf='kanbanview'>
+            <app-kanban></app-kanban>
+        </div> -->
+
+
+    </div>
+</div>
+
+<div bsModal #ReturnModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title" style="text-align:left!important"><b>Quote Decision</b></h4>
+            </div>
+            <div class="modal-body">
+                <label class="text-center"><b>Are you sure? This action cannot be undone.</b></label>
+                <div class="col-sm-12 no-padding" style="margin-top: 20px">
+                    <label class=" control-label col-sm-3 add-member-label no-padding">Quote Decision: </label>
+                    <div class="col-sm-9">
+                        <mat-radio-group>
+                            <mat-radio-button value="awarded"><small style="font-size: 14px;padding-right: 12px;">Awarded</small></mat-radio-button>
+                            <mat-radio-button value="rejected"><small style="font-size: 14px;padding-right: 12px;">Rejected</small></mat-radio-button>
+                            <mat-radio-button value="hold"><small style="font-size: 14px;">On hold</small></mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-sm-12">
+                    <button mat-raised-button class="add-dark-hover btn-default" (click)="hideReturnModal()">Cancel</button>
+                    <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideReturnModal()">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div *ngIf="!leads" fxLayout="column" fxLayoutAlign="center center" class="lead-spinner">
+    <mat-spinner color="primary"></mat-spinner>
+</div> -->

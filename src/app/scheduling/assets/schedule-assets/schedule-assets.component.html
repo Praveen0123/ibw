@@ -1,0 +1,184 @@
+<a  style="margin: 17px 0 0px 24px!important;" target="_blank" routerLink="/IBW/admin/master-data/asset_master" placeholder="Redrict to Manage Asset Screen"><b class="inner-screen" style="float:right;margin:0 3px 9px 0">Link to Manage Asset</b><br></a>
+
+<div class="col-sm-12 no-padding">
+    <div class="">
+        <div class="">
+            <button mat-raised-button class="pull-right add-hover-help btn-success-help"
+                style="margin-left: 5px;background: #ecdf29 !important;color: black !important;">
+                <mat-icon>help_outline</mat-icon> Help
+            </button>
+            <!-- <button mat-raised-button  class="pull-right add-hover btn-success" (click)="openScheduleDialog(null)"
+        style="margin-right: 5px;">
+        <mat-icon>add</mat-icon> Schedule Assets
+      </button> -->
+            <!-- <div class="col-sm-6 no-padding pull-right"> -->
+            <button mat-raised-button color="primary" style="min-width: 110px;margin-right: 0px!important;"
+                class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+                Next<mat-icon>skip_next</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10"
+                (click)="scrollActions('right');">
+                <mat-icon>skip_previous</mat-icon> Previous
+            </button>
+            <div class="no-padding pull-right" style="margin: 8px 8px 0px 8px!important">
+                <input type="week" name="week" class="form-control" id="camp-week" placeholder="Select Week"
+                    min="2019-W20" max="2019-W42" required>
+            </div>
+            <mat-select class='select-option  form-control pull-right' [(value)]="selected"
+            placeholder="--Resource Category--" style="width: 13%;margin:8px 3px 0 9px">
+            <mat-option [value]="1">Vehicle</mat-option>
+            <mat-option [value]="2">Total Station </mat-option>
+            <mat-option [value]="3">Field Assistants </mat-option>
+        </mat-select>
+        <label class=" pull-right" style="margin: 17px 0 0px 24px!important;">Resource Category :</label>
+        <mat-select class='select-option  form-control pull-right'
+            placeholder="--Employee--" style="width: 13%;margin:8px 3px 0 9px">
+            <mat-option [value]="1">Charles</mat-option>
+            <mat-option [value]="2">Rick </mat-option>
+            <mat-option [value]="3">Walker </mat-option>
+            <mat-option [value]="4">Richard </mat-option>
+            <mat-option [value]="5">Henry </mat-option>
+            <mat-option [value]="6">Donald </mat-option>
+            <mat-option [value]="7">Fredrick </mat-option>
+        </mat-select>
+        <label class=" pull-right" style="margin: 17px 0 0px 24px!important;">Select Employee :</label>
+        <!-- <div class="no-padding pull-right" style="padding-top: 6px;"> -->
+            <!-- <mat-select class='select-option  form-control pull-right' [(value)]="selected"
+                placeholder="--Resource Category--" style="width: 13%;margin:8px 3px 0 9px">
+                <mat-option [value]="1">Party Chief</mat-option>
+                <mat-option [value]="2">Field Assistants </mat-option>
+                
+            </mat-select>
+            <label class=" pull-right" style="margin: 17px 0 0px 24px!important;">Resource Category :</label> -->
+            <!-- </div> -->
+            <!-- </div> -->
+
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12 no-padding margin-top-20">
+    <div fxLayout="row wrap">
+        <div class="table-responsive">
+            <table id="example2" class="table table-bordered table-hover table-striped">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th class="vertical_align">Asset Number</th>
+                        <th class="vertical_align">Resource Name</th>
+                        <!-- <th class="vertical_align">Condition</th> -->
+                        <th class="vertical_align text-center">2019-07-01</th>
+                        <th class="vertical_align text-center">2019-07-02</th>
+                        <th class="vertical_align text-center">2019-07-03</th>
+                        <th class="vertical_align text-center">2019-07-04</th>
+                        <th class="vertical_align text-center">2019-07-05</th>
+                        <th class="vertical_align text-center">2019-08-06</th>
+                        <th class="vertical_align text-center">2019-08-07</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of assignedAsstes" [ngClass]="{'tr-red': item.condition =='Repair'}"
+                        title="{{ item.condition =='Repair'? 'As asset is under repair, we cannot assign' : ''}}"
+                        >
+                        <td class="vertical_align"><a class="inner-screen no_underline" target="_blank" routerLink="/IBW/admin/master-data/asset_master">{{item.ref}}</a></td>
+                        <td class="vertical_align">{{item.assetName}}</td>
+
+                        <!-- <td class="vertical_align">{{item.condition}}</td> -->
+                        <td class="vertical_align text-center"
+                            [ngClass]="{'button-disabled': item.condition =='Repair'}">
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}"
+                                [disabled]="item.condition =='Repair'" *ngIf="item.monday != null" mat-raised-button
+                                class="col-sm-12 no-padding schedule" (click)="openScheduleDialogpopup(item.assetName)">
+                                {{item.monday}}
+                            </button>
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}"
+                                [disabled]="item.condition =='Repair'" *ngIf="item.monday == null" mat-raised-button
+                                class="col-sm-12 padding-top_green available"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                            </button>
+                            <!-- <button [ngClass]="{'button-disabled': item.condition =='Repair',}" 
+                            [class.padding-top_green.available]="item.monday == null" mat-raised-button
+                            [class.no-padding.schedule]="item.monday != null"
+                            class="col-sm-12"
+                            (click)="openScheduleDialogpopup(item.assetName)">
+                            {{item.monday}}
+                            </button> -->
+                        </td>
+                        <td class="vertical_align text-center">
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.tuesday != null" mat-raised-button class="col-sm-12 no-padding schedule"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                                {{item.tuesday}}
+                            </button>
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.tuesday == null" mat-raised-button
+                                class="col-sm-12 padding-top_green available"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                            </button>
+                        </td>
+                        <td class="vertical_align text-center">
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.wednesday != null" mat-raised-button class="col-sm-12 no-padding schedule"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                                {{item.wednesday}}
+                            </button>
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.wednesday == null" mat-raised-button
+                                class="col-sm-12 padding-top_green available"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                            </button>
+                        </td>
+                        <td class="vertical_align text-center">
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.thursday != null" mat-raised-button class="col-sm-12 no-padding schedule"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                                {{item.thursday}}
+                            </button>
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.thursday == null" mat-raised-button
+                                class="col-sm-12 padding-top_green available"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                            </button>
+                        </td>
+                        <td class="vertical_align text-center">
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.friday != null" mat-raised-button class="col-sm-12 no-padding schedule"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                                {{item.friday}}
+                            </button>
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.friday == null" mat-raised-button
+                                class="col-sm-12 padding-top_green available"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                            </button>
+                        </td>
+                        <td class="vertical_align text-center">
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.saturday != null" mat-raised-button class="col-sm-12 no-padding schedule"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                                {{item.saturday}}
+                            </button>
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.saturday == null" mat-raised-button
+                                class="col-sm-12 padding-top_green available"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                            </button>
+                        </td>
+                        <td class="vertical_align text-center">
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.sunday != null" mat-raised-button class="col-sm-12 no-padding schedule"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                                {{item.sunday}}
+                            </button>
+                            <button [ngClass]="{'button-disabled': item.condition =='Repair'}" [disabled]="item.condition =='Repair'" 
+                                *ngIf="item.sunday == null" mat-raised-button
+                                class="col-sm-12 padding-top_green available"
+                                (click)="openScheduleDialogpopup(item.assetName)">
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

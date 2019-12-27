@@ -1,0 +1,25 @@
+<div class="custom-header">
+    <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>{{isEdit == true ? 'Update Permission' : 'Add Permission'}}</h3>
+</div>
+<form class="form-horizontal" [formGroup]="roleUpsertForm" (ngSubmit)="onSubmitRoleForm(roleUpsertForm.value)">
+
+    <div mat-dialog-content>
+
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Permission Level: </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="roleMasterName" placeholder="Enter Permission Level">
+                <mat-error *ngIf="roleUpsertForm.controls.roleMasterName.errors?.required && roleUpsertForm.controls.roleMasterName.touched">
+                    Permission Level is required</mat-error>
+            </div>
+        </div>
+    </div>
+    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button mat-raised-button class="add-dark-hover btn-default" type="button" (click)="close()">
+      <span>&nbsp;Cancel</span>
+    </button>
+        <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" type="submit">
+      <span>&nbsp;Save</span>
+    </button>
+    </mat-dialog-actions>
+</form>

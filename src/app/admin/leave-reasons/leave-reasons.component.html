@@ -1,0 +1,48 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-xs-12">
+                    <div class="col-sm-7" style="padding: 0px 0px 20px 0px !important;">
+                        <button mat-raised-button class="pull-right add-hover-help-job btn-success-help-job" style="margin-left: 2px;">
+                            <mat-icon>help_outline</mat-icon> Help
+                        </button>
+                        <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="OpenAddLeaveReasonDialog(null)">
+                            <mat-icon>add</mat-icon> Add Leave Reason
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive w-100 flex-p col-sm-7" style="padding: 0px !important;">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th>Type of absence</th>
+                        <th>Leave Reason</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of LeaveReasonsData">
+                        <td>{{item.TypeOfAbsence}}</td>
+                        <td>{{item.LeaveReason}}</td>
+                        
+                        <td class="text-center">
+                            <a matTooltip="Update Details" (click)="OpenAddLeaveReasonDialog(item)" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a (click)="deleteLeaveReason(item.LeaveReasonId)">
+                                <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                            </a>
+                        </td>
+    
+                    </tr>
+              <td *ngIf="LeaveReasonsData?.length == 0" colspan="3" style="text-align: center !important"> No data available </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

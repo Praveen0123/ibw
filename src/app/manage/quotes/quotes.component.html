@@ -1,0 +1,229 @@
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+</head>
+
+
+<div class="w-100">
+    <div class="flex-p">
+        <div class="row wrap">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="pills w-100 flex-p">
+                    <ul class="nav nav-pills ">
+                        <!-- <li routerLinkActive="active"><a mat-raised-button (click)="isGrid = true"><mat-icon>grid_on</mat-icon> Grid View</a></li>
+                            <li routerLinkActive="active"><a mat-raised-button (click)="isGrid = false"><mat-icon>place</mat-icon> Map View</a></li> -->
+                        <li>
+                            <a routerLinkActive="tabActive" routerLink="/IBW/manage/quotes/gridview" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button="gray"
+                                class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">grid_on</mat-icon>
+                                    Grid View
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="tabActive" routerLink="/IBW/manage/quotes/mapview" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button=""
+                                class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">place</mat-icon>
+                                    Map View
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLinkActive="tabActive" routerLink="/IBW/manage/quotes/kanabanview" style="padding: 0px 10px;" mat-raised-button=""
+                                class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">swap_horiz</mat-icon>
+                                    Kanban View
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-8" style="margin-right:0px !important">
+                <div class="w-100 flex-p">
+                    <button mat-raised-button (click)="openHelpVideo(null)" class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                        <mat-icon>help_outline</mat-icon> Help
+                    </button>
+                    <button (click)="opengridColDialog(null)" *ngIf="isGridView" mat-raised-button class="pull-right btn-primary" style="margin-left: 10px;color:white; background:#3b7bb8">
+                        <mat-icon>view_column</mat-icon> Grid Columns
+                    </button>
+                    <button mat-raised-button class="pull-right add-hover btn-success" (click)="openleadDialog(lead)">
+                        <mat-icon>add</mat-icon> Add RFQ
+                    </button>
+                    <button mat-raised-button style="margin-right: 10px;" class="pull-right add-hover btn-success" (click)="openClientModal(null)">
+                        <mat-icon>add</mat-icon> Add Client
+                    </button>
+                    <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                        <mat-icon>filter_list</mat-icon> Filter
+                    </button>
+                    <button *ngIf="isGridView" mat-raised-button color="primary" style="min-width: 110px;" class="pull-right filters-hover margin-right-10">
+                        Next
+                        <mat-icon>skip_next</mat-icon>
+                    </button>
+                    <button *ngIf="isGridView" mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                        <mat-icon>skip_previous</mat-icon> Previous
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-xs-6">
+
+        </div>
+
+    </div>
+
+
+    <div fxLayout="row wrap" *ngIf="filterToggle">
+        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Potential</div>
+                            <div class="col-sm-8">
+                                <mat-select placeholder="-- Please Select --" class='form-control' required [(value)]="value">
+                                    <mat-option [value]="1">
+                                        <span class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Green"></i>
+                                            &nbsp;&nbsp;Fast</span>
+                                    </mat-option>
+                                    <mat-option [value]="2">
+                                        <span class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Blue"></i>
+                                            &nbsp;&nbsp;Moderate</span>
+                                    </mat-option>
+                                    <mat-option [value]="3">
+                                        <span class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Gray"></i>
+                                            &nbsp;&nbsp;Slow</span>
+                                    </mat-option>
+                                    <mat-option [value]="4">
+                                        <span class="mat-color-menu">
+                                            <i class="fa fa-circle dot-menu Red"></i>
+                                            &nbsp;&nbsp;Stagnant</span>
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Project Manager</div>
+                            <div class="col-sm-8">
+                                <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                    <mat-option class='option' *ngFor='let option of accountManagerOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Project Type</div>
+                            <div class="col-sm-8">
+                                <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                    <mat-option class='option' *ngFor='let option of projectTypes' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12" style="margin-top:20px">
+                        <div class="col-sm-4">
+
+                            <div class="col-sm-4">Municipality</div>
+                            <div class="col-sm-8">
+                                <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                    <mat-option class='option' *ngFor='let option of municipalityOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Stage</div>
+                            <div class="col-sm-8">
+                                <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                    <mat-option class='option' *ngFor='let option of stageOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Status</div>
+                            <div class="col-sm-8">
+                                <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                    <mat-option class='option' *ngFor='let option of statusOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12" style="margin-top:20px">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Date Range for</div>
+                            <div class="col-sm-8">
+                                <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                    <mat-option class='option' *ngFor='let option of typeOfDates' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">From Date</div>
+                            <div class="col-sm-8">
+                                    <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">To Date</div>
+                            <div class="col-sm-8">
+                                    <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row col-sm-12" style="margin-top:20px">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4">Keyword</div>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="Enter keyword" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                        <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                        </a>
+                        <button mat-raised-button class="pull-right" style="margin: 0px 10px;">
+                            <mat-icon>settings_backup_restore</mat-icon> Reset
+                        </button>
+                        <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                <mat-icon>cloud_download</mat-icon> Download CSV
+                            </button> -->
+                        <button mat-raised-button color="primary" class="pull-right filters-hover">
+                            <mat-icon>youtube_searched_for</mat-icon> Search
+                        </button>
+                    </div>
+                    </div>
+
+
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

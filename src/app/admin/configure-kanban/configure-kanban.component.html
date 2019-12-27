@@ -1,0 +1,42 @@
+<div fxLayout="row wrap" #resizedDiv>
+  <div class="flex-p w-100">
+    <div class="row wrap" style="margin-bottom:7px;">
+      <div class="col-sm-6">
+        <div class="pills w-100 flex-p">
+          <ul class="nav nav-pills">
+            <li routerLinkActive="active" style="margin-right: 8px">
+              <a mat-raised-button class="remove_top_bottom_padding mat-raised-button" [routerLink]="['/IBW/admin/configure_kanban/quotes-kanban']">
+                <mat-icon>highlight</mat-icon> Quotes
+              </a>
+            </li>
+            <li routerLinkActive="active" style="margin-right: 8px">
+              <a mat-raised-button class="remove_top_bottom_padding mat-raised-button" [routerLink]="['/IBW/admin/configure_kanban/projects-kanban']">
+                <mat-icon>outlined_flag</mat-icon> Projects
+              </a>
+            </li>
+            <li routerLinkActive="active" style="margin-right: 8px">
+              <a mat-raised-button class="remove_top_bottom_padding mat-raised-button" [routerLink]="['/IBW/admin/configure_kanban/sites-kanban']">
+                <mat-icon>outlined_flag</mat-icon> Sites
+              </a>
+            </li>
+            <li routerLinkActive="active" style="margin-right: 8px">
+              <a mat-raised-button class="remove_top_bottom_padding mat-raised-button" [routerLink]="['/IBW/admin/configure_kanban/sow-kanban']">
+                <mat-icon>outlined_flag</mat-icon> SOW
+              </a>
+            </li>
+            <li routerLinkActive="active" style="margin-right: 8px">
+              <a mat-raised-button class="remove_top_bottom_padding mat-raised-button" [routerLink]="['/IBW/admin/configure_kanban/tasks-kanban']">
+                <mat-icon>outlined_flag</mat-icon> Tasks
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

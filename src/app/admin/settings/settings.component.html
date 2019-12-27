@@ -1,0 +1,37 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+        <div class="table-responsive">
+            <table id="example2" style="margin-top: 10px" class="table table-bordered table-hover table-striped">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Previous Value</th>
+                        <th>New Value</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of settingsData">
+                        <td style="vertical-align: middle">{{item.SettingName}}</td>
+                        <td style="vertical-align: middle">{{item.Description}}</td>
+                        <td style="vertical-align: middle">{{item.Value}}</td>
+                        <td *ngIf="item.InputType == 'number'" style="vertical-align: middle">
+                            <input (keypress)="onlyNumbers($event)" [class.errorBorderClass]="item.SettingId == checkId" [(ngModel)]="newValue[item.SettingId]"
+                                class="form-control" placeholder="Enter new value">
+                        </td>
+                        <td *ngIf="item.InputType == 'email'" style="vertical-align: middle">
+                            <input [class.errorBorderClass]="item.SettingId == checkId" [type]=item.InputType [(ngModel)]="newValue[item.SettingId]"
+                                class="form-control" placeholder="Enter new value">
+                        </td>
+                        <td class="text-center">
+                            <button mat-raised-button (click)="UpdateSettingValue(item.SettingId, newValue[item.SettingId],item.InputType)" class="add-hover btn-success"
+                                style="height: 33px;"> Update
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

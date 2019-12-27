@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Map View</h1>
+<div mat-dialog-content>
+
+
+    <div class="w-100">
+        <agm-map [fullscreenControl]="true" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false">
+            <agm-marker [latitude]="lat" [longitude]="lng" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+            <agm-marker [latitude]="latnew" [longitude]="lngnew" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+            <agm-marker [latitude]="latnew2" [longitude]="lngnew2" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+            <agm-marker [latitude]="latnew3" [longitude]="lngnew3" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+            <agm-marker [latitude]="latnew4" [longitude]="lngnew4" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+        </agm-map>
+    </div>
+
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Close</button>
+</mat-dialog-actions>

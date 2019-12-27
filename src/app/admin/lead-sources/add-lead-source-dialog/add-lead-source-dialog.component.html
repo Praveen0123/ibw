@@ -1,0 +1,26 @@
+
+<div class="custom-header">
+        <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>Add Lead Source</h3>
+      </div>
+
+<div mat-dialog-content>
+    <form class="form-horizontal">
+        <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Lead Source:</label>
+                <div class="col-sm-8">
+                    <input type="email" class="form-control" id="email" placeholder="Enter Lead Source">
+                </div>
+            </div>
+    </form>
+</div>
+
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">
+          <mat-icon>cancel</mat-icon>
+          <span>&nbsp;Cancel</span>
+        </button>
+        <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="close()">
+          <mat-icon>send</mat-icon>
+          <span>&nbsp;Save</span>
+        </button>
+      </mat-dialog-actions>

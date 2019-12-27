@@ -1,0 +1,33 @@
+<h1 mat-dialog-title><span *ngIf="!user">Add</span><span *ngIf="user">Edit</span> Notes</h1>
+<div mat-dialog-content>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label" style="padding-left:15px!important">Category : </label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <mat-select name="" id="" placeholder="--Select Category--" class="form-control">
+                <mat-option [value]=1>Quotes</mat-option>
+                <mat-option [value]=2>Research</mat-option>
+                <mat-option [value]=3>Field</mat-option>
+                <mat-option [value]=4>Cals</mat-option>
+                <mat-option [value]=5>Drafting</mat-option>
+                <mat-option [value]=6>Quality Control</mat-option>
+                <mat-option [value]=7>Management</mat-option>
+                <mat-option [value]=8>Admin</mat-option>
+            </mat-select>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4 add-member-label" style="padding-left:15px!important">Description : </label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <textarea class="form-control txtarea" rows="2" placeholder="Enter Description" autocomplete="off"></textarea>
+          </div>
+      </div>
+    </form>
+</div>
+<mat-dialog-actions align="end" style="width:102%">
+   
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+    <button mat-raised-button class="add-hover btn-success" (click)="saveUser()" [mat-dialog-close]="'test'"><span *ngIf="!user">Save</span><span
+        *ngIf="user">Update</span></button>
+</mat-dialog-actions> 

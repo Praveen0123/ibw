@@ -1,0 +1,74 @@
+<!--This page is used to customize Sales/Marketing steps as per the requirement-->
+<div fxLayout="row wrap" #resizedDiv>
+  <div class="w-100 col-sm-8">
+    <div class="col-sm-2 pull-right no-padding" style="margin: 10px 0px;">
+      <div>
+        <button mat-raised-button  class="add-hover pull-right" style="background:#229494;color: white;" (click)="openAddStepDialog(null)">
+          <mat-icon>add</mat-icon>&nbsp;Add Stage
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="tbl-head">
+          <tr class="tr-grid-header">
+            <th>Stage</th>
+            <th class="text-center">Status</th>
+            <!-- <th *ngIf="canUpdate || canDelete">Actions</th> -->
+            <th class="text-center"> Actions</th>
+          </tr>
+        </thead>
+        <tbody dragula="OPPSTEPS" [(dragulaModel)]="steps">
+          <!-- <tr *ngIf="showEmpty"><td colspan="3">No records found</td></tr> -->
+          <tr *ngFor="let item of kanbanStepsData">
+            <td style="cursor: pointer;">
+              <span>
+                <i titile="Move column" class="fa fa-arrows" aria-hidden="true"></i> {{ item.KanbanStageName }} </span>
+            </td>
+            <!-- <td *ngIf="!canUpdate" [ngClass]="item.step_status ? '' : 'status Red'">{{item.step_status?'Active':'Inactive'}}</td> -->
+            <td class="pad-left inner-screen" style="text-align: center !important;">
+              <a (click)="changeStatus(item.ConfigureKanbanId)">
+                <span *ngIf="!item.IsActive" style="color:red">Inactive</span>
+                <span *ngIf="item.IsActive">Active</span>
+            </a>
+            </td>
+
+            <td style="text-align: center !important;">
+              <a (click)="openAddStepDialog(item)" style="margin-right: 10px; cursor: pointer; color: rgba(9, 135, 232, 0.82)">
+                <i matTooltip="Update Details" class="fa fa-edit"></i>
+              </a>
+              <!-- <a mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
+                (cancel)="cancelClicked = true">
+                <i style="cursor: pointer;" matTooltip="Delete" class="fa fa-trash red"></i>
+              </a> -->
+              <a>
+                <i style="cursor: pointer;font-size:16px!important;" (click)="deleteKanbanStage(item.ConfigureKanbanId)" matTooltip="Delete" class="fa fa-trash red"></i>
+            </a>
+            </td>
+
+
+            <!-- <td *ngIf="canUpdate">
+              <a [ngClass]="item.step_status ? 'status' : 'status Red'" mwlConfirmationPopover [popoverTitle]="popoverStatusTitle" [popoverMessage]="popoverStatusMessage"
+                placement="left" (cancel)="cancelClicked = true">
+                {{item.step_status?'Active':'Inactive'}}
+              </a>
+            </td>
+            <td *ngIf="canUpdate || canDelete">
+              <a *ngIf="canUpdate" (click)="addStepDialog(item)" style="margin-right: 10px; cursor: pointer;">
+                <i title="Edit Step" class="fa fa-edit"></i>
+              </a>
+              <a *ngIf="canDelete" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
+                (cancel)="cancelClicked = true">
+                <i style="cursor: pointer;" title="Delete Step" class="fa fa-trash red"></i>
+              </a>
+            </td> -->
+          </tr>
+
+          <td *ngIf="kanbanStepsData?.length == 0" colspan="3" style="text-align: center !important"> No data available </td>
+        </tbody>
+      </table>
+      <!-- <mat-paginator [length]="totalSize" [pageIndex]="currentPage" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 50, 100]"
+        (page)="handlePage($event)" showFirstLastButtons></mat-paginator> -->
+    </div>
+  </div>
+</div>

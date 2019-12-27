@@ -1,0 +1,29 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-sm-12">
+                    <div class="pills w-100 margin-top-10">
+                        <ul class="nav nav-pills ">
+                            <li routerLinkActive="active" style="margin-right: 2px;">
+                                <a class="remove_top_bottom_padding mat-raised-button" mat-raised-button routerLink="/IBW/manage/payroll/timesheets">
+                                    <mat-icon>hourglass_full</mat-icon> Timesheets
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" style="margin-right: 3px;">
+                                <a (click)="isPending = false" class="remove_top_bottom_padding mat-raised-button" mat-raised-button routerLink="/IBW/manage/payroll/expenses">
+                                    <mat-icon>money_off</mat-icon> Expenses
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

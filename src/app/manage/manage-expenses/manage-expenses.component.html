@@ -1,0 +1,178 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p no-padding">
+            <div class="row wrap">
+                <div class="col-sm-4">
+                    <div class="pills w-100 flex-p">
+                        <ul class="nav nav-pills ">
+                            <li routerLinkActive="active" style="margin-right: 2px;">
+                                <a (click)="isPending = true" class="remove_top_bottom_padding mat-raised-button" mat-raised-button routerLink="/IBW/manage/payroll/expenses/pending">
+                                    <mat-icon>dns</mat-icon> Pending
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" style="margin-right: 3px;">
+                                <a (click)="isPending = false" class="remove_top_bottom_padding mat-raised-button" mat-raised-button routerLink="/IBW/manage/payroll/expenses/declined">
+                                    <mat-icon>cancel</mat-icon> Declined
+                                </a>
+                            </li>
+                            <li routerLinkActive="active" style="margin-right: 10px;">
+                                <a (click)="isPending = false" class="remove_top_bottom_padding mat-raised-button" mat-raised-button routerLink="/IBW/manage/payroll/expenses/approved">
+                                    <mat-icon>done</mat-icon> Approved
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-8" style="margin-right:0px !important">
+                    <div class="w-100 flex-p">
+                        <a mat-raised-button class="pull-right add-hover-help btn-success-help">
+                            <mat-icon>help_outline</mat-icon> Help
+                        </a>
+                        <!-- <button *ngIf="isPending && userType == 'admin'" (click)="opengridColDialog(null)" mat-raised-button class="pull-right btn-primary"
+                            style="margin: 0px 10px;;color:white; background:#3b7bb8">
+                            <mat-icon>send</mat-icon> Complete & Submit
+                        </button> -->
+                        <button mat-raised-button class="pull-right btn-danger" style="margin-right: 10px !important;">
+                                <mat-icon>cancel</mat-icon> Reject Selected
+                            </button>
+                            <button mat-raised-button class="pull-right btn-primary" style="margin: 0px 10px;color:white; background:#3b7bb8">
+                                <mat-icon>done</mat-icon> Approve Selected
+                            </button>
+                        <!-- (click)="openleadDialog(null)" -->
+                        <button mat-raised-button *ngIf="isPending && userType == 'user'" class="pull-right add-hover btn-success" style="margin-right: 10px;">
+                            <mat-icon>add</mat-icon> Add Expense
+                        </button>
+                        <button mat-raised-button *ngIf="isPending && userType == 'admin'" class="pull-right add-hover btn-success" style="margin-left: 10px;">
+                            <mat-icon>add</mat-icon> Add Expense
+                        </button>
+                        <!-- <mat-select *ngIf="isPending && userType == 'admin'" placeholder="Bulk Action" class="form-control pull-right bulk-action">
+                            <mat-option [value]=0>Approve Selected</mat-option>
+                            <mat-option [value]=1>Decline Selected</mat-option>
+                        </mat-select> -->
+                        <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                            <mat-icon>filter_list</mat-icon> Filter
+                        </button>
+                        <!-- <button mat-raised-button color="primary" style="min-width: 110px;" class="pull-right filters-hover margin-right-10">
+                            Next<mat-icon>skip_next</mat-icon>
+                        </button>
+                        <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                            <mat-icon>skip_previous</mat-icon> Previous
+                        </button> -->
+                        <!-- <a class="pull-right" style="font-size: 15px; margin-left:10px" >
+                                Next<i style="font-size: 25px;" class="fa fa-angle-double-right" aria-hidden="true"></i> 
+                        </a>
+                        <a class="pull-right" style="font-size: 15px; margin-right:10px">
+                            <i style="font-size: 25px;" class="fa fa-angle-double-left" aria-hidden="true"></i>Previous
+                        </a> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-xs-6">
+            </div>
+        </div>
+        <div fxLayout="row wrap" *ngIf="filterToggle">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+
+
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row col-sm-12">
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">Claimed By</div>
+                                <div class="col-sm-8">
+                                    <mat-select class='select-option form-control' placeholder="--Search by Claimer--">
+                                        <mat-option [value]="1">Jhon Cena</mat-option>
+                                        <mat-option [value]="2">Robert Smith</mat-option>
+                                        <mat-option [value]="3">Maria Garcia</mat-option>
+                                        <mat-option [value]="4">Maria Martinez</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">Role Title</div>
+                                <div class="col-sm-8">
+                                    <mat-select class='select-option form-control' placeholder="--Search by Role Title--">
+                                        <mat-option [value]="1">Field Assistant</mat-option>
+                                        <mat-option [value]="2">Quote Admin</mat-option>
+                                        <mat-option [value]="3">Party Chief</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">Validated By</div>
+                                <div class="col-sm-8">
+                                    <mat-select class='select-option form-control' placeholder="--Search by Validator--">
+                                        <mat-option [value]="1">Chris Morris</mat-option>
+                                        <mat-option [value]="2">Maria Rodriguez </mat-option>
+                                        <mat-option [value]="3">Chris Hernandez</mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row col-sm-12" style="margin-top:20px">
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">From Amount</div>
+                                <div class="col-sm-8">
+                                    <input class="form-control" placeholder="Enter From Amount" type="text">
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">To Amount</div>
+                                <div class="col-sm-8">
+                                    <input class="form-control" placeholder="Enter To Amount" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">Keyword</div>
+                                <div class="col-sm-8">
+                                    <input class="form-control" placeholder="Enter keyword" type="text">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row col-sm-12" style="margin-top:20px">
+                            <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">Keyword</div>
+                                <div class="col-sm-8">
+                                    <input class="form-control" placeholder="Enter keyword" type="text">
+                                </div> -->
+
+                            </div>
+                            <div class="col-sm-2">
+                                <!-- <div class="col-sm-4">Flagged</div>
+                                <div class="col-sm-8">
+                                    <mat-checkbox color='warn' [checked]="false"></mat-checkbox>
+                                </div> -->
+                            </div>
+                            <div class="col-sm-6">
+                                <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                </a>
+
+                                <button mat-raised-button class="pull-right" style="margin:0px 10px;">
+                                    <mat-icon>settings_backup_restore</mat-icon> Reset
+                                </button>
+                                <button mat-raised-button class="pull-right add-hover btn-success">
+                                    <mat-icon>cloud_download</mat-icon> Download CSV
+                                </button>
+                                <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                                    <mat-icon>youtube_searched_for</mat-icon> Search
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

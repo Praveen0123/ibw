@@ -1,0 +1,58 @@
+<!--This page is used to manage potential customers and their flow-->
+<div fxLayout="row wrap" >
+        <div class="w-100">
+                <!-- <button mat-raised-button color="btn-default" style="background-color: #dddddd;" class="pull-right add-dark-hover margin-right-10" (click)="scrollKanban('left');">
+                        <mat-icon>fast_forward</mat-icon> Next
+                    </button>
+            
+                    <button mat-raised-button color="btn-default" style="background-color: #dddddd;" class="pull-right add-dark-hover margin-right-10" (click)="scrollKanban('right');">
+                        <mat-icon>fast_rewind</mat-icon> Prev
+                    </button> -->
+            <div class="w-100 flex-p kanban-table-container">
+                <div *ngFor="let step of localData" [ngStyle]="step.style">
+                    <div class="kanban-table" id="{{step.id}}" pDroppable='kanban_items' (onDrop)="drop($event)">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="kanban-header">{{step.header}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of step.data" id = "{{item.id}}" pDraggable="kanban_items" (onDragStart)="dragStart($event,item, step.id)" (onDragEnd)="dragEnd($event,item)" (onDrag)="drag(item)">
+                                    <div class="kanban-item" [style.background-color]="item.hex">
+                                        <span>
+                                            <a class="res-name inner-screens"  id="resname" > {{item.name }} </a>&nbsp;&nbsp;
+                                        </span>
+                                        
+                                        
+                                        <span class="cap-name">Municipality - <span style="font-weight: 600">{{ item.municipality }} </span></span><br>
+                                        <span class="cap-name">Account Manager - <span style="font-weight: 600">{{ item.accMgr }}</span> </span><br>
+                                        <span class="cap-name">Client - <span style="font-weight: 600">{{ item.client }}</span> </span><br>
+                                        <span class="cap-name">Survey Type - <span style="font-weight: 600">{{ item.surveyType }} </span></span><br><br>
+                                        <!-- <a class="action-class inner-screens"> Edit </a> -->
+                                        <span style="font-size: 10px">Updated 3 days ago </span>
+                                        <a style="float:right" (click)="openNewUpdate(null)"><i class="fa fa-plus" aria-hidden="true"></i></a><br><br>
+                                        <a class="info-card inner-screen" (click)="openQuoteUpdateDialog(null)" > {{ item.info }} </a>
+                                        <a class="percentage-card" style="margin-left: 58px;"> {{ item.percentage }} </a>
+                                        <span class="change-icon" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+                                                <i class="fa fa-circle dot {{item.colorCode}}"></i> 
+                                                <i class="fa fa-chevron-circle-down dot dot-arrow {{item.colorCode}}"></i>
+                                            </span> <br>
+                                            <mat-menu #menu="matMenu">
+                                                    <span mat-menu-item class="mat-color-menu"> <i class="fa fa-circle dot-menu Green"></i> &nbsp;&nbsp;Fast</span>
+                                                    <span mat-menu-item class="mat-color-menu"> <i class="fa fa-circle dot-menu Blue"></i> &nbsp;&nbsp;Moderate</span>
+                                                    <span mat-menu-item class="mat-color-menu"><i class="fa fa-circle dot-menu" style="color:gray"></i> &nbsp;&nbsp;Slow</span>
+                                                    <span mat-menu-item class="mat-color-menu"> <i class="fa fa-circle dot-menu Red"></i> &nbsp;&nbsp;Stagnant</span>
+                                                </mat-menu>
+                                        <!-- <a style="float:right" title="Convert Prospect to Account" (click)="openConfirmDialog('convert-lead',true,'prospect');"><i class="fa fa-refresh" aria-hidden="true"></i></a> -->
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    

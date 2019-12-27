@@ -1,0 +1,80 @@
+<div class="table-responsive w-100 col-sm-12" style="padding: 7px;">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="tbl-head">
+            <tr class="tr-grid-header">
+                <!-- <th *ngIf="userType == 'admin'" style="width: 3%;" class="text-center"> <mat-checkbox color='warn'></mat-checkbox></th> -->
+                <th class="text-center">Hours</th>
+                <!-- <th style="vertical-align: top; min-width: 80px;">Client</th>
+            <th style="vertical-align: top; min-width: 70px;">Project</th>
+            <th style="vertical-align: top; min-width: 105px;">Site</th>
+            <th style="vertical-align: top;">SOW</th>
+            <th style="vertical-align: top;">Task</th> -->
+                <th style="min-width: 105px;">Claimed By </th>
+                <th style="min-width: 105px;">Role Title</th>
+                <th style="min-width: 120px;">Reviewed By</th>
+                <th style="min-width: 80px;" class="text-center">Amount</th>
+                <th style="min-width: 96px;" class="text-center">Year To Date</th>
+                <th>Messages</th>
+                <!-- <th *ngIf="userType == 'admin'" style="min-width: 230px;">Pending &nbsp; | &nbsp;Approve &nbsp; | &nbsp; Decline</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of Hours">
+                <!-- <td *ngIf="userType == 'admin'" class="text-center"><mat-checkbox color='warn' [checked]=item.isSelected ></mat-checkbox></td> -->
+                <td class="text-center"><a (click)="openHoursDiolog()" class="inner-screen">{{item.hours}}</a></td>
+                <!-- <td>{{item.client}}</td>
+      <td>{{item.Project}}</td>
+      <td>{{item.site}}</td>
+      <td>{{item.sow}}</td>
+      <td>{{item.task}}</td> -->
+                <td>{{item.partyChief}}</td>
+                <td>{{item.role}}</td>
+                <td>{{item.validatedby}}</td>
+                <td class="text-center">{{item.amount| currency : 'USD'}}</td>
+                <td class="text-center">{{item.tillDateAmount | currency : 'USD'}}</td>
+                <td class="text-center"><a class="inner-screen" (click)="openMessagesDiolog()">{{item.messages}}</a></td>
+                <!-- <td *ngIf="userType == 'admin'" class="text-center">
+          <mat-radio-group aria-label="Select an option">
+              <mat-radio-button color='primary' [checked]=item.isPending value="1" style="padding-right: 10px"></mat-radio-button>
+              <span style="padding-right: 15px;padding-left: 5px;font-size:25px;">|</span>
+              <mat-radio-button color='warn'  class="approve" [checked]=item.isApproved value="2" style="padding-left: 10px;"></mat-radio-button>
+              <span style="padding-right: 15px;padding-left: 20px;font-size: 25px;">|</span>
+              <mat-radio-button color='warn'  class="decline" [checked]=item.isDeclined (click)="showChildModal2()" value="3"></mat-radio-button>
+            </mat-radio-group>
+      </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div bsModal #childModal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog modal-sm popup">
+        <div class="modal-content" style="min-width:500px">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">
+                    <b>Decline Hours</b>
+                </h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal2()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div mat-dialog-content>
+                    <form class="form-horizontal">
+                        <div class="form-group col-sm-12" style="padding:10px">
+                            <label class="control-label col-sm-5 add-member-label" style="padding-bottom: 6px;">Declined Reason</label>
+                            <textarea class="form-control txtarea col-sm-7" rows="2" placeholder="Enter Reason" autocomplete="off"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row pull-right" style="padding: 0 15px 0 0;">
+                    <button mat-raised-button class="add-dark-hover btn-default pull-right" style="margin: 1px 10px 0px 0px;" (click)="hideChildModal2()">Cancel</button>
+                    <button mat-raised-button class="add-hover pull-right btn-success" style="margin:1px 10px 0px 0px" (click)="hideChildModal2()">Save</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

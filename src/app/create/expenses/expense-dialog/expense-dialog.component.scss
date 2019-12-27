@@ -1,0 +1,60 @@
+.radio-label {
+    vertical-align: super;
+    font-size: 14px;
+    padding-right: 14px;
+    padding-left: 3px;
+    font-weight: 500;
+}
+
+.leave_bal {
+    font-weight: 500;
+    font-stretch: expanded;
+    font-size: 14px;
+}
+
+
+
+.bs-datepicker-container {
+    padding: 0px !important;
+}
+
+::ng-deep .time-picker>table>tbody>.text-center {
+    text-align: center !important;
+    display: none !important;
+}
+
+.div-padding{
+    padding: 0px 5px;
+}
+.inner-screen {
+    color: #246ade !important;
+    cursor: pointer;
+}
+.active-link{
+    color: white !important;
+    background: #306ba5 !important;
+}
+::ng-deep .addStepper>.mat-horizontal-stepper-header {
+    display: flex;
+    height: 40px;
+    overflow: hidden;
+    align-items: center;
+    padding: 0 24px;
+    //width: 25px;
+}
+
+.custom-file-label {
+    position: absolute;
+    top: 0px;
+    right: 8px;
+    left: 8px;
+    z-index: 1;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #202223;
+    border-radius: .25rem;
+}

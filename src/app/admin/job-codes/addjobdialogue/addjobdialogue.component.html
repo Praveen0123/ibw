@@ -1,0 +1,51 @@
+<div class="custom-header">
+    <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+        <span *ngIf="!jobCode.JobCodeId">Add</span>
+        <span *ngIf="jobCode.JobCodeId">Update</span> Job Code</h3>
+</div>
+<form [formGroup]="jobCodeForm">
+
+    <div mat-dialog-content>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Job Code:</label>
+            <div class="col-sm-8 margin-bottom-15px">
+                <input type="text" class="form-control" formControlName="JobCode" placeholder="Enter Job Code">
+                <mat-error *ngIf="jobCodeForm.controls.JobCode.errors?.required && jobCodeForm.controls.JobCode.touched">Please enter job code</mat-error>
+                <mat-error *ngIf="jobCodeForm.controls.JobCode.hasError('invalidInput') && jobCodeForm.controls.JobCode.touched">Please enter valid input</mat-error>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Job Code Title:</label>
+            <div class="col-sm-8 margin-bottom-15px">
+                <input type="text" class="form-control" formControlName="JobCodeTitle" placeholder="Enter Job Code Title" (keypress)="onlyAlphabets($event)">
+                <mat-error *ngIf="jobCodeForm.controls.JobCodeTitle.errors?.required && jobCodeForm.controls.JobCodeTitle.touched">Please enter job code title</mat-error>
+                <mat-error *ngIf="jobCodeForm.controls.JobCodeTitle.hasError('invalidInput') && jobCodeForm.controls.JobCodeTitle.touched">Please enter valid input</mat-error>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Chargeout Rate:</label>
+            <div class="col-sm-8 margin-bottom-15px">
+                <input type="text" (keypress)="onlyNumbers($event)" maxlength="6" class="form-control" formControlName="ChargeoutRate" placeholder="Enter Chargeout Rate">
+                <mat-error *ngIf="jobCodeForm.controls.ChargeoutRate.errors?.required && jobCodeForm.controls.ChargeoutRate.touched">Please enter chargeout rate</mat-error>
+            </div>
+        </div>
+    </div>
+
+    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">
+            <mat-icon>cancel</mat-icon>
+            <span>&nbsp;Cancel</span>
+        </button>
+        <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="submitJobCodeForm(jobCodeForm.value)">
+
+            <mat-icon *ngIf="!jobCode.JobCodeId">send</mat-icon>
+
+            <span *ngIf="!jobCode.JobCodeId">&nbsp;Save</span>
+
+            <mat-icon *ngIf="jobCode.JobCodeId">update</mat-icon>
+
+            <span *ngIf="jobCode.JobCodeId">&nbsp;Update</span>
+
+        </button>
+    </mat-dialog-actions>
+</form>

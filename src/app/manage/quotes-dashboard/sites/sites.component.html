@@ -1,0 +1,139 @@
+<div fxLayout="row wrap">
+  <div class="w-100">
+    <div class="flex-p">
+      <div class="row wrap">
+        <div class="col-xs-12">
+          <div class="col-sm-7" style="padding: 0px 0px 20px 0px !important;">
+            <button mat-raised-button class="pull-right add-hover-help-job btn-success-help-job" style="margin-left: 2px;">
+              <mat-icon>help_outline</mat-icon> Help
+            </button>
+            
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="showChildModal()">
+              <mat-icon>add</mat-icon> Add New Site
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+      <div class="table-responsive w-100 flex-p col-sm-7" style="padding: 0px !important;">
+        <table id="example2" class="table table-bordered table-hover">
+          <thead class="tbl-head">
+            <tr class="tr-grid-header">
+              <th>Site Name</th>
+              <th>City</th>
+              <th>Municipality</th>
+              <th>Provice / State</th>
+              <th class="text-center">Status</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of SitesData">
+              <td>{{item.siteName}}</td>
+              <td>{{item.city}}</td>
+              <td>{{item.municipality}}</td>
+              <td>{{item.province}}</td>
+              <td class="pad-left inner-screen text-center">
+                <a (click)="item.status = ! item.status">
+                    <span *ngIf="!item.status" style="color:red">Inactive</span>
+                    <span *ngIf="item.status">Active</span>
+                </a>
+            </td>
+              <td class="text-center">
+                <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a>
+                  <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                </a>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+     
+    </div>
+
+  </div>
+</div>
+
+
+<div bsModal #addSiteModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">Add New Site</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form >
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Site Name: </label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control"  placeholder="Enter Site Name" required>
+              </div>
+          </div>
+          <div class="form-group col-sm-12">
+              <label class=" col-sm-4 control-label col-sm-4 add-member-label">Street Address: </label>
+              <div class="col-sm-8" style="padding: 0 8px!important;">
+                  <textarea class="form-control txtarea" rows="2" placeholder="Enter Street Address"  autocomplete="off"></textarea>
+              </div>
+          </div>
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Postal Code: </label>
+              <div class="col-sm-8">
+                  <input class="form-control" placeholder="Enter Postal Code" type="text" >
+              </div>
+          </div>
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">City: </label>
+              <div class="col-sm-8">
+                  <input class="form-control" placeholder="Enter City" type="text">
+              </div>
+          </div>
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Province: </label>
+              <div class="col-sm-8">
+                  <mat-select placeholder="--Select Province--" class="form-control">
+                      <mat-option *ngFor="let option of provinceOptions" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+              </div>
+          </div>
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Country: </label>
+              <div class="col-sm-8">
+                  <mat-select [(value)]='selected' placeholder="--Select Country--" class="form-control">
+                      <mat-option [value]="1">Canada</mat-option>
+                      <mat-option [value]="2">USA</mat-option>
+                  </mat-select>
+              </div>
+          </div>
+          <!-- <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Municipality: </label>
+              <div class="col-sm-8">
+                  <mat-select placeholder="--Select Municipality--" class="form-control">
+                      <mat-option *ngFor="let option of munipalityOptions" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+              </div>
+          </div> -->
+      </form>
+      </div>
+      <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+        <button mat-raised-button  class="add-dark-hover btn-default" (click)="hideChildModal()">Cancel</button>
+        <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideChildModal()">Save</button>
+
+    </mat-dialog-actions>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="!leads" fxLayout="column" fxLayoutAlign="center center" class="lead-spinner">
+<mat-spinner color="primary"></mat-spinner>
+</div> -->
+

@@ -1,0 +1,54 @@
+<div fxLayout="row wrap">
+  <div class="w-100">
+      <div class="flex-p" style="padding-top:0px!important">
+          <div class="row wrap">
+             
+          </div>
+      </div>
+      <div class="row ">
+          <div class="col-xs-6">
+          </div>
+      </div>
+      
+      <div class="col-sm-12" style="padding-left: 0px;"> 
+        <div id="overdue" class="table-responsive col-lg-6" style="padding: 9px 15px 0px 10px;">
+            <table id="action" class="table table-striped table-bordered table-hover">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <!-- <th style="min-width:135px!important">Action</th> -->
+                        <th style="min-width:72px!important">Project</th>
+                        <th style="min-width:120px!important">Site</th>
+                        <th style="min-width:66px!important">SOW</th>
+                        <th style="min-width:65px!important">Task</th>
+                        <th style="min-width:85px!important;text-align:center!important">Due Date</th>
+                        <th style="min-width:110px!important">Projected Date</th>
+                        <th style="min-width:100px!important">Delay (days)</th>
+                        <th style="min-width:240px!important">Delay Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of onTime">
+                        <!-- <td>{{item.action}}</td> -->
+                        <td>{{item.project}}</td>
+                        <td>{{ item.site }}</td>
+                        <td>{{item.sow}}</td>
+                        <td>{{ item.task }}</td>
+                        <td>{{ item.duedate }}</td>
+                        <td>{{item.expecteddate}}</td>
+                        <td style="text-align:center!important">{{item.delay}}</td>
+                          <td>{{item.delayreason}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <div fxLayout="column" class="col-lg-6" style="padding: 9px 1px 0 11px!important;">
+            <mat-card>
+                    <div>
+                        <div class="col-sm-12" [chart]="pieChart"></div>
+                    </div>
+                </mat-card>
+    </div>
+</div>
+
+  </div>
+</div>

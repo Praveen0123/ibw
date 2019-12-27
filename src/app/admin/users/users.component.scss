@@ -1,0 +1,41 @@
+.btn-success-gray {
+    background: #686968fa !important;
+    color: white !important;
+}
+
+.reset-hover:hover {
+    background: #8e928efa !important;
+}
+
+.btn-success-help {
+    background: #ecdf29 !important;
+    color: black !important;
+}
+
+.add-hover-help:hover {
+    //color: #222222 !important;
+    background: #f8f18a !important;
+}
+
+.inner-screen {
+    color: #246ade !important;
+    // text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.anchor {
+    cursor: pointer;
+    text-decoration: underline !important;
+    color: #346fbe !important;
+}
+
+.cust-label {
+    margin-top: 8px;
+    text-align: right;
+}
+
+
+.disable-custom{
+    pointer-events: none !important;
+    filter: grayscale(1) !important;
+}

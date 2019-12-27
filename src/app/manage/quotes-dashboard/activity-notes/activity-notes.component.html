@@ -1,0 +1,127 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p" style="width:50%">
+        <!-- <div class="row" style="margin-bottom:14px;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                    <button mat-raised-button class="pull-right add-hover btn-success" (click)="openUserDialog(null)">
+                        <mat-icon>add</mat-icon> Notes
+                    </button>
+                </div>
+            </div>
+        </div> -->
+        <div fxLayout="row wrap">
+            <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Category</th>
+                            <th style="width:60%">Description</th>
+                            <th>Date, Time</th>
+                            <!-- <th class="text-center">Status</th>
+                            <th class="text-center">Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let role of roles">
+                            <td>{{role.category}}</td>
+                            <td>{{role.description}}</td>
+                            <td><a>{{role.datetime}}</a></td>
+                            <!-- <td class="pad-left inner-screen text-center">
+                                <a (click)="role.status = ! role.status">
+                                    <span *ngIf="!role.status" style="color:red">Inactive</span>
+                                    <span *ngIf="role.status">Active</span>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a>
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                </a>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="w-100 flex-p">
+      <p style="margin-top:5px;">
+          <span class="mr-8" style="font-size: 18px;font-weight: bold;">Timeline History:</span>
+      </p>
+  </div> -->
+<!-- <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="w-100 flex-p" *ngIf="filterToggle">
+      <mat-card class="filter">
+          <mat-card-content>
+                  <div class="row">
+                          <div class="form-group">
+                              <label style="margin-top: 6px;" class="control-label col-sm-3">Mode:</label>
+                              <div class="col-sm-9">
+                                  <select class='select-option form-control' required [(ngModel)]='locationOptionSelected' (ngModelChange)='onLocationOptionsSelected($event)'>
+                                      <option class='option' [ngValue]="undefined" selected disabled>By Type</option>
+                                      <option class='option' *ngFor='let option of locationOptions' [value]="option">{{option}}</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label style="margin-top: 6px;" class="control-label col-sm-4">From Date:</label>
+                              <div class="col-sm-8">
+                                  <div class="input-icon right">
+                                      <i class="fa fa-calendar" [owlDateTimeTrigger]="dt1"></i>
+                                      <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="dob" [(ngModel)]="dateTime1" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" name="dt1">
+                                      <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label style="margin-top: 6px;" class="control-label col-sm-4">To Date:</label>
+                              <div class="col-sm-8">
+                                  <div class="input-icon right">
+                                      <i class="fa fa-calendar" [owlDateTimeTrigger]="dt2"></i>
+                                      <input class="form-control" placeholder="MM/DD/YYYY" class="form-control" id="dt2" [(ngModel)]="dateTime1" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" name="dt2">
+                                      <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          <div class="col-lg-1 col-md-1 col-sm-1">
+                              <button type="button"  class="add-hover btn btn-success pull-right">Search</button>
+                          </div>
+                          
+                          
+                      </div>
+          </mat-card-content>
+      </mat-card>
+  </div> -->
+<!-- <div class="w-100 flex-p">
+<mgl-timeline  [alternate]="alternate">
+  <mgl-timeline-entry *ngFor="let entry of entries; let i = index;" (expand)="onExpandEntry($event, i)">
+    <mgl-timeline-entry-header [class] = 'entry.headerClass' (click)="onHeaderClick($event)">
+      <div style="margin-bottom:10px;"><i class="{{entry.element}}" style="float: left">&nbsp;&nbsp;&nbsp;</i><b style="float: left">{{entry.header}}</b>&nbsp;&nbsp;&nbsp;&nbsp;<b style="float: right">{{entry.date}}</b></div>
+      <div><p class="left-alignment"><i class="{{entry.dataelement}}" style="float: left"></i>{{entry.content}}</p></div>
+    </mgl-timeline-entry-header>
+    
+    <mgl-timeline-entry-dot [class]="entry.class"
+    [size]="size"
+    (click)="onDotClick($event)"></mgl-timeline-entry-dot> -->
+<!-- <mgl-timeline-entry-side>2018</mgl-timeline-entry-side> -->
+<!-- </mgl-timeline-entry>
+</mgl-timeline>
+</div> -->

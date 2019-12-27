@@ -1,0 +1,263 @@
+<div class="custom-header">
+  <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>Log New Expense</h3>
+</div>
+<div mat-dialog-content>
+
+
+
+  <div class="col-sm-12 no-padding" style="margin-bottom: 10px">
+    <div class="col-sm-1 no-padding" style="margin-top: 6px">
+      <label class="add-member-label">Date</label>
+    </div>
+    <div class="col-sm-2 no-padding" style="margin-bottom: 5px">
+      <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+      <!-- <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }"> -->
+    </div>
+    <div class="col-sm-3 pull-right no-padding">
+      <a (click)="BlockView()" style="border: solid 1px;padding: 5px;border-radius: 5px;cursor: pointer;" [class.active-link]="isBlockView"
+        class="inner-screen pull-right">Block View</a>
+      <a (click)="LineView()" style="border: solid 1px;padding: 5px;border-radius: 5px; margin-right: 10px;" [class.active-link]="isLineView"
+        class="inner-screen pull-right">Line View</a>
+    </div>
+  </div>
+
+  <!-- LineView div -->
+  <div [class.hide]="isBlockView">
+    <div class="col-sm-12" style="margin-bottom: 20px;border: solid 1px; padding: 10px 0px !important;border-radius: 10px;">
+      <div class="col-sm-11 no-padding">
+        <div class="col-sm-12" style="margin-bottom: 10px">
+          <div class="col-sm-5 no-padding">
+            <div class="col-sm-6 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label class="add-member-label">Project</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <mat-select placeholder="--Select Project--" class='form-control' required>
+                  <mat-option class='option' *ngFor='let option of projects' [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <!-- <div class="col-sm-2 no-padding">
+                    <div class="col-sm-12 div-padding">
+                      <label>Site</label>
+                    </div>
+                    <div class="col-sm-12 div-padding">
+                      <mat-select placeholder="--Select Site--" class="form-control">
+                        <mat-option *ngFor="let option of Sites" [value]="option">{{option}}</mat-option>
+                      </mat-select>
+                    </div>
+                  </div> -->
+            <!-- <div class="col-sm-6 no-padding">
+                    <div class="col-sm-12 div-padding">
+                      <label>SOW</label>
+                    </div>
+                    <div class="col-sm-12 div-padding">
+                      <mat-select placeholder="--Select SOW--" class="form-control">
+                        <mat-option *ngFor="let option of SOWs" [value]="option">{{option}}</mat-option>
+                      </mat-select>
+                    </div>
+                  </div> -->
+            <div class="col-sm-6 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label>Action</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <mat-select placeholder="--Select Action--" class="form-control">
+                  <mat-option *ngFor="let option of Actions" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7 no-padding">
+            <div class="col-sm-4 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label class="add-member-label">Expense Subject</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <input type="text" class="form-control" placeholder="Enter Expense Subject">
+              </div>
+            </div>
+            <div class="col-sm-4 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label class="add-member-label">Expense Code</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <mat-select (selectionChange)="ExpenseCodeChange($event.value)" placeholder="--Select Action--" class="form-control">
+                  <mat-option *ngFor="let option of ExpenseCodes" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-4 no-padding" [ngClass]="ExpenseCode_nonMileage">
+              <div class="col-sm-12 div-padding">
+                <label>Expense Amount</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <input type="number" class="form-control" placeholder="Enter Expense Amount">
+              </div>
+            </div>
+            <div class="col-sm-4 no-padding" [ngClass]="ExpenseCode_Mileage">
+              <div class="col-sm-12 div-padding">
+                <label>Kilometers Travelled</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <input type="number" class="form-control" placeholder="Enter no of kilometers">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1">
+        <a class="button" matTooltip="Add New Row" (click)="createComponent()">
+          <mat-icon style="color: green;font-size: 25px;margin-top: 25px;cursor: pointer;">add</mat-icon>
+        </a>
+      </div>
+    </div>
+
+    <ng-template #viewContainerRef></ng-template>
+
+  </div>
+
+
+  <!-- BlockView div -->
+  <div [class.hide]="isLineView" class="col-sm-12">
+
+    <!-- <form [formGroup]="formGroup"> -->
+    <mat-horizontal-stepper>
+      <mat-step class="addStepper" [completed]="false" *ngFor="let customerGroup of numberOfForms">
+        <!-- <ng-template matStepLabel></ng-template> -->
+
+        <div class="col-sm-12" style="margin-bottom: 10px;border: solid 1px; padding: 10px 0px !important;border-radius: 10px;">
+          <div class="form-horizontal col-sm-12" style="margin-top: 10px">
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label add-member-label">Select Project: </label>
+              <div class="col-sm-6">
+                <mat-select placeholder="--Select Project--" class="form-control">
+                  <mat-option *ngFor="let option of projects" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label">Select Site: </label>
+              <div class="col-sm-6">
+                <mat-select placeholder="--Select Site--" class="form-control">
+                  <mat-option *ngFor="let option of Sites" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label">Select SOW: </label>
+              <div class="col-sm-6">
+                <mat-select placeholder="--Select SOW--" class="form-control">
+                  <mat-option *ngFor="let option of SOWs" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label">Select Task: </label>
+              <div class="col-sm-6">
+                <mat-select placeholder="--Select Task--" class="form-control">
+                  <mat-option *ngFor="let option of Tasks" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label">Select Action: </label>
+              <div class="col-sm-6">
+                <mat-select placeholder="--Select Action--" class="form-control">
+                  <mat-option *ngFor="let option of Actions" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label add-member-label">Expense Subject: </label>
+              <div class="col-sm-6">
+                <input class="form-control" placeholder="Enter Expense Subject" type="text">
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label add-member-label">Select Expense Code: </label>
+              <div class="col-sm-6">
+                <mat-select (selectionChange)="ExpenseCodeChange($event.value)" placeholder="--Select Expense Code--" class="form-control">
+                  <mat-option *ngFor="let option of ExpenseCodes" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px" [ngClass]="ExpenseCode_nonMileage">
+              <label class="col-sm-6 control-label add-member-label">Expense Amount: </label>
+              <div class="col-sm-6">
+                <input type="number" class="form-control" id="price" placeholder="Enter Expense Amount">
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px" [ngClass]="ExpenseCode_Mileage">
+              <label class="col-sm-6 control-label add-member-label">Kilometers Travelled: </label>
+              <div class="col-sm-6">
+                <input type="number" class="form-control" id="price" placeholder="Enter no of kilometers">
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label">Select Expense Type: </label>
+              <div class="col-sm-6">
+                <mat-select placeholder="--Select Expense Type--" class="form-control">
+                  <mat-option *ngFor="let option of ExpenseTypes" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label add-member-label">Select Expense Date: </label>
+              <div class="col-sm-6">
+                <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom: 10px">
+              <label class="col-sm-6 control-label add-member-label">Attach Receipt: </label>
+              <div class="col-sm-6">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-12">
+          <div class="col-sm-1 no-padding">
+            <button mat-button matStepperPrevious class="pull-left">
+              <mat-icon>navigate_before</mat-icon>Back</button>
+          </div>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-2">
+
+            <a class="button" matTooltip="Add New Block" (click)="addItem()" style="margin-right: 10px">
+              <mat-icon style="color: green;font-size: 25px;margin-top: 5px;cursor: pointer;">add</mat-icon>
+            </a>
+            <a class="button" matTooltip="Delete This Block" (click)="removeItem()">
+              <mat-icon style="color: red;font-size: 25px;margin-top: 5px; cursor: pointer;">delete_forever</mat-icon>
+            </a>
+          </div>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-1 no-padding">
+            <button mat-button matStepperNext class="pull-right">Next
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <!-- </form> -->
+
+
+
+
+  </div>
+
+</div>
+
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+  <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">
+    <mat-icon>cancel</mat-icon>
+    <span>&nbsp;Cancel</span>
+  </button>
+  <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="close()">
+    <mat-icon>send</mat-icon>
+    <span>&nbsp;Save</span>
+  </button>
+</mat-dialog-actions>

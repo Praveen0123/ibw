@@ -1,0 +1,29 @@
+.user-form{
+    .form-field-outer{
+        width: 280px;
+    }
+    .mat-radio-button{
+        margin-right: 12px;
+    }
+}
+
+.checklist-item  td{
+  vertical-align: middle;
+}
+
+.mat-horizontal-stepper-header {
+    padding: 0 16px !important;
+    height: 64px !important;
+}
+
+.mat-dialog-content {
+    max-height : unset !important;
+}
+.mat-dialog-actions {
+    padding: 0px 0!important;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 52px;
+    align-items: center;
+    margin-bottom: -24px;
+}

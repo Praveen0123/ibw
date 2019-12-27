@@ -1,0 +1,89 @@
+.btn-success-gray {
+    background: #686968fa !important;
+    color: white !important;
+}
+.tr-red,.tr-red:hover {
+    color: red;
+    background: #7080902b;
+    cursor: not-allowed;
+}
+tr > td > .button-disabled{
+    cursor: not-allowed !important;
+}
+.pills>.nav>li.active>a {
+    background: #50636d!important;
+    color: #fff;
+}
+
+.remove_top_bottom_padding.mat-raised-button {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background: #e0e0e0;
+}
+
+.inner-screen {
+    color: #246ade !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+::ng-deep .cal-open-day-events {
+    display: none !important;
+}
+
+::ng-deep .cal-events {
+    display: none !important;
+}
+
+::ng-deep .popover {
+    max-width: fit-content !important;
+}
+
+.col-sm-7 {
+    width: 13.8%;
+    margin: 0 2px 0 2px;
+}
+
+.padding-top {
+    padding-top: 14px!important;
+}
+
+.padding-top_green {
+    padding-top: 37px!important;
+}
+
+.schedule {
+    background-color: #1797c7 !important;
+    color: #fff !important;
+}
+
+.available {
+    background-color: #1cb12f !important;
+    color: #fff !important;
+}
+
+.gray {
+    background-color: #50636d !important;
+    color: #fff !important;
+}
+
+.width_height_th {
+    width: 65px!important;
+    height: 68px!important;
+}
+
+.width_height_tr {
+    width: 65px!important;
+    height: 52px!important;
+}
+
+.vertical_align {
+    vertical-align: middle;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+.no_underline{
+    text-decoration: none !important;
+}

@@ -1,0 +1,115 @@
+<!--This page is used to add or edit leads-->
+<div>
+    <h1 mat-dialog-title>
+        <span *ngIf="!data">Add</span>
+        <span *ngIf="data">Edit</span> Client
+    </h1>
+    <hr>
+    <form [formGroup]="ClientForm" class="form-horizontal" (ngSubmit)="onSubmitClientForm(ClientForm.value)" #ClientUpsertForm="ngForm">
+    <div mat-dialog-content>
+        <!-- <form class="form-horizontal"> -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label col-sm-4 add-member-label">Client Name: </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Enter client name" required formControlName="clientName">
+                    <mat-error *ngIf="ClientForm.controls.clientName.errors?.required && ClientForm.controls.clientName.touched">
+                       Please enter client name</mat-error>
+                </div>
+                <label class="col-sm-2 control-label col-sm-4 add-member-label">Client Type: </label>
+                <div class="col-sm-4">
+                    <mat-select placeholder="--Select Client Type--" class="form-control" formControlName="clientTypeID" required>
+                        <mat-option *ngFor="let option of clientTypes" [value]="option.clientTypeId">{{option.clientTypeName}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ClientForm.controls.clientTypeID.errors?.required && ClientForm.controls.clientTypeID.touched">
+                        Please select client type</mat-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label col-sm-4 add-member-label">Email: </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Enter email" required formControlName="clientEmail">
+                    <mat-error *ngIf="ClientForm.controls.clientEmail.errors?.required && ClientForm.controls.clientEmail.touched">
+                        Please enter client email</mat-error>
+                    <mat-error *ngIf="ClientForm.controls.clientEmail.hasError('invalidEmail') && ClientForm.controls.clientEmail.touched">
+                        Invalid email address</mat-error>
+                </div>
+                <label class=" col-sm-2 control-label col-sm-4 add-member-label">Phone No.: </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" maxlength="12" placeholder="Enter phone number" required formControlName="clientPhone" (keypress)="onlyNumbers($event)">
+                    <mat-error *ngIf="ClientForm.controls.clientPhone.errors?.required && ClientForm.controls.clientPhone.touched">
+                       Please enter client phone</mat-error>
+                        <mat-error *ngIf="ClientForm.controls.clientPhone.hasError('invalidPhoneNumber') && ClientForm.controls.clientPhone.touched">
+                            Invalid Phone Number</mat-error>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label col-sm-4 add-member-label">Country: </label>
+                <div class="col-sm-4">
+                    <mat-select placeholder="--Select Country--" class="form-control" formControlName="clientCountryID" required (selectionChange)="GetStates($event.value)">
+                        <mat-option *ngFor="let option of countries" [value]="option.countryId">{{option.countryName}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ClientForm.controls.clientCountryID.errors?.required && ClientForm.controls.clientCountryID.touched">
+                        Please select client country</mat-error>
+                </div>
+                <label class=" col-sm-2 control-label col-sm-4 add-member-label">Province / State: </label>
+                <div class="col-sm-4">
+                    <mat-select placeholder="--Select Province/State--" class="form-control" formControlName="clientStateID" required>
+                        <mat-option *ngFor="let option of provinceOptions" [value]="option.stateId">{{option.stateName}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ClientForm.controls.clientStateID.errors?.required && ClientForm.controls.clientStateID.touched">
+                        Please select client state</mat-error>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label class=" col-sm-2 control-label col-sm-4 add-member-label">Municipality: </label>
+                    <div class="col-sm-4">
+                        <mat-select placeholder="--Select Muncipality--" class="form-control" formControlName="clientMuncipalityID">
+                            <mat-option *ngFor="let option of muncipalityOptions" [value]="option.muncipalityId">{{option.muncipalityName}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="ClientForm.controls.clientMuncipalityID.errors?.required && ClientForm.controls.clientMuncipalityID.touched">
+                           Please select client municipality</mat-error>
+                    </div>
+                <label class="col-sm-2 control-label col-sm-4 add-member-label">City: </label>
+                <div class="col-sm-4">
+                    <input class="form-control" placeholder="Enter City" type="text" formControlName="clientCity" required>
+                    <mat-error *ngIf="ClientForm.controls.clientCity.errors?.required && ClientForm.controls.clientCity.touched">
+                       Please enter client city</mat-error>
+                </div>
+               
+            </div>
+            <div class="form-group">
+                    <label class="col-sm-2 control-label col-sm-4 add-member-label">Postal / Zip: </label>
+                    <div class="col-sm-4">
+                        <input class="form-control" maxlength="7" placeholder="Enter Postal / Zip" type="text" formControlName="clientZip">
+                        <mat-error *ngIf="ClientForm.controls.clientZip.errors?.required && ClientForm.controls.clientZip.touched">
+                            PLease enter client zip</mat-error>
+                    </div>
+                <label class=" col-sm-2 control-label col-sm-4 add-member-label">Street Address: </label>
+                <!-- <div class="col-sm-10" style="padding: 0 8px!important;">
+                    <textarea class="form-control txtarea" rows="2" placeholder="Enter Address" autocomplete="off" formControlName="clientStreetAddress" required></textarea>
+                    <mat-error *ngIf="ClientForm.controls.clientStreetAddress.errors?.required && ClientForm.controls.clientStreetAddress.touched">
+                        Client Street Adress is required</mat-error>
+                </div> -->
+                <div class="col-sm-4">
+                    <input class="form-control" placeholder="Enter Address" type="text" formControlName="clientStreetAddress" required>
+                    <mat-error *ngIf="ClientForm.controls.clientStreetAddress.errors?.required && ClientForm.controls.clientStreetAddress.touched">
+                        Please enter client street address</mat-error>
+                </div>
+            </div>
+
+            <div class="form-group">
+                 <label class="col-sm-2 control-label col-sm-4 add-member-label">Client Code: </label>
+                <div class="col-sm-4">
+                    <input class="form-control" placeholder="Enter Client Code" type="text" formControlName="clientCode">
+                    <mat-error *ngIf="ClientForm.controls.clientCode.errors?.required && ClientForm.controls.clientCode.touched">
+                       Please enter client code</mat-error>
+                </div>
+            </div>
+
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button class="add-dark-hover btn-default" type="button" (click)="close()">Cancel</button>
+        <button mat-raised-button class="btn-success" type="submit">Save</button>
+    </mat-dialog-actions>
+</form>
+</div>

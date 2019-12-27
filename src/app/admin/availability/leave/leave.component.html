@@ -1,0 +1,162 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-xs-12">
+                    <div class="col-md-6 no-padding">
+                    </div>
+                    <div class="col-sm-6 pull-right no-padding">
+                        <button mat-raised-button color="primary" class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
+                            <mat-icon>filter_list</mat-icon> Filter
+                        </button>
+                        <button mat-raised-button color="primary" class="pull-right filter-hover" style="    margin-right: 10px;background-color: #e0e0e0;color: black;">
+                            <mat-icon>refresh</mat-icon> Refresh
+                        </button>
+                    </div>
+                </div>
+                <!-- <div fxLayout="row wrap" > -->
+                <div class="col-sm-12 no-padding" *ngIf="filterToggle">
+                    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+                        <mat-card class="filter">
+                            <mat-card-content>
+                                <div class="row col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Type</div>
+                                        <div class="col-sm-8">
+                                            <mat-select class='select-option form-control' placeholder="--Search by Leave Type--">
+                                                <mat-option [value]="1">Vacation</mat-option>
+                                                <mat-option [value]="2">PTO</mat-option>
+                                                <mat-option [value]="3">Late Attendance</mat-option>
+                                                <mat-option [value]="4">Leave Early</mat-option>
+                                                <mat-option [value]="5">Leave & Return</mat-option>
+                                                <mat-option [value]="6">Work Remotely</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">User</div>
+                                        <div class="col-sm-8">
+                                            <mat-select class='select-option form-control' placeholder="--Select User--">
+                                                <mat-option *ngFor="let option of Users" [value]="option">{{option}}</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-1" style="padding-left: 5px">
+                                                <mat-checkbox color='warn'></mat-checkbox></div>
+                                        <div class="col-sm-8">
+                                                Show Today Records
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row col-sm-12" style="margin-top:20px">
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Week</div>
+                                        <div class="col-sm-8">
+                                            <mat-select class='select-option form-control' placeholder="--Select Week--">
+                                                <mat-option [value]="1">This Week</mat-option>
+                                                <mat-option [value]="2">Last Week</mat-option>
+                                                <mat-option [value]="3">Next Week</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">From Date</div>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">To Date</div>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row col-sm-12" style="margin-top:20px">
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Job Code</div>
+                                        <div class="col-sm-8">
+                                                <mat-select multiple name="" id="" placeholder="-- Select Permissions Level --" class="form-control">
+                                                        <mat-option [value]=1>LPC1</mat-option>
+                                                        <mat-option [value]=2>LPC2</mat-option>
+                                                        <mat-option [value]=3>LPC3</mat-option>
+                                                        <mat-option [value]=4>EPC1</mat-option>
+                                                        <mat-option [value]=5>EPC2</mat-option>
+                                                        <mat-option [value]=6>EPC3</mat-option>
+                                                        <mat-option [value]=4>CPC1</mat-option>
+                                                        <mat-option [value]=5>CPC2</mat-option>
+                                                        <mat-option [value]=6>CPC3</mat-option>
+                                                        <mat-option [value]=4>OLS</mat-option>
+                                                        <mat-option [value]=5>EA</mat-option>
+                                                        <mat-option [value]=6>PA</mat-option>
+                                                        <mat-option [value]=4>GT1</mat-option>
+                                                        <mat-option [value]=5>GT2</mat-option>
+                                                        <mat-option [value]=6>PM</mat-option>
+                                                        <mat-option [value]=7>AM</mat-option>
+                                                    </mat-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                        </a>
+                                        <button mat-raised-button class="pull-right" style="margin: 10px;">
+                                            <mat-icon>settings_backup_restore</mat-icon> Reset
+                                        </button>
+                                        <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                            <mat-icon>youtube_searched_for</mat-icon> Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div fxLayout="row wrap">
+    <div class="w-100 flex-p">
+        <div fxLayout="wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" style="padding-left:0px!important;padding-right:0px!important">
+                <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th style="padding-left: 5px!important;">User Name</th>
+                            <th style="padding-left: 5px!important;">Type</th>
+                            <th class="text-center" style="padding-left: 5px!important;">From Date</th>
+                            <th class="text-center" style="padding-left: 5px!important;">To Date</th>
+                            <th class="text-center" style="padding-left: 5px!important;">From Time</th>
+                            <th class="text-center" style="padding-left: 5px!important;">To Time</th>
+                            <th style="padding-left: 5px!important;">Duration</th>
+                            <th style="padding-left: 5px!important;" class="text-center">Vacation Balance</th>
+                            <th style="padding-left: 5px!important;" class="text-center">PTO Balance</th>
+                            <th style="padding-left: 5px!important;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of leaves">
+                            <td style="padding-left: 5px!important;">{{item.userName}}</td>
+                            <td style="padding-left: 5px!important;">{{item.type}}</td>
+                            <td class="text-center" style="padding-left: 5px!important;">{{item.fromDate}}</td>
+                            <td class="text-center" style="padding-left: 5px!important;">{{item.toDate}}</td>
+                            <td class="text-center" style="padding-left: 5px!important;">{{item.fromTime}}</td>
+                            <td class="text-center" style="padding-left: 5px!important;">{{item.toTime}}</td>
+                            <td style="padding-left: 5px!important;">{{item.duration}} </td>
+                            <td style="padding-left: 5px!important;" class="text-center">{{item.availLeaves}}</td>
+                            <td style="padding-left: 5px!important;" class="text-center">{{item.PTOBal}}</td>
+                            <td>
+                                <a [ngClass]="{green : item.status == 'Approved', red : item.status == 'Declined', blue : item.status == 'Pending',blue : item.status == 'Reviewed'}">{{item.status}}</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

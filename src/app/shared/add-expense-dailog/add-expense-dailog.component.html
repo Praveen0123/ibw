@@ -1,0 +1,81 @@
+
+<h1 mat-dialog-title>Add Expense</h1>
+<div mat-dialog-content>
+    <form class="form-horizontal">
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label add-member-label">Select Project: </label>
+            <div class="col-sm-6">
+                <mat-select placeholder="--Select Project--" class="form-control" >
+                    <mat-option *ngFor="let option of projects" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">Select Site: </label>
+            <div class="col-sm-6">
+              <mat-select placeholder="--Select Site--" class="form-control" >
+                <mat-option *ngFor="let option of Sites" [value]="option">{{option}}</mat-option>
+            </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">Select SOW: </label>
+            <div class="col-sm-6">
+              <mat-select placeholder="--Select SOW--" class="form-control" >
+                <mat-option *ngFor="let option of SOWs" [value]="option">{{option}}</mat-option>
+            </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">Select Task: </label>
+            <div class="col-sm-6">
+              <mat-select placeholder="--Select Task--" class="form-control" >
+                <mat-option *ngFor="let option of Tasks" [value]="option">{{option}}</mat-option>
+            </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label">Select Action: </label>
+            <div class="col-sm-6">
+              <mat-select placeholder="--Select Action--" class="form-control" >
+                <mat-option *ngFor="let option of Actions" [value]="option">{{option}}</mat-option>
+            </mat-select>
+            </div>
+        </div>
+        <div class="form-group col-sm-12">
+            <label class="col-sm-6 control-label add-member-label">Expense Subject: </label>
+            <div class="col-sm-6">
+                <input class="form-control" placeholder="Enter Expense Subject" type="text" >
+            </div>
+        </div>
+      <div class="form-group col-sm-12">
+          <label class="col-sm-6 control-label add-member-label">Select Expense Code: </label>
+          <div class="col-sm-6">
+            <mat-select placeholder="--Select Expense Code--" class="form-control" >
+              <mat-option *ngFor="let option of ExpenseCodes" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          </div>
+      </div>
+      <div class="form-group col-sm-12">
+          <label class="col-sm-6 control-label add-member-label">Select Expense Type: </label>
+          <div class="col-sm-6">
+            <mat-select placeholder="--Select Expense Type--" class="form-control" >
+              <mat-option *ngFor="let option of ExpenseTypes" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          </div>
+      </div>
+      <div class="form-group col-sm-12">
+          <label class="col-sm-6 control-label add-member-label">Select Expense Date: </label>
+          <div class="col-sm-6">
+            <input type="text" placeholder="Select Expense Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+
+          </div>
+      </div>
+  </form>
+
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+  <button mat-raised-button class="add-hover btn-success" (click)="saveInfo()"><span>Save</span></button>
+</mat-dialog-actions>

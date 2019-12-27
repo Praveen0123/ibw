@@ -1,0 +1,58 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-sm-7" style="padding: 0px 0px 20px 0px !important;">
+                    <button mat-raised-button class="pull-right add-hover-help-job btn-success-help-job" style="margin-left: 2px;">
+                        <mat-icon>help_outline</mat-icon> Help
+                    </button>
+                    <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="AddData(null, 'Client Type')">
+                        <mat-icon>add</mat-icon> Add Client Type
+                    </button>
+                    <mat-select (selectionChange)="StatusFilter($event.value)" class='select-option  form-control pull-right' placeholder="--Select Status--" style="width: 20%;margin:5px 10px 0 10px">
+                        <mat-option [value]=0>Any</mat-option>
+                        <mat-option [value]=1>Active</mat-option>
+                        <mat-option [value]=2>Inactive</mat-option>
+                    </mat-select>
+                        <label class=" pull-right" style="margin-top: 10px !important;">Select Status :</label>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive w-100 flex-p col-sm-7" style="padding: 0px !important;">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead class="tbl-head">
+                <tr class="tr-grid-header">
+                    <th>Client Type</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ClientTypeData">
+                    <td>{{item.CommonMasterDataName}}</td>
+                    <td class="pad-left inner-screen" style="text-align: center !important;">
+                        <a (click)="changeStatus(item.CommonMasterDataId)">
+                          <span *ngIf="!item.IsActive" style="color:red">Inactive</span>
+                          <span *ngIf="item.IsActive">Active</span>
+                      </a>
+                      </td>
+                    <td class="text-center">
+                        <a matTooltip="Update Details" (click)="AddData(item, 'Client Type')" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a (click)="deleteKanbanStage(item.CommonMasterDataId)">
+                            <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                        </a>
+                    </td>
+
+                </tr>
+          <td *ngIf="ClientTypeData?.length == 0" colspan="3" style="text-align: center !important"> No data available </td>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>

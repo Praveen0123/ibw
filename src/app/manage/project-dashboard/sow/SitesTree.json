@@ -1,0 +1,75 @@
+{
+    "data": [{
+        "label": "Teal Johns",
+        "data": "Documents Folder",
+        "expandedIcon": "fa fa-building-o green",
+        "collapsedIcon": "fa fa-building-o green",
+        "selectable": true,
+        "expanded": true,
+        "children": [{
+                "label": "Surrey",
+                "data": "Documents Folder",
+                "expandedIcon": "fa fa-map-marker gold",
+                "collapsedIcon": "fa fa-map-marker gold",
+                "selectable": true,
+                "expanded": true,
+                "children": [{
+                        "label": "GDX 123",
+                        "data": "Documents Folder",
+                        "expandedIcon": "fa fa-industry blue",
+                        "collapsedIcon": "fa fa-industry blue",
+                        "selectable": true,
+                        "expanded": true,
+                        "children": [{
+                                "label": "Left Spindle",
+                                "data": "Documents Folder",
+                                "expandedIcon": "fa fa-line-chartblue",
+                                "collapsedIcon": "fa fa-line-chart blue"
+                            },
+                            {
+                                "label": "Right Spindle",
+                                "data": "Documents Folder",
+                                "expandedIcon": "fa fa-line-chartblue",
+                                "collapsedIcon": "fa fa-line-chart blue"
+                            },
+                            {
+                                "label": "Tool Tip",
+                                "data": "Documents Folder",
+                                "expandedIcon": "fa fa-line-chartblue",
+                                "collapsedIcon": "fa fa-line-chart blue"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "SDR 123",
+                        "data": "Documents Folder",
+                        "expandedIcon": "fa fa-industry blue",
+                        "collapsedIcon": "fa fa-industry blue",
+                        "selectable": false,
+                        "expanded": true,
+                        "children": [{
+                                "label": "Left Spindle",
+                                "data": "Documents Folder",
+                                "expandedIcon": "fa fa-line-chartblue",
+                                "collapsedIcon": "fa fa-line-chart blue"
+                            },
+                            {
+                                "label": "Right Spindle",
+                                "data": "Documents Folder",
+                                "expandedIcon": "fa fa-line-chartblue",
+                                "collapsedIcon": "fa fa-line-chart blue"
+                            },
+                            {
+                                "label": "Tool Tip",
+                                "data": "Documents Folder",
+                                "expandedIcon": "fa fa-line-chartblue",
+                                "collapsedIcon": "fa fa-line-chart blue"
+                            }
+                        ]
+                    }
+                ]
+            }
+
+        ]
+    }]
+}

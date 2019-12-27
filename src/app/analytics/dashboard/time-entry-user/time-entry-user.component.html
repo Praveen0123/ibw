@@ -1,0 +1,269 @@
+<div class="w-100">
+    <div class="flex-p">
+            <div class="col-sm-12 no-padding" style="height: 150px;">
+                    <mat-card>
+                    <!-- <div class="col-sm-2 padding-left-1" style="padding-right: 5px"> -->
+                        <!-- <mat-card class="col-sm-12" style="height: 388px"> -->
+                
+                          <!-- <div class="header-band" style="text-align: center;">
+                            <label style="text-align: center"><span>
+                                <h5 style="font-weight: bold;font-size: 16px;">Actions Summary</h5>
+                              </span></label>
+                          </div> -->
+                          <!-- <div style="margin-top: 3px;">
+                            <div class=""> -->
+                               
+                              <div class="col-xs-4">
+                                <div class="margin-top-8">
+                                  <div class="dashboard-stat blue-madison">
+                                    <div class="visual">
+                                      <i class="fa fa-comments"></i>
+                                    </div>
+                                    <div class="details" style="padding-right: 10px;">
+                                      <div class="number">
+                                        55
+                                      </div>
+                                      <div class="desc" style="padding-right: 0px;">
+                                        Completed
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            
+                              <div class="col-xs-4">
+                                <div class="margin-top-8">
+                                  <div class="dashboard-stat gray-madison">
+                                    <div class="visual">
+                                      <i class="fa fa-skyatlas"></i>
+                                    </div>
+                                    <div class="details" style="padding-right: 10px;">
+                                      <div class="number">
+                                        40
+                                      </div>
+                                      <div class="desc" style="padding-right: 0px;">
+                                        Assigned
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            
+                              <div class="col-xs-4">
+                                <div class="margin-top-8">
+                                  <div class="dashboard-stat pyellow-madison">
+                                    <div class="visual">
+                                      <i class="fa fa-free-code-camp"></i>
+                                    </div>
+                                    <div class="details" style="padding-right: 10px;">
+                                      <div class="number">
+                                        20
+                                      </div>
+                                      <div class="desc" style="padding-right: 0px;">
+                                        Overdue
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </mat-card>
+                            <!-- </div>
+                
+                          </div> -->
+                
+                        <!-- </mat-card> -->
+                      <!-- </div> -->
+                </div>
+        <div class="col-sm-12 no-padding">
+            
+            <div class="col-sm-8" style="padding-right: 5px;padding-left: 0px !important;">
+                <mat-card class="col-sm-12" style="height: 388px">
+                    <div class="header-band" style="text-align: center;">
+                        <label style="text-align: center">
+              <span>
+                <h5 style="font-weight: bold;font-size: 16px;">My Assigned Actions</h5>
+              </span>
+            </label>
+                    </div>
+                    <div class="" style="margin-top: 10px;">
+                        <div class="w-100 ">
+                            <div id="actions" class="table-responsive">
+                                <table id="action" class="table table-striped table-bordered table-hover">
+                                    <thead class="tbl-head">
+                                        <tr class="tr-grid-header">
+                                            <th rowspan="2" style="text-align:center!important;vertical-align: middle;">Project #</th>
+                                            <th rowspan="2" style="vertical-align: middle;">Site</th>
+                                            <th rowspan="2" style="vertical-align: middle;">SOW</th>
+                                            <th rowspan="2" style="vertical-align: middle;">Task</th>
+                                            <th rowspan="2" style="vertical-align: middle;">Due Date</th>
+                                            <th rowspan="2" style="vertical-align: middle;"> Projected Completion Date</th>
+                                            <th colspan="2" class="text-center" style="vertical-align: middle;">Hours</th>
+                                            <th rowspan="2" style="vertical-align: middle;">Details</th>
+                                            <th rowspan="2" style="vertical-align: middle;">Manager</th>
+                                        </tr>
+                                        <tr>
+                                                <th class="center" style="vertical-align: middle;">Planned</th>
+                                                <th class="center" style="vertical-align: middle;">Remaining</th>
+                                              </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of assignedactions">
+                                            <td style="text-align:center!important">
+                                                <a href="/#/IBW/manage/project-dashboard" target="_blank">{{item.projectnumber}}</a>
+                                            </td>
+                                            <td>
+                                                <a href="/#/IBW/manage/project-dashboard/" target="_blank">{{item.site}}</a>
+                                            </td>
+                                            <td>{{item.sow}}</td>
+                                            <td>{{item.task}}</td>
+                                            <td>{{item.duedate}}</td>
+                                            <td>{{item.completionDate}}</td>
+                                            <td class="center">{{item.hours}}</td>
+                                            <td class="center">{{item.hours}}</td>
+                                            <td class="inner-screen">{{item.details}}</td>
+                                            <td>{{item.projectmanager}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col-sm-4 padding-right-1" style="padding-left: 5px;">
+                    <mat-card class="col-sm-12" style="height: 388px;">
+                      <div class="header-band" style="text-align: center;">
+                        <label style="text-align: center">
+                          <span>
+                            <h5 style="font-weight: bold;font-size: 16px;">My Resource Overview</h5>
+                          </span>
+                        </label>
+                      </div>
+                      <div style="margin-top: 10px;">
+                        <div class="w-100 ">
+                          <div id="actions" class="table-responsive">
+                            <table id="action" class="table table-striped table-bordered table-hover">
+                              <thead class="tbl-head">
+                                <tr class="tr-grid-header">
+                                  <th>Asset</th>
+                                  <th>Asset Name</th>
+                                  <th>Assigned Date</th>
+                                  <th class="center">Status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let item of assetoverview">
+                                  <td><a>{{item.assetNo}}</a></td>
+                                  <td><a>{{item.assetName}}</a></td>
+            
+                                  <td [ngClass]="{redBackground: item.assetNo == 'QO-458'}">{{item.fromdate}}</td>
+                                  <!-- <td [ngClass]="{redBackground: item.assigned == 'QO-458'}">{{item.todate}}</td> -->
+            
+                                  <td [ngClass]="{redBackground: item.assetNo == 'QO-458'}" class="text-center">
+                                    <!-- <mat-checkbox class="primary" (click)="openReturnModal()"></mat-checkbox> -->
+                                    <a matTooltip="Return Asset" (click)="openReturnModal()"
+                                      style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#2f941cd1">
+                                      <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card>
+                  </div>
+        </div>
+        <div class="col-sm-12 no-padding margin-top-15">
+            <app-google-maps></app-google-maps>
+        </div>
+        <mat-card class="col-sm-12 margin-top-15">
+            <div class="header-band" style="text-align: center;">
+                <label style="text-align: center">
+          <span>
+            <h5 style="font-weight: bold;font-size: 16px;">Action Analytics</h5>
+          </span>
+        </label>
+            </div>
+            <div class="col-sm-12 margin-top-8">
+                <mat-card class="col-sm-12">
+                    <div class="" [chart]="barChart"></div>
+                </mat-card>
+            </div>
+            <div class="col-sm-12 margin-top-8">
+                <mat-card class="col-sm-12">
+                    <div class="" [chart]="barChart1"></div>
+                </mat-card>
+            </div>
+
+
+        </mat-card>
+    </div>
+</div>
+
+<div bsModal #ReturnModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header modal-header">
+              <h4 style="font-weight: 300; " id="dialog-child-name" class="modal-title pull-left"><b>Asset Update</b></h4>
+            </div>
+            <div class="modal-body">
+              <label><b>Please confirm that the asset is returned as per the follwing details.</b></label>
+      
+              <div class="col-sm-12" style="margin-top: 20px">
+                <div class="col-sm-6"> Asset:</div>
+                <div class="col-sm-6"><label>PC-374</label> </div>
+              </div>
+              <div class="col-sm-12" style="margin-top: 10px">
+                  <div class="col-sm-6"> Asset Name:</div>
+                  <div class="col-sm-6"><label>Personal Computer IBW-120</label> </div>
+                </div>
+              <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-6">Assigned Date:</div>
+                <div class="col-sm-6"><label>2019-06-25</label> </div>
+              </div>
+              <!-- <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-6">Due Date:</div>
+                <div class="col-sm-6"><label>2019-06-29</label> </div>
+              </div> -->
+              <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-6">Previous Condition:</div>
+                <div class="col-sm-6"><label>Excellent</label> </div>
+              </div>
+              <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-6 add-member-label">Current Condition:</div>
+                <div class="col-sm-6">
+                  <mat-select placeholder="--Select Current Condition--" class="form-control" [(ngModel)]="result">
+                    <mat-option *ngFor="let option of currentconditionTypes" [value]="option.id">{{option.value}}</mat-option>
+                  </mat-select>
+                </div>
+              </div>
+              <!-- <div class="col-sm-12" style="margin-top: 10px" *ngIf="result != null && result != 0">
+                <div class="col-sm-6">Return & Replace:</div>
+                <div class="col-sm-4">
+                  <mat-checkbox class="primary"></mat-checkbox>
+                </div>
+              </div> -->
+              <div class="col-sm-12" style="margin-top: 10px">
+                <div class="col-sm-6 add-member-label">Remarks:</div>
+                <div class="col-sm-6">
+                  <textarea class="form-control txtarea" rows="2" placeholder="Enter Remarks"></textarea>
+                </div>
+              </div>
+      
+            </div>
+            <mat-dialog-actions align="center" style="padding-top: 10px !important; padding-bottom: 10px;">
+                <button mat-raised-button class="add-dark-hover btn-default" style="margin-right:10px;" (click)="hideReturnModal()">
+                    <mat-icon>cancel</mat-icon>
+                    <span>&nbsp;Cancel</span>
+                </button>
+                <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="hideReturnModal()">
+                    <mat-icon>send</mat-icon>
+                    <span>&nbsp;Update</span>
+                </button>
+            </mat-dialog-actions>
+          </div>
+        </div>
+      </div>
+

@@ -1,0 +1,41 @@
+.radio-label {
+    vertical-align: super;
+    font-size: 14px;
+    padding-right: 14px;
+    padding-left: 3px;
+    font-weight: 500;
+}
+
+.leave_bal {
+    font-weight: 500;
+    font-stretch: expanded;
+    font-size: 14px;
+}
+
+.custom-header {
+    background: #286ba5;
+    color: white;
+    text-align: center;
+    margin-left: -24px;
+    margin-top: -24px;
+    margin-right: -24px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.bs-datepicker-container {
+    padding: 0px !important;
+}
+
+::ng-deep .time-picker>table>tbody>.text-center {
+    text-align: center !important;
+    display: none !important;
+}
+
+.div-padding{
+    padding: 0px 5px;
+}
+.active-link{
+    color: white !important;
+    background: #306ba5 !important;
+}

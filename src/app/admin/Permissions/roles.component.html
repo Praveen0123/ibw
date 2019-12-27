@@ -1,0 +1,80 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+
+        <div class="row" style="margin-bottom:14px;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="w-100 flex-p">
+                    <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                            <mat-icon>help_outline</mat-icon> Help
+                        </button>
+                    <button mat-raised-button class="pull-right add-hover btn-success" (click)="openAddPermissionDialog(null)">
+                      <mat-icon>fingerprint</mat-icon> Add Permission
+                  </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row wrap">
+            <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Permissions Level</th>
+                            <th>Permission Settings</th>
+                            <th class="text-center">Users Assigned</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let role of userRoles">
+                            <td>{{role.roleMasterName}}</td>
+                            <td><a href="/#/IBW/admin/configure-permissions/{{role.roleMasterEncryptedID}}" target="_blank" ng-disabled="true">{{role.screensCount}}/{{role.totalScreensCount}}</a></td>
+                            <td class="text-center"><a class="inner-screen" (click)="OpenAssignedUsersModal(role)">{{role.usersCount}}</a></td>
+                            <td class="text-center"><a (click)="changeStatus(role)" style="cursor: pointer" [ngClass]="{'red': role.status == false, 'green' : role.status == true}">{{role.status == true ? 'Active' : 'Inactive'}}</a></td>
+                            <td class="text-center">
+                                <a matTooltip="Edit Details" (click)="openAddPermissionDialog(role)" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a>
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red" (click)="deleteModalToggle(role)"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- For Delete Modal Popup -->
+<div class="modal fade" bsModal #deleteModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title titlemodal">
+                    Delete Record
+                </h4>
+            </div>
+            <div class="modal-body col-md-12">
+
+                <div class="col-sm-12">
+                    <label style="color: #534a4a; font-weight:600;">Are You Sure ? You want to delete record, this action can't be undone.</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="deleteUserRole()" class="btn btn-success"><i
+                  class="fa fa-check"></i>&nbsp;Delete</button>
+                <button type="button" class="btn btn-danger" (click)="deleteModalToggle(null)"><i
+                  class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>

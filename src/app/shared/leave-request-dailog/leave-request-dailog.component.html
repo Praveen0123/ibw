@@ -1,0 +1,278 @@
+<div class="custom-header">
+    <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>Leave Request</h3>
+    <!-- <p style="color: #ffffffcc; margin-bottom: 0px !important;" class="text-center">You can apply leave requests and attendance exceptions from here</p> -->
+</div>
+<div mat-dialog-content>
+    <div class="col-sm-12 no-padding">
+        <div class="form-group col-sm-6">
+            <label class="col-sm-12 control-label">User </label>
+            <div class="col-sm-12">
+                Rebecca Grieve
+            </div>
+        </div>
+        <div class="form-group col-sm-6">
+            <label class="col-sm-12 control-label">Balances </label>
+            <div class="col-sm-12">
+                <span class="col-sm-6 no-padding">Vacation (12)</span>
+                <span class="col-sm-6">PTO (2)</span>
+            </div>
+        </div>
+        <div class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">Type of absence </label>
+            <div class="col-sm-12">
+                <mat-select [(ngModel)]="leaveType" placeholder="Select absence type..." class="form-control">
+                    <mat-option value="1">Full Day</mat-option>
+                    <mat-option value="5">Multiple Days</mat-option>
+                    <mat-option value="6">PTO</mat-option>
+                    <mat-option value="2">Late</mat-option>
+                    <mat-option value="3">Early Departure</mat-option>
+                    <mat-option value="4">Leave & Return</mat-option>
+                    <mat-option value="7">Working Remotely</mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">Reason</label>
+            <div class="col-sm-12">
+                <mat-select *ngIf='leaveType==null || leaveType==1 || leaveType==6 || leaveType==7' placeholder="Select reason..." class="form-control">
+                    <mat-option value="1">Illness or Injury</mat-option>
+                    <mat-option value="6">Appointment</mat-option>
+                    <mat-option value="5">Vacation</mat-option>
+                    <mat-option value="2">Weather or Transportation Issues</mat-option>
+                    <mat-option value="3">Bereavement</mat-option>
+                </mat-select>
+
+                <mat-select *ngIf='leaveType==5' placeholder="Select reason..." class="form-control">
+                    <mat-option value="1">Illness or Injury</mat-option>
+                    <mat-option value="5">Vacation</mat-option>
+                    <mat-option value="3">Bereavement</mat-option>
+                </mat-select>
+
+                <mat-select *ngIf='leaveType==2' placeholder="Select reason..." class="form-control">
+                    <mat-option value="1">Illness or Injury</mat-option>
+                    <mat-option value="6">Appointment</mat-option>
+                    <mat-option value="2">Weather or Transportation Issues</mat-option>
+                    <mat-option value="3">Bereavement</mat-option>
+                </mat-select>
+
+                <mat-select *ngIf='leaveType==3' placeholder="Select reason..." class="form-control">
+                    <mat-option value="1">Illness or Injury</mat-option>
+                    <mat-option value="6">Appointment</mat-option>
+                    <mat-option value="5">Vacation</mat-option>
+                    <mat-option value="3">Bereavement</mat-option>
+                </mat-select>
+                
+                <mat-select *ngIf='leaveType==4' placeholder="Select reason..." class="form-control">
+                        <mat-option value="1">Illness or Injury</mat-option>
+                        <mat-option value="6">Appointment</mat-option>
+                        <mat-option value="3">Bereavement</mat-option>
+                    </mat-select>
+            </div>
+        </div>
+
+        <div *ngIf="leaveType == 7" class="form-group col-sm-6">
+                <label class="col-sm-12 control-label add-member-label">Is it a full day?</label>
+                <div class="col-sm-12">
+                        <mat-select [(ngModel)]="FullDayDecisionType" placeholder="Select reason..." class="form-control">
+                                <mat-option value="1">Yes</mat-option>
+                                <mat-option value="0">NO</mat-option>
+                            </mat-select>
+                </div>
+            </div>
+
+
+        <div *ngIf="leaveType != 5  && leaveType != null" class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">Select Date</label>
+            <div class="col-sm-12">
+                <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+            </div>
+        </div>
+        <div *ngIf="leaveType == 5" class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">From Date</label>
+            <div class="col-sm-12">
+                <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+            </div>
+        </div>
+        <div *ngIf="leaveType == 5" class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">To Date</label>
+            <div class="col-sm-12">
+                <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+            </div>
+        </div>
+        <div *ngIf="leaveType == 2" class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">Expected time of arrival</label>
+            <div class="col-sm-12">
+                <timepicker class="time-picker" [(ngModel)]="mytime"></timepicker>
+            </div>
+        </div>
+        <div *ngIf="leaveType == 3 || leaveType == 4" class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">Time of Departure</label>
+            <div class="col-sm-12">
+                <timepicker class="time-picker" [(ngModel)]="mytime"></timepicker>
+            </div>
+        </div>
+        <div *ngIf="leaveType == 4" class="form-group col-sm-6">
+
+        </div>
+        <div *ngIf="leaveType == 4" class="form-group col-sm-6">
+            <label class="col-sm-12 control-label add-member-label">Expected In Time</label>
+            <div class="col-sm-12">
+                <timepicker class="time-picker" [(ngModel)]="mytime"></timepicker>
+            </div>
+        </div>
+        <div *ngIf="leaveType == 7 && FullDayDecisionType == 0" class="form-group col-sm-6">
+                <label class="col-sm-12 control-label add-member-label">From Time</label>
+                <div class="col-sm-12">
+                    <timepicker class="time-picker" [(ngModel)]="mytime"></timepicker>
+                </div>
+        </div>
+        <div *ngIf="leaveType == 7 && FullDayDecisionType == 0" class="form-group col-sm-6">
+                <label class="col-sm-12 control-label add-member-label">To Time</label>
+                <div class="col-sm-12">
+                    <timepicker class="time-picker" [(ngModel)]="mytime2"></timepicker>
+                </div>
+        </div>
+    </div>
+</div>
+
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">
+        <mat-icon>cancel</mat-icon>
+        <span>&nbsp;Cancel</span>
+    </button>
+    <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="saveInfo()">
+        <mat-icon>send</mat-icon>
+        <span>&nbsp;Send</span>
+    </button>
+</mat-dialog-actions>
+
+
+
+<!-- <div class="col-sm-12">
+  <div class="form-group col-sm-12" style="padding-top: 10px">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">RequFest Type: </label>
+      <div class="col-sm-8">
+          <mat-radio-group [(ngModel)]="requestType" aria-label="Select an option">
+              <mat-radio-button color="warn" [value]=1 style="margin-right: 15px;">
+                  <small style="font-size: 14px;">Leave Request</small>
+              </mat-radio-button>
+              <mat-radio-button color="warn" [value]=2>
+                  <small style="font-size: 14px;">Attendance Exception</small>
+              </mat-radio-button>
+          </mat-radio-group>
+      </div>
+  </div>
+  <div *ngIf="requestType == 1" class="form-group col-sm-12" style="padding-top: 8px">
+      <label class="col-sm-4 control-label col-sm-4">Leave Balance: </label>
+      <div class="col-sm-8">
+          <span class="leave_bal">Vacation <label>(12)</label> &nbsp;&nbsp;</span>
+          <span class="leave_bal" style="padding-left: 22px;"> &nbsp; P T O <label>(2)</label> &nbsp;&nbsp;</span>
+      </div>
+  </div>
+  <div *ngIf="requestType == 1" class="form-group col-sm-12" style="padding-top: 5px">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Type : </label>
+      <div class="col-sm-8">
+          <mat-radio-group [(ngModel)]="leaveType" aria-label="Select an option">
+              <mat-radio-button color="warn" [value]=1 style="margin-right: 18px;">
+                  <small style="font-size: 14px;">Vacation</small>
+              </mat-radio-button>
+              <mat-radio-button color="warn" [value]=2>
+                  <small style="font-size: 14px;">P T O</small>
+              </mat-radio-button>
+          </mat-radio-group>
+      </div>
+  </div>
+  <div *ngIf="requestType == 2" class="form-group col-sm-12" style="padding-top: 5px">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Type: </label>
+      <div class="col-sm-8">
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="lateAttendanceType">
+              <mat-radio-button color="warn" [value]=1>
+                  <small style="font-size:14px;padding-right: 15px;">Late Attendance</small>
+              </mat-radio-button>
+              <mat-radio-button color="warn" [value]=2>
+
+                  <small style="font-size:14px">Leave Early</small>
+              </mat-radio-button>
+              <mat-radio-button color="warn" [value]=3>
+
+                  <small style="font-size:14px">Leave & Return</small>
+              </mat-radio-button>
+          </mat-radio-group>
+      </div>
+  </div>
+
+  <div *ngIf="leaveType == 1 && requestType == 1" class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">From Date: </label>
+      <div class="col-sm-8">
+          <input type="date" class="form-control" id="">
+      </div>
+  </div>
+  <div *ngIf="leaveType == 1 && requestType == 1" class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">To Date: </label>
+      <div class="col-sm-8">
+          <input type="date" class="form-control" id="">
+      </div>
+  </div>
+  <div *ngIf="leaveType == 2 || requestType == 2" class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Date: </label>
+      <div class="col-sm-8">
+          <input type="date" class="form-control" id="">
+      </div>
+  </div>
+  <div *ngIf="requestType == 2 && lateAttendanceType == 1" class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Expected In Time: </label>
+      <div class="col-sm-8">
+          <mat-select placeholder="HH" class="form-control" style="width: 40%;margin-right: 12px;">
+              <mat-option *ngFor="let option of fromtimehrOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          <mat-select placeholder="MM" class="form-control" style="width: 40%;">
+              <mat-option *ngFor="let option of fromtimemmOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+      </div>
+  </div>
+  <div *ngIf="requestType == 2 && lateAttendanceType == 2" class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Expected Out Time: </label>
+      <div class="col-sm-8">
+          <mat-select placeholder="HH" class="form-control" style="width: 40%;margin-right: 12px;">
+              <mat-option *ngFor="let option of fromtimehrOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          <mat-select placeholder="MM" class="form-control" style="width: 40%;">
+              <mat-option *ngFor="let option of fromtimemmOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+      </div>
+  </div>
+
+  <div *ngIf="requestType == 2 && lateAttendanceType == 3" class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Expected Out Time: </label>
+      <div class="col-sm-8">
+          <mat-select placeholder="HH" class="form-control" style="width: 40%;margin-right: 12px;">
+              <mat-option *ngFor="let option of fromtimehrOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          <mat-select placeholder="MM" class="form-control" style="width: 40%;">
+              <mat-option *ngFor="let option of fromtimemmOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+      </div>
+  </div>
+
+  <div *ngIf="requestType == 2 && lateAttendanceType == 3" class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Expected In Time: </label>
+      <div class="col-sm-8">
+          <mat-select placeholder="HH" class="form-control" style="width: 40%;margin-right: 12px;">
+              <mat-option *ngFor="let option of fromtimehrOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          <mat-select placeholder="MM" class="form-control" style="width: 40%;">
+              <mat-option *ngFor="let option of fromtimemmOptions" [value]="option">{{option}}</mat-option>
+          </mat-select>
+      </div>
+  </div>
+
+  <div class="form-group col-sm-12">
+      <label class="col-sm-4 control-label col-sm-4 add-member-label">Remarks: </label>
+      <div class="col-sm-8">
+          <textarea class="form-control txtarea" rows="2" placeholder="Enter Remarks" autocomplete="off"></textarea>
+
+      </div>
+  </div>
+
+</div> -->

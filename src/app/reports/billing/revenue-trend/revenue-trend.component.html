@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-12" style="padding-top: 132px!important">
+    <div class="pills w-100 flex-p">
+      <ul class="nav nav-pills ">
+        <li routerLinkActive="active">
+          <a routerLink="/IBW/reports/billing/revenue-trend/day-view" style="margin-right: 8px; padding: 0px 10px;"
+            mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+              <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+              Daily Revenue
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/IBW/reports/billing/revenue-trend/week-view" style="margin-right: 8px; padding: 0px 10px;"
+            mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+              <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+              Weekly Revenue
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/IBW/reports/billing/revenue-trend/month-view" style="margin-right: 8px; padding: 0px 10px;"
+            mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+              <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+              Monthly Revenue
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>

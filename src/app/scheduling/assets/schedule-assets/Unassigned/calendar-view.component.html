@@ -1,0 +1,206 @@
+<div class="">
+  <div fxLayout="row wrap" *ngIf="filterToggle" style="margin-top: 25px">
+    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+      <mat-card class="filter">
+        <mat-card-content>
+          <div class="row col-sm-12">
+            <div class="col-sm-4">
+              <div class="col-sm-4">Party Chief</div>
+              <div class="col-sm-8">
+                <mat-select class='select-option form-control' placeholder="--Select Party Chief--">
+                  <mat-option [value]="1">Damian</mat-option>
+                  <mat-option [value]="2">Thomas </mat-option>
+                  <mat-option [value]="3">David </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="col-sm-4">Field Assistant</div>
+              <div class="col-sm-8">
+                <mat-select class='select-option form-control' placeholder="--Select Field Assistant--">
+                  <mat-option [value]="1">Jake </mat-option>
+                  <mat-option [value]="2">Connor </mat-option>
+                  <mat-option [value]="3">Callum</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="col-sm-4">Assigned Asset</div>
+              <div class="col-sm-8">
+                <mat-select class='select-option form-control' placeholder="--Search by Asset--">
+                  <mat-option [value]="1">Cosmolabe</mat-option>
+                  <mat-option [value]="2">Dioptra</mat-option>
+                  <mat-option [value]="3">Tachymeter</mat-option>
+                  <mat-option [value]="4">Graphometer</mat-option>
+                  <mat-option [value]="5">Total station</mat-option>
+                </mat-select>
+              </div>
+            </div>
+          </div>
+          <div class="row col-sm-12" style="margin-top:20px">
+            <!-- <div class="col-sm-4">
+                            <div class="col-sm-4">Date Range For</div>
+                            <div class="col-sm-8">
+                                <select class='select-option form-control'>
+                                    <option class='option' [ngValue]="undefined" selected disabled>--Select Date Type--</option>
+                                    <option value="Engineer">Created Date</option>
+                                    <option value="Private">Last Active Date</option>
+                                </select>
+                            </div>
+  
+                        </div> -->
+            <div class="col-sm-4">
+              <div class="col-sm-4">From Date</div>
+              <div class="col-sm-8">
+                <input type="text" class='select-option form-control' placeholder="From Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="col-sm-4">To Date</div>
+              <div class="col-sm-8">
+                <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+              </a>
+              <button mat-raised-button class="pull-right btn-success-gray" style="margin-right: 8px;background: #686968fa !important;color: white !important;">
+                <mat-icon>settings_backup_restore</mat-icon> Reset
+              </button>
+              <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                    <mat-icon>cloud_download</mat-icon> Download CSV
+                                </button> -->
+              <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                <mat-icon>youtube_searched_for</mat-icon> Search
+              </button>
+            </div>
+          </div>
+          <!-- <div class="row col-sm-12" style="margin-top:20px">
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">Keyword</div>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text">
+                            </div>
+  
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="col-sm-4">Flagged</div>
+                            <div class="col-sm-8">
+                                <input type="checkbox">
+                            </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button mat-raised-button class="pull-right btn-success-gray" style="margin-right: 8px;background: #686968fa !important;color: white !important;">
+                            <mat-icon>settings_backup_restore</mat-icon> Reset
+                        </button>
+                        <button mat-raised-button class="pull-right add-hover btn-success">
+                                <mat-icon>cloud_download</mat-icon> Download CSV
+                            </button>
+                        <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                            <mat-icon>youtube_searched_for</mat-icon> Search
+                        </button>
+                    </div>
+  
+                </div> -->
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div fxLayout="row wrap" style="margin-top: 20px">
+       <div fxLayout="row wrap" class="col-md-12" style="padding: 0 0 0 2px !important;">
+      <div class="table-responsive">
+          <table id="example2" class="table table-bordered table-hover">
+              <thead class="tbl-head">
+                  <tr class="tr-grid-header">
+                      <th>Asset Name</th>
+                      <th>Asset Category</th>
+                      <th>Purchase Date</th>
+                      <th>Asset Make</th>
+                      <th>Asset Model</th>
+                      <th>Description</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                  <tr>
+                      <td>Cosmolabe</td>
+                      <td>Category A</td>
+                      <td>2019-05-20</td>
+                      <td>Make 1234</td>
+                      <td>Model AB</td>
+                      <td>We bought this with 10% dicount from OEM</td>
+                      <!-- <td class="pad-left inner-screen" style="text-align: center!important">
+                          <a (click)="status1 = ! status1">
+                              <span *ngIf="!status1" style="color:red">Inactive</span>
+                              <span *ngIf="status1">Active</span>
+                          </a>
+                      </td>
+                      <td class="text-center">
+                          <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                              <i class="fa fa-edit"></i>
+                          </a>
+                          <a>
+                              <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                          </a>
+
+                      </td> -->
+
+                  </tr>
+                  <tr>
+                      <td>Dioptra</td>
+                      <td>Category B</td>
+                      <td>2019-05-25</td>
+                      <td>Make 2586</td>
+                      <td>Model CD</td>
+                      <td>Must needed thing</td>
+                      <!-- <td class="pad-left inner-screen" style="text-align: center!important">
+                          <a (click)="status2 = ! status2">
+                              <span *ngIf="!status2" style="color:red">Inactive</span>
+                              <span *ngIf="status2">Active</span>
+                          </a>
+                      </td>
+                      <td class="text-center">
+                          <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                              <i class="fa fa-edit"></i>
+                          </a>
+                          <a>
+                              <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                          </a>
+
+                      </td> -->
+
+                  </tr>
+                  <tr>
+                      <td>Tachymeter</td>
+                      <td>Category C</td>
+                      <td>2019-06-05</td>
+                      <td>Make 5566</td>
+                      <td>Model AD</td>
+                      <td>Without this we cannot deliver the project</td>
+                      <!-- <td class="pad-left inner-screen" style="text-align: center!important">
+                          <a (click)="status3 = ! status3">
+                              <span *ngIf="!status3" style="color:red">Inactive</span>
+                              <span *ngIf="status3">Active</span>
+                          </a>
+                      </td>
+                      <td class="text-center">
+                          <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                              <i class="fa fa-edit"></i>
+                          </a>
+                          <a>
+                              <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                          </a>
+
+                      </td> -->
+
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+  </div>
+  </div>
+</div>
+

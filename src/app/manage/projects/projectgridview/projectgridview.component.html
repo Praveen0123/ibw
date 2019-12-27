@@ -1,0 +1,185 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-xs-12 no-padding">
+                    <div class="col-sm-12">
+
+                        <div class="pills">
+                            <button (click)="opengridColDialog(null)" mat-raised-button class="pull-right btn-primary"
+                                style="color:white; background:#3b7bb8">
+                                <mat-icon>view_column</mat-icon> Grid Columns
+                            </button>
+                        </div>
+                        <div class="" style="padding-right: 0px!important;">
+                            <button mat-raised-button color="primary" style="min-width: 110px;background-color: #e0e0e0;
+                                        color: black;"
+                                class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+                                Next<mat-icon>skip_next</mat-icon>
+                            </button>
+                            <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10"
+                                style="background-color: #e0e0e0;
+                                        color: black;"
+                                (click)="scrollActions('right');">
+                                <mat-icon>skip_previous</mat-icon> Previous
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div fxLayout="row wrap" *ngIf="filterToggle">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+                    <mat-card class="filter">
+                        <!-- <mat-card-header>
+                          <mat-card-subtitle> <b>Filter</b></mat-card-subtitle>
+                      </mat-card-header> -->
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="Keyword">
+                                </div>
+                                <div class="col-lg-3" style="margin-top: 8px;color:gray">
+                                    <!-- <input type="text" class='select-option form-control' placeholder="Last Activity Date Range"
+                                      onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button value="1" checked='true'>Active Date</mat-radio-button>
+                                        <mat-radio-button value="2">Created Date</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-lg-2">
+                                    <input type="text" class='select-option form-control' placeholder="From Date"
+                                        onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                                </div>
+                                <div class="col-lg-2">
+                                    <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')"
+                                        onblur="if(this.value==''){this.type='text'}">
+                                </div>
+                                <div class="col-lg-2">
+                                    <mat-select placeholder="--Search by Project Manager--" multiple class="form-control">
+                                        <mat-option *ngFor="let campaign of managerOptions" [value]="">{{campaign}}
+                                        </mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-lg-2">
+                                    <select class='select-option form-control'>
+                                        <option class='option' [ngValue]="undefined" selected disabled>--Search by
+                                            Status--
+                                        </option>
+                                        <option value="Initiated">Initiated</option>
+                                        <option value="InProgress">In Progress</option>
+                                        <option value="Scheduled">Scheduled</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-1">
+                                    <button type="button" class="add-hover btn btn-success  pull-right">Search</button>
+                                </div>
+                                <div class="col-lg-1">
+                                    <button type="button" class="reset-hover btn btn-success-gray  pull-right">Reset</button>
+                                </div>
+                                <div class="col-lg-2"></div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <div fxLayout="row wrap" style="margin-top:10px;">
+                <div class="table-responsive w-100 flex-p" id="projectgrid" style="padding-left:0px!important;padding-right:0px!important">
+                    <table id="ff" class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr class="tr-grid-header">
+                                <th style="padding-left: 5px!important; min-width: 130px !important;">Project</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;">Client Name</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;">Project Type</th>
+                                <th style="padding-left: 5px!important; min-width: 230px !important;">Account Manager</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;">Project Manager</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Sites</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">SOW</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Tasks</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Actions</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Docs</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Start
+                                    Date</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Completion
+                                    Date</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Billed</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Unbilled</th>
+                                <th style="padding-left: 5px!important; min-width: 130px !important;" class="text-center">Completed
+                                    (%)</th>
+                                <th *ngIf="userType == 'admin'" style="padding-left: 5px!important;" class="text-center">
+                                    Potential</th>
+                                <th *ngIf="userType == 'admin'" style="padding-left: 5px!important;" class="text-center">
+                                    Status</th>
+                                <th *ngIf="userType == 'admin'" style="padding-left: 5px!important; min-width: 90px !important;"
+                                    class="text-center">
+                                    Manage</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of projects">
+                                <td style="padding-left: 5px!important;"><a target="_blank" routerLink="/IBW/manage/project-dashboard">{{item.projectname}}</a></td>
+                                <td style="padding-left: 5px!important;"><a [title]="item.clientName">{{item.clienttype}}</a></td>
+                                <td style="padding-left: 5px!important;">{{item.projecttype}}</td>
+                                <td style="padding-left: 5px!important;">
+                                    <mat-select placeholder="--Select Account Manager --" class='form-control' required>
+                                        <mat-option class='option' *ngFor='let option of AccountManagers' [value]="option">{{option}}</mat-option>
+                                    </mat-select>
+                                </td>
+                                <td style="padding-left: 5px!important;"><a [title]="item.manager">{{item.manager}}</a></td>
+                                <td style="text-align: center!important">{{item.survey}}</td>
+                                <td style="text-align: center!important"> {{item.deliverables}}</td>
+                                <td style="text-align: center!important"> {{item.acivities}}</td>
+                                <td style="text-align: center!important">{{item.acivities}}</td>
+                                <!-- <td style="text-align: center!important"> {{item.review}}</td> -->
+                                <td style="text-align: center!important" class="inner-screen"><a href="https://docs.google.com/document/u/0/"
+                                        target="_blank">View</a></td>
+                                <td style="text-align: center!important">{{item.startdate}}</td>
+                                <td style="text-align: center!important">{{item.completiondate}}</td>
+                                <td style="text-align: center!important">{{item.billed | currency : 'USD'}}</td>
+                                <td style="text-align: center!important">{{item.unBilled | currency : 'USD'}}</td>
+                                <td style="text-align: center!important">{{item.completion}}</td>
+                                <td *ngIf="userType == 'admin'"><span class="change-icon" [matMenuTriggerFor]="menu"
+                                        #menuTrigger="matMenuTrigger">
+                                        <i class="fa fa-circle dot {{item.colorCode}}" style="color:#53a508;margin-right: 19px;"></i>
+                                        <i class="fa fa-chevron-circle-down dot dot-arrow {{item.colorCode}}" style="color:#53a508;margin-right: 19px;"></i>
+                                    </span> <br>
+                                    <mat-menu #menu="matMenu">
+                                        <span mat-menu-item class="mat-color-menu"> <i class="fa fa-circle dot-menu Green"></i>
+                                            &nbsp;&nbsp;Fast</span>
+                                        <span mat-menu-item class="mat-color-menu"> <i class="fa fa-circle dot-menu Blue"></i>
+                                            &nbsp;&nbsp;Moderate</span>
+                                        <span mat-menu-item class="mat-color-menu"><i class="fa fa-circle dot-menu"
+                                                style="color:gray"></i>
+                                            &nbsp;&nbsp;Slow</span>
+                                        <span mat-menu-item class="mat-color-menu"> <i class="fa fa-circle dot-menu Red"></i>
+                                            &nbsp;&nbsp;Stagnant</span>
+                                    </mat-menu>
+                                </td>
+                                <td *ngIf="userType == 'admin'" style="padding-left: 5px!important;" class="text-center"><a
+                                        (click)="item.status1 = !item.status1" [ngClass]="{'green-c' : item.status1 == true, 'red-c' : item.status1 == false}">
+                                        {{item.status1 == true ? 'Active' : 'Inactive'}}
+                                    </a>
+                                </td>
+                                <td *ngIf="userType == 'admin'" style="text-align: center!important">
+                                    <a title="Edit project Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a>
+                                        <i style="cursor: pointer;font-size:16px!important;" title="Delete" class="fa fa-trash red"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

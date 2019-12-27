@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Add Announcement</h1>
+<hr>
+<div mat-dialog-content>
+    <form class="form-horizontal">
+        <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Subject:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="email" placeholder="Enter Subject">
+                </div>
+            </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Message:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control txtarea" rows="2" placeholder="Enter Address" ></textarea>
+                </div>
+            </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Recipient Roles:</label>
+                <div class="col-sm-8">
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Project Manager</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Quote Admin</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Account Manager</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Party Chief</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Field Assistant</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>CAD Engineer</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Finance Manager</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Land Surveyor</mat-checkbox></div>
+                </div>
+            </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+                <label class="control-label col-sm-4 add-member-label">Notification Type:</label>
+                <div class="col-sm-8">
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Text</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Email</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Push</mat-checkbox></div>
+                  <div class="col-sm-6" ><mat-checkbox color='warn'>Browser</mat-checkbox></div>
+                </div>
+            </div>
+    </form>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-hover btn-success" (click)="saveOpp()">Save</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,76 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div fxLayout="row wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" style="padding-top:17px!important">
+                <table id="example2" class="table table-striped table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th style="min-width: 80px;">Project</th>
+                            <th style="min-width: 95px!important;">Site</th>
+                            <th style="min-width: 110px!important;">SOW</th>
+                            <th>Task</th>
+                            <th style="min-width: 125px!important;">Action</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>19</th>
+                            <th>20</th>
+                            <th>21</th>
+                            <th>22</th>
+                            <th>23</th>
+                            <th>24</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of Vacations">
+                            <td>{{item.projects}}</td>
+                            <td>{{item.sites}}</td>
+                            <td>{{item.sow}}</td>
+                            <td>{{ item.task }}</td>
+                            <td>{{item.action}}</td>
+                            <td [class.bg-yellow]="item.oneHr == 'Reviewed'" [class.bg-gray]="item.oneHr == 'Pending'" [class.bg-green]="item.oneHr == 'Completed'" [class.bg-blue]="item.oneHr == 'Initiated'" [class.bg-red]="item.oneHr == 'Overdue'" [title]="item.oneHr"></td>
+                            <td [class.bg-yellow]="item.twoHr == 'Reviewed'" [class.bg-gray]="item.twoHr == 'Pending'" [class.bg-green]="item.twoHr == 'Completed'" [class.bg-blue]="item.twoHr == 'Initiated'" [class.bg-red]="item.twoHr == 'Overdue'" [title]="item.twoHr"></td>
+                            <td [class.bg-yellow]="item.threeHr == 'Reviewed'" [class.bg-gray]="item.threeHr == 'Pending'" [class.bg-green]="item.threeHr == 'Completed'" [class.bg-blue]="item.threeHr == 'Initiated'" [class.bg-red]="item.threeHr == 'Overdue'" [title]="item.threeHr"></td>
+                            <td [class.bg-yellow]="item.fourHr == 'Reviewed'" [class.bg-gray]="item.fourHr == 'Pending'" [class.bg-green]="item.fourHr == 'Completed'" [class.bg-blue]="item.fourHr == 'Initiated'" [class.bg-red]="item.fourHr == 'Overdue'" [title]="item.fourHr"></td>
+                            <td [class.bg-yellow]="item.fiveHr == 'Reviewed'" [class.bg-gray]="item.fiveHr == 'Pending'" [class.bg-green]="item.fiveHr == 'Completed'" [class.bg-blue]="item.fiveHr == 'Initiated'" [class.bg-red]="item.fiveHr == 'Overdue'" [title]="item.fiveHr"></td>
+                            <td [class.bg-yellow]="item.sixHr == 'Reviewed'" [class.bg-gray]="item.sixHr == 'Pending'" [class.bg-green]="item.sixHr == 'Completed'" [class.bg-blue]="item.sixHr == 'Initiated'" [class.bg-red]="item.sixHr == 'Overdue'" [title]="item.sixHr"></td>
+                            <td [class.bg-yellow]="item.sevenHr == 'Reviewed'" [class.bg-gray]="item.sevenHr == 'Pending'" [class.bg-green]="item.sevenHr == 'Completed'" [class.bg-blue]="item.sevenHr == 'Initiated'" [class.bg-red]="item.sevenHr == 'Overdue'" [title]="item.sevenHr"></td>
+                            <td [class.bg-yellow]="item.eigthHr == 'Reviewed'" [class.bg-gray]="item.eigthHr == 'Pending'" [class.bg-green]="item.eigthHr == 'Completed'" [class.bg-blue]="item.eigthHr == 'Initiated'" [class.bg-red]="item.eigthHr == 'Overdue'" [title]="item.eigthHr"></td>
+                            <td [class.bg-yellow]="item.nineHr == 'Reviewed'" [class.bg-gray]="item.nineHr == 'Pending'" [class.bg-green]="item.nineHr == 'Completed'" [class.bg-blue]="item.nineHr == 'Initiated'" [class.bg-red]="item.nineHr == 'Overdue'" [title]="item.nineHr"></td>
+                            <td [class.bg-yellow]="item.tenHr == 'Reviewed'" [class.bg-gray]="item.tenHr == 'Pending'" [class.bg-green]="item.tenHr == 'Completed'" [class.bg-blue]="item.tenHr == 'Initiated'" [class.bg-red]="item.tenHr == 'Overdue'" [title]="item.tenHr"></td>
+                            <td [class.bg-yellow]="item.elevenHr == 'Reviewed'" [class.bg-gray]="item.elevenHr == 'Pending'" [class.bg-green]="item.elevenHr == 'Completed'" [class.bg-blue]="item.elevenHr == 'Initiated'" [class.bg-red]="item.elevenHr == 'Overdue'" [title]="item.elevenHr"></td>
+                            <td [class.bg-yellow]="item.twelveHr == 'Reviewed'" [class.bg-gray]="item.twelveHr == 'Pending'" [class.bg-green]="item.twelveHr == 'Completed'" [class.bg-blue]="item.twelveHr == 'Initiated'" [class.bg-red]="item.twelveHr == 'Overdue'" [title]="item.twelveHr"></td>
+                            <td [class.bg-yellow]="item.thirteenHr == 'Reviewed'" [class.bg-gray]="item.thirteenHr == 'Pending'" [class.bg-green]="item.thirteenHr == 'Completed'" [class.bg-blue]="item.thirteenHr == 'Initiated'" [class.bg-red]="item.thirteenHr == 'Overdue'" [title]="item.thirteenHr"></td>
+                            <td [class.bg-yellow]="item.fourteenHr == 'Reviewed'" [class.bg-gray]="item.fourteenHr == 'Pending'" [class.bg-green]="item.fourteenHr == 'Completed'" [class.bg-blue]="item.fourteenHr == 'Initiated'" [class.bg-red]="item.fourteenHr == 'Overdue'" [title]="item.fourteenHr"></td>
+                            <td [class.bg-yellow]="item.fifteenHr == 'Reviewed'" [class.bg-gray]="item.fifteenHr == 'Pending'" [class.bg-green]="item.fifteenHr == 'Completed'" [class.bg-blue]="item.fifteenHr == 'Initiated'" [class.bg-red]="item.fifteenHr == 'Overdue'" [title]="item.fifteenHr"></td>
+                            <td [class.bg-yellow]="item.sixteenHr == 'Reviewed'" [class.bg-gray]="item.sixteenHr == 'Pending'" [class.bg-green]="item.sixteenHr == 'Completed'" [class.bg-blue]="item.sixteenHr == 'Initiated'" [class.bg-red]="item.sixteenHr == 'Overdue'" [title]="item.sixteenHr"></td>
+                            <td [class.bg-yellow]="item.seventeenHr == 'Reviewed'" [class.bg-gray]="item.seventeenHr == 'Pending'" [class.bg-green]="item.seventeenHr == 'Completed'" [class.bg-blue]="item.seventeenHr == 'Initiated'" [class.bg-red]="item.seventeenHr == 'Overdue'" [title]="item.seventeenHr"></td>
+                            <td [class.bg-yellow]="item.eighteenHr == 'Reviewed'" [class.bg-gray]="item.eighteenHr == 'Pending'" [class.bg-green]="item.eighteenHr == 'Completed'" [class.bg-blue]="item.eighteenHr == 'Initiated'" [class.bg-red]="item.eighteenHr == 'Overdue'" [title]="item.eighteenHr"></td>
+                            <td [class.bg-yellow]="item.nineteenHr == 'Reviewed'" [class.bg-gray]="item.nineteenHr == 'Pending'" [class.bg-green]="item.nineteenHr == 'Completed'" [class.bg-blue]="item.nineteenHr == 'Initiated'" [class.bg-red]="item.nineteenHr == 'Overdue'" [title]="item.nineteenHr"></td>
+                            <td [class.bg-yellow]="item.twentyHr == 'Reviewed'" [class.bg-gray]="item.twentyHr == 'Pending'" [class.bg-green]="item.twentyHr == 'Completed'" [class.bg-blue]="item.twentyHr == 'Initiated'" [class.bg-red]="item.twentyHr == 'Overdue'" [title]="item.twentyHr"></td>
+                            <td [class.bg-yellow]="item.twentyoneHr == 'Reviewed'" [class.bg-gray]="item.twentyoneHr == 'Pending'" [class.bg-green]="item.twentyoneHr == 'Completed'" [class.bg-blue]="item.twentyoneHr == 'Initiated'" [class.bg-red]="item.twentyoneHr == 'Overdue'" [title]="item.twentyoneHr"></td>
+                            <td [class.bg-yellow]="item.twentytwoHr == 'Reviewed'" [class.bg-gray]="item.twentytwoHr == 'Pending'" [class.bg-green]="item.twentytwoHr == 'Completed'" [class.bg-blue]="item.twentytwoHr == 'Initiated'" [class.bg-red]="item.twentytwoHr == 'Overdue'" [title]="item.twentytwoHr"></td>
+                            <td [class.bg-yellow]="item.twentythreeHr == 'Reviewed'" [class.bg-gray]="item.twentythreeHr == 'Pending'" [class.bg-green]="item.twentythreeHr == 'Completed'" [class.bg-blue]="item.twentythreeHr == 'Initiated'" [class.bg-red]="item.twentythreeHr == 'Overdue'" [title]="item.twentythreeHr"></td>
+                            <td [class.bg-yellow]="item.twentyfourHr == 'Reviewed'" [class.bg-gray]="item.twentyfourHr == 'Pending'" [class.bg-green]="item.twentyfourHr == 'Completed'" [class.bg-blue]="item.twentyfourHr == 'Initiated'" [class.bg-red]="item.twentyfourHr == 'Overdue'" [title]="item.twentyfourHr"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

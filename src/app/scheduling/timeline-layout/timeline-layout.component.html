@@ -1,0 +1,185 @@
+<div class="w-100">
+  <div class="flex-p">
+    <div class="row wrap">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <div class="pills w-100 flex-p">
+          <ul class="nav nav-pills ">
+            <li routerLinkActive="active">
+              <a  routerLink="/IBW/scheduling/timeline/dayview" style="margin-right: 8px; padding: 0px 10px;"
+                mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+                  Day View
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li>
+            <li routerLinkActive="active">
+              <a  routerLink="/IBW/scheduling/timeline/monthview" style="margin-right: 8px; padding: 0px 10px;"
+                mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+                  Month View
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li>
+            <!-- <li (click)="isGridView = false" routerLinkActive="active">
+              <a routerLink="/IBW/admin/availability/vacations" style="padding: 0px 10px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button"
+                tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">time_to_leave</mat-icon>
+                  Vacation Plans
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="margin-right:0px !important">
+        <div class="w-100 flex-p">
+          <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-right: 23px;">
+            <!-- (click)="openHelpVideo(null)" -->
+            <mat-icon>help_outline</mat-icon> Help
+          </button>
+            
+          <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="margin-left: 10px;" (click)="filterToggle = !filterToggle">
+            <mat-icon>filter_list</mat-icon> Filter
+          </button>
+          <button mat-raised-button color="primary" style="min-width: 110px;margin-right: 0px!important;"class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+            Next<mat-icon>skip_next</mat-icon>
+          </button>
+              <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="scrollActions('right');">
+            <mat-icon>skip_previous</mat-icon> Previous
+          </button>
+          <mat-select class='select-option form-control pull-right margin-right-10' style="width:14%!important;padding-bottom: 27px!important;padding-top: 12px!important;color:black" placeholder="--Legend--">
+              <mat-option [value]="3"><i class="fa fa-circle dot-menu blue"></i> &nbsp;Initiated</mat-option>
+              <mat-option [value]="5"><i class="fa fa-circle dot-menu gray"></i> &nbsp;Pending</mat-option>
+              <mat-option [value]="1"><i class="fa fa-circle dot-menu red"></i> &nbsp;Overdue</mat-option>
+              <mat-option [value]="6"><i class="fa fa-circle dot-menu yellow"></i> &nbsp;Reviewed</mat-option>
+              <mat-option [value]="2"><i class="fa fa-circle dot-menu green"></i> &nbsp;Completed</mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-xs-6">
+    </div>
+  </div>
+  <div fxLayout="row wrap" *ngIf="filterToggle">
+      <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+          <mat-card class="filter">
+              <mat-card-content>
+                  <div class="row col-sm-12">
+                      <div class="col-sm-4">
+                          <div class="col-sm-2">Project:</div>
+                          <div class="col-sm-10">
+                              <mat-select class='select-option form-control' placeholder="--Search by Project--">
+                                  <mat-option [value]="1">5-12564</mat-option>
+                                  <mat-option [value]="2">4-24642</mat-option>
+                                  <mat-option [value]="3">4-82324</mat-option>
+                                  <mat-option [value]="4">6-10235</mat-option>
+                                  <mat-option [value]="5">2-51152</mat-option>
+                                  <mat-option [value]="6">7-14164</mat-option>
+                              </mat-select>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="col-sm-2">Site:</div>
+                          <div class="col-sm-10">
+                              <mat-select class='select-option form-control' placeholder="--Search by Site--">
+                                  <mat-option [value]="1">71 Mearns</mat-option>
+                                  <mat-option [value]="2">20 Mearns Ct</mat-option>
+                                  <mat-option [value]="3">11 Mearns</mat-option>
+                                  <mat-option [value]="4">Mearns-249</mat-option>
+                                  <mat-option [value]="5">Mearns Ct</mat-option>
+                                  <mat-option [value]="6">06 Mearns</mat-option>
+                              </mat-select>
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="col-sm-2">Keyword:</div>
+                          <div class="col-sm-10">
+                              <input class="form-control" placeholder="Enter keyword" type="text">
+                          </div>
+
+                      </div>
+                  </div>
+                  <div class="row col-sm-12" style="margin-top:20px">
+                      <div class="col-sm-4">
+                          <div class="col-sm-4"></div>
+                          <div class="col-sm-8">
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="col-sm-4"></div>
+                          <div class="col-sm-8">
+                          </div>
+                      </div>
+                      <div class="col-sm-4">
+                          <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                              <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                          </a>
+
+                          <button mat-raised-button class="pull-right btn-success-gray" style="margin-left: 10px;margin-right: 8px;">
+                              <mat-icon>settings_backup_restore</mat-icon> Reset
+                          </button>
+                          <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                              <mat-icon>youtube_searched_for</mat-icon> Search
+                          </button>
+                      </div>
+
+                  </div>
+
+              </mat-card-content>
+          </mat-card>
+      </div>
+  </div>
+  <!-- <div fxLayout="row wrap" *ngIf="filterToggle">
+    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p">
+        <mat-card class="filter">
+            <mat-card-content>
+                <div class="row col-lg-12">
+                    <div class="col-lg-2">
+                        <select class='select-option form-control' required 
+                            (ngModelChange)='onProjectOptionsSelected($event)'>
+                            <option class='option'  selected disabled>--Search By
+                                Project--</option>
+                            <option class='option' *ngFor='let option of projectOptions' [value]="option">{{option}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                        <select class='select-option form-control' required
+                            (ngModelChange)='onProjectOptionsSelected($event)'>
+                            <option class='option'  selected disabled>--Search By
+                                Sites--</option>
+                            <option class='option' *ngFor='let option of sitesOptions' [value]="option">{{option}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <input type="text" class="form-control" placeholder="Keyword">
+
+                    </div>
+
+                    <div class="col-lg-1">
+                        <button type="button" class="btn btn-success add-hover pull-right" style="padding-right:0px">Search</button>
+                    </div>
+                    <div class="col-lg-1" style="padding-left: 0px!important;width: 96px;padding-right: 30px;">
+                        <button type="button" class="reset-hover btn btn-success-gray  pull-right">Reset</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div> -->
+
+<div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

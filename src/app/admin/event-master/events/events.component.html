@@ -1,0 +1,39 @@
+<div fxLayout="row wrap">
+    <div class="w-100 flex-p">
+        <div fxLayout="wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" style="padding-left:0px!important;padding-right:0px!important">
+                <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th >Date & Time</th>
+                            <th >User</th>
+                            <th >Role</th>
+                            <th >Module</th>
+                            <th >Screen</th>
+                            <th >Event</th>
+                            <th >Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let event of events; let i = index">
+                            <td >
+                                <div class="col-sm-6" style="margin-left: 0px">
+                                    {{event.Date}}
+                                </div>
+                                <div class="col-sm-6" style="align-content: flex-end" >
+                                    {{event.time}}
+                                </div>
+                            </td>
+                            <td >{{event.user}}</td>
+                            <td >{{event.role}}</td>
+                            <td >{{event.module}}</td>
+                            <td >{{event.screen}}</td>
+                            <td >{{event.event}}</td>
+                            <td >{{event.Description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

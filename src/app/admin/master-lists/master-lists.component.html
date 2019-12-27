@@ -1,0 +1,37 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+  
+        <div class="row" style="margin-bottom:14px;">
+          <div class="col-sm-12" style="padding-left: 7px;">
+            <div class="pills w-100 flex-p">
+                <ul class="nav nav-pills ">
+                  <li routerLinkActive="active" style="margin-right: 3px">
+                      <a  mat-raised-button class="remove_top_bottom_padding mat-raised-button" routerLink="/IBW/admin/master-lists/municipalities">
+                          <mat-icon>track_changes</mat-icon> Municipalities
+                      </a>
+                  </li>
+                  <li routerLinkActive="active" style="margin-right: 2px">
+                      <a  mat-raised-button class="remove_top_bottom_padding mat-raised-button" routerLink="/IBW/admin/master-lists/potential-levels">
+                          <mat-icon>surround_sound</mat-icon> Levels of Potential
+                      </a>
+                  </li>
+                  <li routerLinkActive="active" style="margin-right: 1px">
+                    <a  mat-raised-button class="remove_top_bottom_padding mat-raised-button" routerLink="/IBW/admin/master-lists/delay-reason">
+                        <mat-icon>timer</mat-icon> Delay Reason
+                    </a>
+                </li>
+                <!-- <li routerLinkActive="active">
+                    <a  mat-raised-button class="remove_top_bottom_padding mat-raised-button" routerLink="/IBW/admin/master-lists/physical-file-location">
+                        <mat-icon>location_on</mat-icon> Physical File Locations
+                    </a>
+                </li> -->
+                </ul>
+            </div>
+        </div>
+           
+        </div>
+  
+        <router-outlet></router-outlet>
+    </div>
+  
+  </div>

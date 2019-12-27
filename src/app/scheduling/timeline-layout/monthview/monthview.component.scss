@@ -1,0 +1,212 @@
+// ::ng-deep .mat-checkbox .mat-checkbox-frame {
+//     border-color: black;
+//   }
+  
+//   ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+//     background-color: black !important;
+//   }
+
+.campaign-name {
+    padding: 0 12px;
+    font-weight: 400;
+}
+
+.campaign-content {
+    padding: 10px;
+    .campaign-img {
+        position: relative;
+        img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            &.blocked {
+                opacity: 0.5;
+            }
+        }
+        .mat-icon {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            font-size: 96px;
+            height: 96px;
+            width: 96px;
+        }
+    }
+    // .mat-slide-toggle {
+    //     margin-top: 15px;
+    // }
+    .campaign-details {
+        span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .mat-icon {
+            padding: 2px 10px;
+        }
+        &.blocked {
+            opacity: 0.5;
+        }
+    }
+}
+
+.campaign-search {
+    width: 0;
+    overflow: hidden;
+    transition: 0.3s;
+    .mat-form-field {
+        width: 100% !important;
+        text-align: center !important;
+        height: 36px;
+    }
+    .mat-form-field-infix {
+        padding: 5px;
+    }
+    .mat-input-element {
+        text-align: center;
+    }
+    &.show {
+        width: 100%;
+        overflow: visible;
+    }
+}
+
+// .campaign-spinner {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+// }
+input[type=checkbox], input[type=radio] {
+    /* margin: 13px 0 0; */
+    margin-top: 1px\9;
+    /* line-height: normal; */
+    font-size: 36px !important;
+    width: 20px;
+    height: 20px;
+}
+.campaign-content .campaign-details .mat-icon {
+    padding:0px 30px 2px 10px !important
+}
+p {
+    margin: 0 0 5px !important;
+}
+td {
+    text-align: center;
+}
+.pills>.nav>li>a {
+    border-radius: 4px;
+    //padding: 8px 25px;
+    background: #dddddd !important;
+    //border-color: #444d58;
+    //box-shadow: 7px 6px 25px #7b7b7bee;
+    margin-right: 7px;
+    //border-bottom: 5px solid transparent;
+    //color: #ffffff;
+    font-size: 15px;
+    min-width: 64px;
+    line-height: 40px;
+    padding: 0 16px;
+    font-weight: 500;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.pills>.nav>li.active>a {
+    background: #50636d !important;
+    color: #ffffff;
+    //border-bottom: #222222 5px solid;
+}
+
+.pills>.nav>li>a:hover {
+    color: #ffffff;
+    background: #70818a !important;
+    //border-bottom: #2e3a40 5px solid;
+    //box-shadow: 5px 6px 6px #909090ee;
+}
+
+.pills>.nav>li.active>a:hover {
+    color: #222222;
+    background: #50636d !important;
+    //border-bottom: #222222 5px solid;
+    //box-shadow: 7px 6px 25px #7b7b7bee;
+}
+
+.add-hover:hover {
+    //color: #222222 !important;
+    background: #4dadad !important;
+}
+
+
+mat-radio-button:nth-child(1){
+    margin-right: 10px;
+  }
+  .btn-success-gray{
+    background:#686968fa !important;
+    color: white !important;
+  }
+.reset-hover:hover {
+    background: #8e928efa !important;
+}
+.filters-hover:hover {
+    color: #ffffff !important;
+    background: #70818a !important;
+}
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    padding: 4px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    // font-size: 13px;
+}
+.inner-screen {
+    color: #246ade !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+.btn-success-help {
+    background: #ecdf29 !important;
+    color: black !important;
+}
+.add-hover-help:hover {
+    //color: #222222 !important;
+    background: #f8f18a !important;
+}
+
+
+::ng-deep .mat-checkbox-checked.mat-warn .mat-checkbox-background,
+ ::ng-deep.mat-checkbox-indeterminate.mat-warn .mat-checkbox-background {
+    background-color: red !important;
+  }
+  
+  // overwrite the ripple overlay on hover and click
+  ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled).mat-warn .mat-checkbox-ripple .mat-ripple-element {
+    background-color: red !important;
+  }
+
+  .bg-yellow{
+    background-color: #ffff09;
+    border:0px!important;
+}
+
+.bg-green{
+    background-color: #18b918;
+    border:0px!important;
+}
+.bg-gray{
+  background-color: #9e9999;
+  border:0px!important;
+}
+.bg-red{
+  background-color: #d83e3e; 
+  border:0px!important;
+}
+.bg-blue{
+  background-color: #4eb9dc; 
+  border:0px!important;
+}

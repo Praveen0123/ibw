@@ -1,0 +1,43 @@
+<div class="custom-header">
+  <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+     <span *ngIf="data['commonMasterData'].CommonMasterDataId">Update</span> <span *ngIf="!data['commonMasterData'].CommonMasterDataId">Add</span> {{categoryName}}</h3>
+     <!-- <span>Add</span> Stage</h3> -->
+  </div>
+<form [formGroup]="commonMasterDataForm" class="form-horizontal">
+
+  <div mat-dialog-content>
+      <div class="form-group">
+          <label class="control-label col-sm-4 add-member-label">{{categoryName}}:</label>
+          <div class="col-sm-8 margin-bottom-15px">
+              <input type="text" class="form-control" formControlName="CommonMasterDataName" placeholder="Enter {{categoryName}}" (keypress)="onlyAlphabets($event)">
+              <mat-error *ngIf="commonMasterDataForm.controls.CommonMasterDataName.errors?.required && commonMasterDataForm.controls.CommonMasterDataName.touched">Please enter {{categoryName | lowercase}}</mat-error>
+              <mat-error *ngIf="commonMasterDataForm.controls.CommonMasterDataName.hasError('invalidInput') && commonMasterDataForm.controls.CommonMasterDataName.touched ">Please enter valid input</mat-error>
+
+          </div>
+      </div>
+  </div>
+
+  <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+      <button type="button" mat-raised-button class="add-dark-hover btn-default" (click)="close()" style="cursor: pointer;">
+          <mat-icon>cancel</mat-icon>
+          <span>&nbsp;Cancel</span>
+      </button>
+      <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success"
+      (click)="submitCommonMasterData(commonMasterDataForm.value)">
+          
+
+      <!-- <mat-icon >send</mat-icon>
+      
+      <span >&nbsp;Save</span> -->
+
+      <mat-icon *ngIf="!data['commonMasterData'].CommonMasterDataId">send</mat-icon>
+      
+      <span *ngIf="!data['commonMasterData'].CommonMasterDataId">&nbsp;Save</span>
+
+      <mat-icon *ngIf="data['commonMasterData'].CommonMasterDataId">update</mat-icon>
+      
+      <span *ngIf="data['commonMasterData'].CommonMasterDataId">&nbsp;Update</span>
+
+      </button>
+  </mat-dialog-actions>
+</form>

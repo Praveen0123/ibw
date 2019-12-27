@@ -1,0 +1,244 @@
+<div fxLayout="row wrap">
+  <div class="w-100">
+
+      <div class="flex-p">
+          <div class="row wrap">
+              <div class="col-xs-12" style="margin-top: 10px">
+                  <div class="col-md-5 no-padding">
+                      <div class="pills w-100 flex-p no-padding" *ngIf="userType == 'admin'">
+                          <ul class="nav nav-pills ">
+                              <li [ngClass]="{'active': isPending == true}" style="margin-right: 2px;">
+                                  <a (click)="pending()" class="remove_top_bottom_padding mat-raised-button" mat-raised-button>
+                                      <mat-icon>dns</mat-icon> Pending
+                                  </a>
+                              </li>
+                              <li [ngClass]="{'active': isDeclined == true}" style="margin-right: 3px;">
+                                  <a (click)="declined()" class="remove_top_bottom_padding mat-raised-button" mat-raised-button>
+                                      <mat-icon>cancel</mat-icon> Declined
+                                  </a>
+                              </li>
+                              <li [ngClass]="{'active': isApproved == true}" style="margin-right: 3px;">
+                                  <a (click)="approved()" class="remove_top_bottom_padding mat-raised-button" mat-raised-button>
+                                      <mat-icon>done</mat-icon> Approved / Reviewed
+                                  </a>
+                              </li>
+                              <li [ngClass]="{'active': isActivity == true}" style="margin-right: 3px;">
+                                  <a (click)="activity()" class="remove_top_bottom_padding mat-raised-button" mat-raised-button>
+                                      <mat-icon>local_activity</mat-icon> Activity
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="col-sm-7 pull-right no-padding">
+                      <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="background: #ecdf29">
+                          <mat-icon>help_outline</mat-icon> Help
+                      </button>
+
+                      <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="openLeaveRequestDailog(null)">
+                          <mat-icon>add</mat-icon>Leave Request
+                      </button>
+                      <button mat-raised-button color="primary" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                          <mat-icon>filter_list</mat-icon> Filter
+                      </button>
+                      <button mat-raised-button class="pull-right btn-danger" style="margin-right: 10px !important;">
+                              <mat-icon>cancel</mat-icon> Reject Selected
+                          </button>
+                          <button mat-raised-button class="pull-right btn-primary" style="margin: 0px 10px;color:white; background:#3b7bb8">
+                              <mat-icon>done</mat-icon> Approve Selected
+                          </button>
+                  </div>
+              </div>
+              <!-- <div fxLayout="row wrap" > -->
+              <div class="col-sm-12 no-padding" *ngIf="filterToggle">
+                  <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+                      <mat-card class="filter">
+                          <mat-card-content>
+                              <div class="row col-sm-12">
+                                  <div class="col-sm-4">
+                                      <div class="col-sm-4">Leave Type</div>
+                                      <div class="col-sm-8">
+                                          <mat-select class='select-option form-control' placeholder="--Search by Leave Type--">
+                                              <mat-option [value]="1">Vacation</mat-option>
+                                              <mat-option [value]="2">PTO</mat-option>
+
+                                          </mat-select>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                      <div class="col-sm-4">From Date</div>
+                                      <div class="col-sm-8">
+                                          <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-4">
+                                      <div class="col-sm-4">To Date</div>
+                                      <div class="col-sm-8">
+                                          <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <!-- <div class="row col-sm-12" style="margin-top:20px">
+                <div class="col-sm-4">
+                  <div class="col-sm-4">Status</div>
+                  <div class="col-sm-8">
+                    <mat-select class='select-option form-control' placeholder="--Select Status--">
+                      <mat-option [value]="1">Approved</mat-option>
+                      <mat-option [value]="2">Pending</mat-option>
+                      <mat-option [value]="3">Declined</mat-option>
+                    </mat-select>
+                  </div>
+
+                </div>
+              </div> -->
+                              <div class="row col-sm-12" style="margin-top:20px">
+                                  <div class="col-sm-4">
+                                  </div>
+                                  <div class="col-sm-4">
+                                  </div>
+                                  <div class="col-sm-4">
+                                      <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                          <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                      </a>
+
+                                      <button mat-raised-button class="pull-right" style="margin:0px 10px;">
+                                          <mat-icon>settings_backup_restore</mat-icon> Reset
+                                      </button>
+                                      <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                            <mat-icon>cloud_download</mat-icon> Download CSV
+                                        </button> -->
+                                      <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                          <mat-icon>youtube_searched_for</mat-icon> Search
+                                      </button>
+                                  </div>
+
+                              </div>
+
+                          </mat-card-content>
+                      </mat-card>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div fxLayout="row wrap">
+  <div class="col-sm-12" style="padding-right: 0px!important; margin-top: 10px;">
+      <button mat-raised-button color="primary" style="min-width: 110px;background-color: #e0e0e0;
+                      color: black;" class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+          Next
+          <mat-icon>skip_next</mat-icon>
+      </button>
+      <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="background-color: #e0e0e0;
+                      color: black;" (click)="scrollActions('right');">
+          <mat-icon>skip_previous</mat-icon> Previous
+      </button>
+  </div>
+  <div class="w-100 flex-p">
+      <div fxLayout="wrap">
+          <div id="leaves" class="table-responsive w-100 flex-p" style="padding-left:0px!important;padding-right:0px!important">
+              <table id="example2" class="table table-strtiped table-bordered table-hover">
+                  <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                          <th *ngIf="userType =='admin' && isPending" style="width: 4%;" class="text-center">
+                              <mat-checkbox color='warn'></mat-checkbox>
+                          </th>
+                          <th *ngIf="userType=='admin' && !isActivity" style="padding-left: 5px!important; min-width: 95px;">User Name</th>
+                          <th *ngIf="userType =='admin' && isPending" class="text-center" style="min-width: 140px">Approve / Review</th>
+                          <th *ngIf="userType =='admin' && isPending" class="text-center">Decline </th>
+                          <th *ngIf="userType =='admin' && isApproved" style="min-width: 160px;" class="text-center">Approved / Reviewed</th>
+                          <th *ngIf="userType =='admin' && isDeclined" class="text-center">Declined </th>
+                          <th style="padding-left: 5px!important; min-width: 130px;;">Type</th>
+                          <th style="padding-left: 5px!important; min-width: 160px;">Reason</th>
+                          <th style="padding-left: 5px!important; min-width: 95px;">From Date</th>
+                          <th style="padding-left: 5px!important;min-width: 95px;">To Date</th>
+                          <th style="padding-left: 5px!important; min-width: 95px;" class="text-center">From Time</th>
+                          <th style="padding-left: 5px!important;min-width: 95px;" class="text-center">To Time</th>
+                          <th style="padding-left: 5px!important;" class="text-center">Duration</th>
+                          <th style="padding-left: 5px!important;min-width: 134px;" class="text-center">Vacation Balance</th>
+                          <th style="padding-left: 5px!important;min-width: 100px;;" class="text-center">PTO Balance</th>
+                          <th style="padding-left: 5px!important;" class="text-center">Messages</th>
+                          <th *ngIf="(userType=='admin' && isActivity) || userType == 'user'" style="padding-left: 5px!important;" class="text-center">Status</th>
+                          <th style="padding-left: 5px!important;min-width: 95px;;" class="text-center">Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr [ngClass]="{'hidethis': (item.fromTime != '--' && isDeclined)}" *ngFor="let item of leaves">
+                          <td *ngIf="userType =='admin' && isPending" class="text-center">
+                              <mat-checkbox color='warn' [checked]=item.isSelected></mat-checkbox>
+                          </td>
+
+                          <td *ngIf="userType=='admin' && !isActivity" style="padding-left: 5px!important;">{{item.userName}}</td>
+                          <td *ngIf="userType =='admin' && isPending" style="padding-left: 5px!important;text-align: center !important;">
+                              <mat-checkbox [(ngModel)]="isItApproved[item.id]" color="warn" (change)="isApprovedSelect($event.checked,item.id)">
+                              </mat-checkbox>
+                          </td>
+                          <td *ngIf="userType =='admin' && isPending" style="padding-left: 5px!important; text-align: center !important;">
+                              <mat-checkbox *ngIf="item.toTime == '--' && item.leaveType != 'Working Remotely'" [(ngModel)]="isItReturned[item.id]" color="warn"
+                                  (change)="isReturnedSelect($event.checked,item.id)">
+                              </mat-checkbox>
+                              <span *ngIf="item.toTime != '--' || item.leaveType == 'Working Remotely' "> -- </span>
+                          </td>
+
+                          <td *ngIf="userType =='admin' && isDeclined" style="padding-left: 5px!important; text-align: center !important;">
+                              <mat-checkbox color="warn" value="1" checked="true" disabled="true">
+                              </mat-checkbox>
+                          </td>
+
+                          <td *ngIf="userType =='admin' && isApproved" style="padding-left: 5px!important; text-align: center !important;">
+                              <mat-checkbox color="warn" value="1" checked="true" disabled="true">
+                              </mat-checkbox>
+                          </td>
+                          <td style="padding-left: 5px!important;">{{item.leaveType}}</td>
+                          <td style="padding-left: 5px!important;">{{item.reasons}}</td>
+                          <td style="padding-left: 5px!important;">{{item.fromDate}}</td>
+                          <td style="padding-left: 5px!important;">{{item.toDate}}</td>
+                          <td style="padding-left: 5px!important;" class="text-center">{{item.fromTime}}</td>
+                          <td style="padding-left: 5px!important;" class="text-center">{{item.toTime}}</td>
+                          <td style="padding-left: 5px!important;" class="text-center">{{item.duration}}</td>
+                          <td style="padding-left: 5px!important;" class="text-center">{{item.availLeaves}}</td>
+                          <td style="padding-left: 5px!important;" class="text-center">{{item.PTOBal}}</td>
+                          <td style="padding-left: 5px!important;" class="text-center">
+                              <a *ngIf="item.toTime == '--' && item.leaveType != 'Working Remotely'" class="blue-c" (click)="openMessages(null)">{{item.messages}}</a>
+
+                              <a *ngIf="item.toTime != '--' || item.leaveType == 'Working Remotely' ">{{item.messages}}</a>
+                          </td>
+                          <td *ngIf="(userType=='admin' && isActivity) || userType == 'user'" style="text-align: center!important" class="text-center">
+                              <a [ngClass]="{green : item.status == 'Approved', red : item.status == 'Declined', blue : item.status == 'Pending'}">{{item.status}}</a>
+                          </td>
+
+
+                          <td *ngIf="(userType == 'user' && item.status == 'Pending') || (userType == 'admin' && !isActivity)" style="text-align: center!important">
+                              <a title="Edit project Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                  <i class="fa fa-edit"></i>
+                              </a>
+                              <a>
+                                  <i style="cursor: pointer;font-size:16px!important;" title="Delete" class="fa fa-trash red"></i>
+                              </a>
+                          </td>
+
+                          <td *ngIf="(userType == 'user' && item.status != 'Pending') || (userType == 'admin' &&  isActivity && item.status != 'Pending')"
+                              style="text-align: center!important">
+                              --
+                          </td>
+
+                          <td *ngIf="userType == 'admin' &&  isActivity && item.status == 'Pending'" style="text-align: center!important">
+                              <a title="Edit project Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                  <i class="fa fa-edit"></i>
+                              </a>
+                              <a>
+                                  <i style="cursor: pointer;font-size:16px!important;" title="Delete" class="fa fa-trash red"></i>
+                              </a>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>

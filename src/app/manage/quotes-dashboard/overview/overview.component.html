@@ -1,0 +1,188 @@
+<div class="col-sm-12" style="margin-top: 25px">
+    <form [formGroup]="employeeForm">
+
+        <table id="example2" class="margin-top-20 table table-bordered table-hover">
+            <thead *ngIf='isedit'>
+                <tr>
+                    <th>Quote Number:</th>
+                    <td>Q-190001</td>
+
+
+                    <th>Quote Type: </th>
+                    <td>New Project</td>
+
+                </tr>
+                <tr>
+                    <th>Client Name: </th>
+                    <td>Toronto Towers</td>
+
+                    <th>Survey Type:</th>
+                    <td>Reference Plan</td>
+
+                </tr>
+                <tr>
+                    <th>Quote Admin:</th>
+                    <td>James Smith</td>
+
+                    <th>Account Manager: </th>
+                    <td>Rob</td>
+
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td>james2136@gmail.com</td>
+
+                    <th>Project Manager: </th>
+                    <td>Dwayne</td>
+
+                </tr>
+                <tr>
+                    <th>Phone: </th>
+                    <td>(416) 920-5100</td>
+
+                    <th>Country:</th>
+                    <td>Canada</td>
+
+                </tr>
+                <tr>
+                    <th>Province / State: </th>
+                    <td>Ontario</td>
+
+                    <th>Municipality:</th>
+                    <td>Ottawa</td>
+
+                </tr>
+
+                <tr>
+                    <th>City: </th>
+                    <td>Ottawa </td>
+
+                    <th>Street Address: </th>
+                    <td>79GG+XC Gloucester</td>
+
+                </tr>
+            </thead>
+
+
+
+
+            <thead *ngIf='!isedit'>
+                <tr>
+                    <th>Quote Number:</th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="notes" />
+                    </td>
+
+                    <th>Quote Type: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Quote" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Client Name: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Client" />
+                    </td>
+                    <th>Survey Type:</th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Survey" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Quote Admin:</th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Admin" />
+                    </td>
+                    <th>Account Manager: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Account" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Email" />
+                    </td>
+                    <th>Project Manager: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Project" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Phone: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Phone" />
+                    </td>
+                    <th>Country:</th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Country" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Province / State: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Province" />
+                    </td>
+                    <th>Municipality:</th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Municipality" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>City: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="City" />
+                    </td>
+                    <th>Street Address: </th>
+
+                    <td class="form-group">
+                        <input class="form-control" type="text" formControlName="Street" />
+                    </td>
+                </tr>
+            </thead>
+
+        </table>
+
+    </form>
+</div>
+<div class="row">
+
+
+    <div *ngIf='isedit' style="padding:0px 0px 0px 1200px">
+        <button mat-raised-button color="primary" style="background-color:#25a2eb !important;" (click)="editfun()">
+                Edit
+              </button>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-sm-12">
+
+
+        <div *ngIf='!isedit' class="col-sm-1" style="float: right">
+            <button mat-raised-button color="primary" style=" background-color:#229494 !important" (click)="savedata()">
+                            Save
+                          </button>
+
+        </div>
+
+        <div *ngIf='!isedit' class="col-sm-1" style="float: right">
+            <button mat-raised-button color="primary" class="pull-right" style=" background-color:#50636d !important" (click)="cancel()">
+                            Cancel</button>
+        </div>
+    </div>
+</div>

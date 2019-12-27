@@ -1,0 +1,41 @@
+<div fxLayout="row wrap">
+  <div class="w-100">
+      <div class="flex-p" style="padding-top:0px!important">
+          <div class="row wrap">
+          </div>
+      </div>
+      <div class="row ">
+          <div class="col-xs-6">
+          </div>
+      </div>
+      <div class="w-100 "> 
+        <div id="actions" class="table-responsive w-100" style="padding: 9px 15px 0px 10px;">
+            <table id="action" class="table table-striped table-bordered table-hover">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th style="width: 135px!important;">Action</th>
+                        <th style="width:78px!important">Project</th>
+                        <th style="width:120px!important">Site</th>
+                        <th style="width:65px!important">SOW</th>
+                        <!-- <th style="width:100px!important">Task</th> -->
+                        <th style="width:90px!important">Due Date</th>
+                        <th style="width:100px!important">Projected Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of onTime">
+                        <td>{{item.action}}</td>
+                        <td>{{item.project}}</td>
+                        <td>{{ item.site }}</td>
+                        <td>{{item.sow}}</td>
+                        <!-- <td>{{ item.task }}</td> -->
+                        <td>{{ item.duedate }}</td>
+                        <td>{{item.expecteddate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
+
+  </div>
+</div>

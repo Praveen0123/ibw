@@ -1,0 +1,226 @@
+<h1 mat-dialog-title>
+    <span>Assign Action on Calendar</span>
+</h1>
+<div mat-dialog-content>
+    <div class="flex-p">
+        <div class="row wrap">
+            <div class="col-xs-12 no-padding">
+                <div class="pills w-100 flex-p">
+                    <ul class="nav nav-pills ">
+                        <li [ngClass]="{'active': overview}" [matTooltip]="!overview ? 'Click to see overview' : 'Click to hide overview'">
+                            <a (click)="overview =! overview" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button"
+                                tabindex="0" aria-disabled="false" ngModel>
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+                                    Overview
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+                        <!-- <li [ngClass]="{'active': assign==true}">
+                            <a (click)="setradio('assign')" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button"
+                                tabindex="0" aria-disabled="false" ngModel>
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+                                    Assign
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12" *ngIf="overview==true" style="background: #e6e6e6; border-radius: 5px ">
+        <div mat-card>
+            <form class="form-horizontal" style="padding:5px">
+                <div class="form-group margin-btm-0 col-sm-12">
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6">Action Title:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">CAD Drafting</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6 ">Task:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">Calcs & CAD</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group margin-btm-0 col-sm-12">
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6 ">SOW:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">SOW-1</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6 ">Site:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">71 Mearns</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group margin-btm-0 col-sm-12">
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6">Project:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">5-12564</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6">Project Manager:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">Jeremy Buchanan</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group margin-btm-0 col-sm-12">
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6">Date Created:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">2019-05-15</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6">Job Code:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">EPC3</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group margin-btm-0 col-sm-12">
+                    <div class="col-sm-6">
+                        <label class="control-label col-sm-6">Action Details:</label>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="font-weight:normal;padding-left: 2px;">Provided Action Details
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <a (click)="overview = false" class="pull-right" style="font-size: 25px; cursor: pointer;">
+                    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                </a>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-12 no-padding margin-top-10">
+        <div class="col-sm-4 no-padding">
+            <div mat-dialog-content style="width:100%;padding-right: 10px;">
+                <form class="form-horizontal" style="padding:5px;background: #dad9d9;
+                border-radius: 5px;" >
+                    <div class="col-sm-12 no-padding">
+                        <div class="col-sm-12"></div>
+                        <label class="col-sm-12">From Date:</label>
+                        <div class="col-sm-12">
+                            <input type="date" class="form-control" id="date" placeholder="Select From Date">
+                        </div>
+                        <div class="col-sm-12 no-padding margin-top-10">
+                            <label class="col-sm-12" style="padding-right: 0px;">From Time:
+                            </label>
+                            <div class="col-sm-12">
+                                <mat-select placeholder="HH" class="form-control" style="width: 40%;margin-right: 12px;">
+                                    <mat-option *ngFor="let option of fromtimehrOptions" [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                                <mat-select placeholder="MM" class="form-control" style="width: 40%;">
+                                    <mat-option *ngFor="let option of fromtimemmOptions" [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 margin-top-10">
+                            <label class="col-sm-12">To Date:</label>
+                            <div class="col-sm-12">
+                                <input type="date" class="form-control" id="date" placeholder="Select To Date">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 margin-top-10">
+                            <label class="col-sm-12" style="padding-right: 0px;">To Time:</label>
+                            <div class="col-sm-12">
+                                <mat-select placeholder="HH" class="form-control" style="width: 40%;margin-right: 12px;">
+                                    <mat-option *ngFor="let option of fromtimehrOptions" [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                                <mat-select placeholder="MM" class="form-control" style="width: 40%;">
+                                    <mat-option *ngFor="let option of fromtimemmOptions" [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label class="col-sm-12" style="padding-right: 0px;">Assign Staff:
+                            </label>
+                            <div class="col-sm-12">
+                                <mat-select placeholder="--Select Staff--" class="form-control">
+                                    <mat-option *ngFor="let option of partychiefOptions" [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div mat-dialog-content>
+                <form class="form-horizontal">
+                    <!-- <div class="form-group col-sm-12">
+                        <label class="control-label col-sm-12" style="padding-left:0px;padding-top:0px">Staff allocation:</label>
+                    </div> -->
+                    <div id="actions" class="table-responsive w-100">
+                        <table id="action" class="table table-striped table-bordered table-hover">
+                            <thead class="tbl-head">
+                                <tr class="tr-grid-header">
+                                    <th style="min-width:97px!important">Staff</th>
+                                    <!-- <th style="min-width:97px!important">Job Code(s)</th> -->
+                                    <th style="min-width:100px!important">Action</th>
+                                    <th style="min-width:66px!important">Project</th>
+                                    <th style="min-width:84px!important">From Date</th>
+                                    <th style="min-width:84px!important">From Time</th>
+                                    <th style="min-width:83px!important">To Date</th>
+                                    <th style="min-width:65px!important">To Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of Actions">
+                                    <td>{{item.partychief}}</td>
+                                    <td>{{item.action}}</td>
+                                    <td>{{item.project}}</td>
+                                    <td>{{ item.fromdate }}</td>
+                                    <td>{{ item.fromtime }}</td>
+                                    <td>{{ item.todate }}</td>
+                                    <td>{{item.totime}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<mat-dialog-actions align="end" style="padding-top: 35px">
+    <button mat-raised-button class="pull-right add-dark-hover btn-default" (click)="close()" style="margin-bottom: 3px!important;">Cancel</button>
+    <button mat-raised-button class="pull-right add-hover btn-success">
+        <span>Assign</span>
+    </button>
+</mat-dialog-actions>

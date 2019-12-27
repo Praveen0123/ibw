@@ -1,0 +1,39 @@
+<h2 class="example-h2" style="margin-left: 0px">
+    Grid view configuration</h2>
+<small>Please select the required columns in the grid, to view grid with specific columns</small>
+
+
+
+<div mat-dialog-content>
+    <form class="form-horizontal" [formGroup]="gridForm" (ngSubmit)="ConfigureGrid(gridForm.value)">
+        <div class="form-group" style="margin-top: 20px">
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="AssetNumber">Asset Number</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="AssetCategory">Asset Category</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="AssetName">Asset Name</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="PurchaseDate">Purchase Date</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="Make">Make</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="Model">Model</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="SerialNumber">Serial Number</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="PurchasePrice">Purchase Price</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="AssetTimeline">Asset Timeline</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="AssignedTo">Assigned To</mat-checkbox>
+        </div>
+        <div class="form-group">
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="Description">Description</mat-checkbox>
+            <mat-checkbox class="col-sm-6" color='warn' formControlName="Status">Status</mat-checkbox>
+            <!-- <mat-checkbox class="col-sm-6" color='warn'>Actions</mat-checkbox> -->
+        </div>
+        <mat-dialog-actions align="end" class="col-sm-12">
+            <button mat-raised-button class="add-dark-hover btn-default" (click)="close()" type="button">Cancel</button>
+            <button mat-raised-button class="btn-success" type="submit">Configure</button>
+        </mat-dialog-actions>
+    </form>
+</div>

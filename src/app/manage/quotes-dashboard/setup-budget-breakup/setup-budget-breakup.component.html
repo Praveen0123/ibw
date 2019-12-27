@@ -1,0 +1,571 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="col-sm-12" style="margin-bottom: -14px; margin-top: 13px;padding-left: 0px;font-size: 16px;">
+                <label>Project :&nbsp;</label>
+                <span>5-12564</span>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <label>Site :&nbsp;</label>
+                <span>71 Mearns Ct</span>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <label>SOW :&nbsp;</label>
+                <span>SRPR</span>
+
+            </div>
+
+
+
+            <div class="col-sm-12" style="padding: 0px !important;">
+          
+                <table id="example2" class="table table-bordered table-striped table-hover" style="margin-top:15px;">
+                    <tbody>
+                        <tr class="thead-color">
+                            <th>Quote</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"></td>
+                            <td>
+                                <mat-select [(ngModel)]="defaultSelected" class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">${{jobCodeValue}}</td>
+                            <td> <input type="number" (keypress)="getValue($event.value)" [(ngModel)]="quantity"
+                                    class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select [(ngModel)]="defaultSelected1" class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode1($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">${{jobCodeValue1}}</td>
+                            <td> <input type="number" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select [(ngModel)]="defaultSelected2" class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode2($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">${{jobCodeValue2}}</td>
+                            <td> <input type="number" [(ngModel)]="quantity2" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+
+                    </tbody>
+                    <tbody class="margin-top-10">
+                        <tr class="thead-color">
+                            <th>Research</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="5"></td>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="5" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="5" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+
+                    </tbody>
+                    <tbody class="margin-top-10">
+                        <tr class="thead-color">
+                            <th>Field Work</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="4"></td>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+
+                            <td class="text-center">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="4" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="4" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr class="thead-color">
+                            <th>Calculations</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"></td>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+
+                    </tbody>
+                    <tbody>
+                        <tr class="thead-color">
+                            <th>Drafting</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"></td>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+
+                    </tbody>
+                    <tbody>
+                        <tr class="thead-color">
+                            <th>Quality Control</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"></td>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+
+                    </tbody>
+                    <tbody>
+                        <tr class="thead-color">
+                            <th>Management</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"></td>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+
+                    </tbody>
+                    <tbody>
+                        <tr class="thead-color">
+                            <th>Admin</th>
+                            <th style="width:150px !important">Job Code</th>
+                            <th class="text-center">Rate</th>
+                            <th style="width:150px !important">Quantity</th>
+                            <th class="text-center">Totals</th>
+                            <th class="text-center">Budget Hours</th>
+                            <th class="text-center">Budget Fee</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="3"></td>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                            <td rowspan="3" class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-select class="form-control" placeholder="Job Code"
+                                    (selectionChange)="changeJobCode($event.value)">
+                                    <mat-option *ngFor="let item of jobcode" [value]="item.rate">{{item.jobcode}}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                            <td> <input type="number" class="form-control" placeholder="Enter Quantity"> </td>
+                            <td class="text-center" style="vertical-align:middle">$0</td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: #c7cece !important">
+                            <td>Total</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">$0</td>
+                            <td class="text-center">$0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+
+
+                <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr style="background: #586958 !important; color:#fff !important;">
+                            <th>
+                                Disbursements
+                            </th>
+                            <th>
+                                Item
+                            </th>
+                            <th class="text-center">
+                                Rate
+                            </th>
+                            <th style="width: 150px !important">
+                                Quantity
+                            </th>
+                            <th class="text-center">
+                                Totals
+                            </th>
+                            <th class="text-center">
+                                Budget Fee
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td rowspan="6"></td>
+                            <td>Surveyor Search</td>
+                            <td class="text-center">$200</td>
+                            <td> <input type="number" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center">$0</td>
+                            <td class="text-center" style="vertical-align: middle" rowspan="6">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Mileage</td>
+                            <td class="text-center">$0.50</td>
+                            <td> <input type="number" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Bars/Spikes/Stakes</td>
+                            <td class="text-center">$25</td>
+                            <td> <input type="number" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center">$0</td>
+                        </tr>
+                        <tr>
+                            <td>Integration Fee</td>
+                            <td class="text-center">$500</td>
+                            <td> <input type="number" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center">$0</td>
+                        </tr>
+                        <tr>
+                            <td>RO Fee</td>
+                            <td class="text-center">$100</td>
+                            <td> <input type="number" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center">$0</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Custom"> </td>
+                            <td class="text-center">$100</td>
+                            <td> <input type="number" [(ngModel)]="quantity1" class="form-control"
+                                    placeholder="Enter Quantity"> </td>
+                            <td class="text-center">$0</td>
+                        </tr>
+
+
+
+                    </tbody>
+
+
+                </table>
+
+            </div>
+        </div>
+        <div class="flex-p">
+            <div class="col-sm-12" style="padding: 0px !important;">
+                <button mat-raised-button class="btn-success pull-right">Submit</button>
+
+                <button style="background: #3a8cab; color: #fff !important; margin-right: 10px !important"
+                    mat-raised-button class="pull-right">Save Draft</button>
+            </div>
+        </div>
+    </div>
+</div>

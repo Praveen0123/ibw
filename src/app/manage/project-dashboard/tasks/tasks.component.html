@@ -1,0 +1,790 @@
+<div fxLayout="row wrap">
+  <div class="w-100">
+    <div class="flex-p">
+      <div class="row wrap">
+        <div class="col-xs-12">
+          <div class="">
+            <button mat-raised-button class="pull-right add-hover-help-job btn-success-help-job"
+              style="margin-right: 6px;">
+              <mat-icon>help_outline</mat-icon> Help
+            </button>
+
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10">
+              <mat-icon>vertical_align_bottom</mat-icon> Download PDF
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-card class="ui-g-12 margin-top-10">
+
+      <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabClose($event)">
+        <p-accordionTab [selected]="true">
+          <p-header>
+            <label class="margin-left-7">Site Name :</label>
+            <span>
+              &nbsp; 71 Mearns Ct
+            </span>
+
+            <label class="margin-left-20">Estimate :</label>
+            <span>
+              &nbsp; $ 24,640
+            </span>
+          </p-header>
+
+          <div class="ui-g no-padding">
+            <div class="ui-g-4" >
+              <div class="ui-g-12" >
+                 
+                <table id="example2" class="table table-bordered table-striped table-hover">
+                  <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                      <th rowspan="2" style="vertical-align: middle;">SOW</th>
+                      <th rowspan="2" style="text-align: center !important;vertical-align: middle">Tasks</th>
+                      <th colspan="3" style="text-align: center !important">Hours</th>
+                      <!-- <th rowspan="2" style="text-align: center !important; vertical-align: middle;">Budget</th> -->
+                      <!-- <th style="text-align: center !important">Actions</th> -->
+                    </tr>
+                    <tr>
+                      <th style="text-align: center !important">Budget </th>
+                      <th style="text-align: center !important">Plan</th>
+                      <th style="text-align: center !important">Actual</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of newBudgetData">
+                      <td>{{item.sow}}</td>
+                      <td style="text-align: center !important"><a (click)="getTaskData(item.sow)"
+                          class="anchor">{{item.tasks == 0 ? 'Add' : item.tasks}}</a></td>
+                      <td style="text-align: center !important"><a>{{item.planHours}}</a></td>
+                      <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                      <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                      <!-- <td style="text-align: center !important"><a (click)="getTaskData(item.sow)"
+                          class="anchor">{{item.budget | currency : 'USD'}}</a></td> -->
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+            <div class="ui-g-4" >
+              <div class="swing shodow-div" *ngIf="sowInfo">
+                  <button mat-raised-button (click)="showAddTaskModal()" style="margin-top:10px;margin-bottom: 10px; margin-right: 10px" class="pull-right add-hover btn-success">
+                      <mat-icon>add</mat-icon> Add Task
+                    </button>
+                <table id="example2" class="table table-bordered table-striped table-hover">
+                  <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+
+                      <th colspan="7" class="no-border" style="text-align: center !important">
+                        <label class="">SOW :</label>
+                        <span>
+                          &nbsp; {{sowName}}
+                        </span>
+                      </th>
+                    </tr>
+                    <tr class="tr-grid-header">
+                      <th rowspan="2" style="text-align: left !important; vertical-align: top;">Task</th>
+                      <th rowspan="2" style="text-align: center !important; vertical-align: top;">Actions</th>
+                      <th colspan="2" style="text-align: center !important">Hours</th>
+                      <!-- <th rowspan="2" style="text-align: center !important; vertical-align: top;">Budget</th>  -->
+                      <th rowspan="2" style="text-align: center !important; vertical-align: top;">Manage</th>
+                    </tr>
+                    <tr class="tr-grid-header">
+                        <!-- <th style="text-align: left !important; vertical-align: top;">Budget</th> -->
+                        <th style="text-align: center !important; vertical-align: top;">Plan</th>
+                        <th style="text-align: center !important">Actual</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of taskData">
+                      <td style="text-align: left !important;"><a class="anchor" (click)="showAddTaskModal()">{{item.taskName == 0 ? 'Add' : item.taskName}}</a>
+                      </td>
+                      <td style="text-align: center !important"><a class="anchor" (click)="getAcTaskData(item.taskName)">{{item.actions == 0 ? 'Add' : item.actions}}</a></td>
+                      <!-- <td style="text-align: center !important"><a>{{item.budgetHour}}</a></td> -->
+                      <td style="text-align: center !important"><a>{{item.planHour}}</a></td>
+                      <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                      <!-- <td style="text-align: center !important"><a class="anchor" (click)="getAcTaskData(item.taskName)">{{item.rPh | currency : 'USD'}}</a></td> -->
+                      <td class="text-center">
+                          <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                            <i class="fa fa-edit"></i>
+                          </a>
+                          <a>
+                            <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                          </a>
+                        </td>
+                    </tr>
+                    <!-- <tr class="tbl-head">
+                                        <td colspan="7" class="text-center"><b>Total Budget</b></td>
+                                        <td class="text-center"><b>48,240</b></td>
+                                      </tr> -->
+                  </tbody>
+                </table>
+              </div>
+              <mat-card class="ui-g-12 background-grey" *ngIf="!sowInfo && !noData" style="height: 278px;">
+                <mat-grid-list cols="1" rowHeight="1:1">
+                  <mat-grid-tile>
+                    <h4 class="custom-no-selection">
+                      Please click on tasks to view and manage task level details.
+                    </h4>
+                  </mat-grid-tile>
+                </mat-grid-list>
+              </mat-card>
+            </div>
+
+            <div class="ui-g-4" >
+              <div class="swing shodow-div" *ngIf="taskInfo">
+                  <button mat-raised-button (click)="showAddActionModal()" style="margin-top:10px;margin-bottom: 10px; margin-right: 10px" class="pull-right add-hover btn-success">
+                      <mat-icon>add</mat-icon> Add Action
+                    </button>
+                <table id="example2" class="table table-bordered table-striped table-hover">
+                  <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                      <th colspan="2" class="no-border" style="text-align: center !important">
+                        <label class="">Task :</label>
+                        <span>
+                          &nbsp; Research
+                        </span>
+                      </th>
+                      <th colspan="2" class="no-border" style="text-align: center !important">
+                        <label class="">SOW :</label>
+                        <span>
+                          &nbsp; {{sowName}}
+                        </span>
+                      </th>
+                    </tr>
+                    <tr class="tr-grid-header">
+                      <th style="text-align: left !important; vertical-align: top;min-width: 150px;">Action</th>
+                      <th style="text-align: center !important">Plan Hours</th>
+                      <th style="text-align: left !important; vertical-align: top;min-width: 100px;">Job Code</th>
+                      <!-- <th style="text-align: center !important">Rate/Hour ($)</th> -->
+                      <!-- <th style="text-align: center !important">Estimate ($)</th> -->
+                      <th style="text-align: center !important; vertical-align: top;">Manage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of taskData">
+                      <td style="text-align: left !important"><a class="anchor" (click)="showAddActionModal()">{{item.action}}</a></td>
+                      <td style="text-align: center !important"><a>{{item.planHour}}</a></td>
+                      <td style="text-align: left !important"><a>{{item.jobCode}}</a></td>
+                      <!-- <td style="text-align: center !important"><a>{{item.rPh | currency : 'USD'}}</a></td> -->
+                      <!-- <td style="text-align: center !important"><a>{{item.estimate | currency : 'USD'}}</a></td> -->
+                    
+                      <td class="text-center">
+                        <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a>
+                          <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <!-- <tr class="tbl-head">
+                                      <td colspan="7" class="text-center"><b>Total Budget</b></td>
+                                      <td class="text-center"><b>48,240</b></td>
+                                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+              <mat-card class="ui-g-12 background-grey" *ngIf="!taskInfo && !noTaskData" style="height: 278px;">
+                <mat-grid-list cols="1" rowHeight="1:1">
+                  <mat-grid-tile>
+                    <h4 class="custom-no-selection">
+                      Please click on actions to view and manage action level details.
+                    </h4>
+                  </mat-grid-tile>
+                </mat-grid-list>
+              </mat-card>
+
+
+            </div>
+
+          </div>
+        </p-accordionTab>
+
+        <p-accordionTab>
+          <p-header>
+            <label class="margin-left-7">Site Name :</label>
+            <span>
+              &nbsp; City Homes
+            </span>
+
+            <label class="margin-left-20">Estimate :</label>
+            <span>
+              &nbsp; $ 22,580
+            </span>
+          </p-header>
+          <div class="ui-g no-padding">
+              <div class="ui-g-4" >
+                <div class="ui-g-12" >
+                   
+                  <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                        <th rowspan="2" style="vertical-align: middle;">SOW</th>
+                        <th rowspan="2" style="text-align: center !important;vertical-align: middle">Tasks</th>
+                        <th colspan="3" style="text-align: center !important">Hours</th>
+                        <!-- <th rowspan="2" style="text-align: center !important; vertical-align: middle;">Budget</th> -->
+                        <!-- <th style="text-align: center !important">Actions</th> -->
+                      </tr>
+                      <tr>
+                        <th style="text-align: center !important">Budget </th>
+                        <th style="text-align: center !important">Plan</th>
+                        <th style="text-align: center !important">Actual</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of newBudgetData">
+                        <td>{{item.sow}}</td>
+                        <td style="text-align: center !important"><a (click)="getTaskData(item.sow)"
+                            class="anchor">{{item.tasks == 0 ? 'Add' : item.tasks}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.planHours}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                        <!-- <td style="text-align: center !important"><a (click)="getTaskData(item.sow)"
+                            class="anchor">{{item.budget | currency : 'USD'}}</a></td> -->
+                    </tbody>
+                  </table>
+  
+                </div>
+              </div>
+              <div class="ui-g-4" >
+                <div class="swing shodow-div" *ngIf="sowInfo">
+                    <button mat-raised-button (click)="showAddTaskModal()" style="margin-top:10px;margin-bottom: 10px; margin-right: 10px" class="pull-right add-hover btn-success">
+                        <mat-icon>add</mat-icon> Add Task
+                      </button>
+                  <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+  
+                        <th colspan="7" class="no-border" style="text-align: center !important">
+                          <label class="">SOW :</label>
+                          <span>
+                            &nbsp; {{sowName}}
+                          </span>
+                        </th>
+                      </tr>
+                      <tr class="tr-grid-header">
+                        <th rowspan="2" style="text-align: left !important; vertical-align: top;">Task</th>
+                        <th rowspan="2" style="text-align: center !important; vertical-align: top;">Actions</th>
+                        <th colspan="2" style="text-align: center !important">Hours</th>
+                        <!-- <th rowspan="2" style="text-align: center !important; vertical-align: top;">Budget</th>  -->
+                        <th rowspan="2" style="text-align: center !important; vertical-align: top;">Manage</th>
+                      </tr>
+                      <tr class="tr-grid-header">
+                          <!-- <th style="text-align: left !important; vertical-align: top;">Budget</th> -->
+                          <th style="text-align: center !important; vertical-align: top;">Plan</th>
+                          <th style="text-align: center !important">Actual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of taskData">
+                        <td style="text-align: left !important;"><a>{{item.taskName == 0 ? 'Add' : item.taskName}}</a>
+                        </td>
+                        <td style="text-align: center !important"><a class="anchor" (click)="getAcTaskData(item.taskName)">{{item.actions == 0 ? 'Add' : item.actions}}</a></td>
+                        <!-- <td style="text-align: center !important"><a>{{item.budgetHour}}</a></td> -->
+                        <td style="text-align: center !important"><a>{{item.planHour}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                        <!-- <td style="text-align: center !important"><a class="anchor" (click)="getAcTaskData(item.taskName)">{{item.rPh | currency : 'USD'}}</a></td> -->
+                        <td class="text-center">
+                            <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                              <i class="fa fa-edit"></i>
+                            </a>
+                            <a>
+                              <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                            </a>
+                          </td>
+                      </tr>
+                      <!-- <tr class="tbl-head">
+                                          <td colspan="7" class="text-center"><b>Total Budget</b></td>
+                                          <td class="text-center"><b>48,240</b></td>
+                                        </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+                <mat-card class="ui-g-12 background-grey" *ngIf="!sowInfo && !noData" style="height: 278px;">
+                  <mat-grid-list cols="1" rowHeight="1:1">
+                    <mat-grid-tile>
+                      <h4 class="custom-no-selection">
+                        Please click on tasks to view and manage task level details.
+                      </h4>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </mat-card>
+              </div>
+  
+              <div class="ui-g-4" >
+                <div class="swing shodow-div" *ngIf="taskInfo">
+                    <button mat-raised-button (click)="showAddActionModal()" style="margin-top:10px;margin-bottom: 10px; margin-right: 10px" class="pull-right add-hover btn-success">
+                        <mat-icon>add</mat-icon> Add Action
+                      </button>
+                  <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                        <th colspan="2" class="no-border" style="text-align: center !important">
+                          <label class="">Task :</label>
+                          <span>
+                            &nbsp; Research
+                          </span>
+                        </th>
+                        <th colspan="2" class="no-border" style="text-align: center !important">
+                          <label class="">SOW :</label>
+                          <span>
+                            &nbsp; {{sowName}}
+                          </span>
+                        </th>
+                      </tr>
+                      <tr class="tr-grid-header">
+                        <th style="text-align: left !important; vertical-align: top;min-width: 150px;">Action</th>
+                        <th style="text-align: center !important">Plan Hours</th>
+                        <th style="text-align: left !important; vertical-align: top;min-width: 100px;">Job Code</th>
+                        <!-- <th style="text-align: center !important">Rate/Hour ($)</th> -->
+                        <!-- <th style="text-align: center !important">Estimate ($)</th> -->
+                        <th style="text-align: center !important; vertical-align: top;">Manage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of taskData">
+                        <td style="text-align: left !important"><a>{{item.action}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.planHour}}</a></td>
+                        <td style="text-align: left !important"><a>{{item.jobCode}}</a></td>
+                        <!-- <td style="text-align: center !important"><a>{{item.rPh | currency : 'USD'}}</a></td> -->
+                        <!-- <td style="text-align: center !important"><a>{{item.estimate | currency : 'USD'}}</a></td> -->
+                      
+                        <td class="text-center">
+                          <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                            <i class="fa fa-edit"></i>
+                          </a>
+                          <a>
+                            <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <!-- <tr class="tbl-head">
+                                        <td colspan="7" class="text-center"><b>Total Budget</b></td>
+                                        <td class="text-center"><b>48,240</b></td>
+                                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+                <mat-card class="ui-g-12 background-grey" *ngIf="!taskInfo && !noTaskData" style="height: 278px;">
+                  <mat-grid-list cols="1" rowHeight="1:1">
+                    <mat-grid-tile>
+                      <h4 class="custom-no-selection">
+                        Please click on actions to view and manage action level details.
+                      </h4>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </mat-card>
+  
+  
+              </div>
+  
+            </div>
+        </p-accordionTab>
+
+        <p-accordionTab>
+          <p-header>
+            <label class="margin-left-7">Site Name :</label>
+            <span>
+              &nbsp; 20 Mearns Ct
+            </span>
+
+            <label class="margin-left-20">Estimate :</label>
+            <span>
+              &nbsp; $ 26,600
+            </span>
+          </p-header>
+          <div class="ui-g no-padding">
+              <div class="ui-g-4" >
+                <div class="ui-g-12" >
+                   
+                  <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                        <th rowspan="2" style="vertical-align: middle;">SOW</th>
+                        <th rowspan="2" style="text-align: center !important;vertical-align: middle">Tasks</th>
+                        <th colspan="3" style="text-align: center !important">Hours</th>
+                        <!-- <th rowspan="2" style="text-align: center !important; vertical-align: middle;">Budget</th> -->
+                        <!-- <th style="text-align: center !important">Actions</th> -->
+                      </tr>
+                      <tr>
+                        <th style="text-align: center !important">Budget </th>
+                        <th style="text-align: center !important">Plan</th>
+                        <th style="text-align: center !important">Actual</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of newBudgetData">
+                        <td>{{item.sow}}</td>
+                        <td style="text-align: center !important"><a (click)="getTaskData(item.sow)"
+                            class="anchor">{{item.tasks == 0 ? 'Add' : item.tasks}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.planHours}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                        <!-- <td style="text-align: center !important"><a (click)="getTaskData(item.sow)"
+                            class="anchor">{{item.budget | currency : 'USD'}}</a></td> -->
+                    </tbody>
+                  </table>
+  
+                </div>
+              </div>
+              <div class="ui-g-4" >
+                <div class="swing shodow-div" *ngIf="sowInfo">
+                    <button mat-raised-button (click)="showAddTaskModal()" style="margin-top:10px;margin-bottom: 10px; margin-right: 10px" class="pull-right add-hover btn-success">
+                        <mat-icon>add</mat-icon> Add Task
+                      </button>
+                  <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+  
+                        <th colspan="7" class="no-border" style="text-align: center !important">
+                          <label class="">SOW :</label>
+                          <span>
+                            &nbsp; {{sowName}}
+                          </span>
+                        </th>
+                      </tr>
+                      <tr class="tr-grid-header">
+                        <th rowspan="2" style="text-align: left !important; vertical-align: top;">Task</th>
+                        <th rowspan="2" style="text-align: center !important; vertical-align: top;">Actions</th>
+                        <th colspan="2" style="text-align: center !important">Hours</th>
+                        <!-- <th rowspan="2" style="text-align: center !important; vertical-align: top;">Budget</th>  -->
+                        <th rowspan="2" style="text-align: center !important; vertical-align: top;">Manage</th>
+                      </tr>
+                      <tr class="tr-grid-header">
+                          <!-- <th style="text-align: left !important; vertical-align: top;">Budget</th> -->
+                          <th style="text-align: center !important; vertical-align: top;">Plan</th>
+                          <th style="text-align: center !important">Actual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of taskData">
+                        <td style="text-align: left !important;"><a>{{item.taskName == 0 ? 'Add' : item.taskName}}</a>
+                        </td>
+                        <td style="text-align: center !important"><a class="anchor" (click)="getAcTaskData(item.taskName)">{{item.actions == 0 ? 'Add' : item.actions}}</a></td>
+                        <!-- <td style="text-align: center !important"><a>{{item.budgetHour}}</a></td> -->
+                        <td style="text-align: center !important"><a>{{item.planHour}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.actualHours}}</a></td>
+                        <!-- <td style="text-align: center !important"><a class="anchor" (click)="getAcTaskData(item.taskName)">{{item.rPh | currency : 'USD'}}</a></td> -->
+                        <td class="text-center">
+                            <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                              <i class="fa fa-edit"></i>
+                            </a>
+                            <a>
+                              <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                            </a>
+                          </td>
+                      </tr>
+                      <!-- <tr class="tbl-head">
+                                          <td colspan="7" class="text-center"><b>Total Budget</b></td>
+                                          <td class="text-center"><b>48,240</b></td>
+                                        </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+                <mat-card class="ui-g-12 background-grey" *ngIf="!sowInfo && !noData" style="height: 278px;">
+                  <mat-grid-list cols="1" rowHeight="1:1">
+                    <mat-grid-tile>
+                      <h4 class="custom-no-selection">
+                        Please click on tasks to view and manage task level details.
+                      </h4>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </mat-card>
+              </div>
+  
+              <div class="ui-g-4" >
+                <div class="swing shodow-div" *ngIf="taskInfo">
+                    <button mat-raised-button (click)="showAddActionModal()" style="margin-top:10px;margin-bottom: 10px; margin-right: 10px" class="pull-right add-hover btn-success">
+                        <mat-icon>add</mat-icon> Add Action
+                      </button>
+                  <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead class="tbl-head">
+                      <tr class="tr-grid-header">
+                        <th colspan="2" class="no-border" style="text-align: center !important">
+                          <label class="">Task :</label>
+                          <span>
+                            &nbsp; Research
+                          </span>
+                        </th>
+                        <th colspan="2" class="no-border" style="text-align: center !important">
+                          <label class="">SOW :</label>
+                          <span>
+                            &nbsp; {{sowName}}
+                          </span>
+                        </th>
+                      </tr>
+                      <tr class="tr-grid-header">
+                        <th style="text-align: left !important; vertical-align: top;min-width: 150px;">Action</th>
+                        <th style="text-align: center !important">Plan Hours</th>
+                        <th style="text-align: left !important; vertical-align: top;min-width: 100px;">Job Code</th>
+                        <!-- <th style="text-align: center !important">Rate/Hour ($)</th> -->
+                        <!-- <th style="text-align: center !important">Estimate ($)</th> -->
+                        <th style="text-align: center !important; vertical-align: top;">Manage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of taskData">
+                        <td style="text-align: left !important"><a>{{item.action}}</a></td>
+                        <td style="text-align: center !important"><a>{{item.planHour}}</a></td>
+                        <td style="text-align: left !important"><a>{{item.jobCode}}</a></td>
+                        <!-- <td style="text-align: center !important"><a>{{item.rPh | currency : 'USD'}}</a></td> -->
+                        <!-- <td style="text-align: center !important"><a>{{item.estimate | currency : 'USD'}}</a></td> -->
+                      
+                        <td class="text-center">
+                          <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                            <i class="fa fa-edit"></i>
+                          </a>
+                          <a>
+                            <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <!-- <tr class="tbl-head">
+                                        <td colspan="7" class="text-center"><b>Total Budget</b></td>
+                                        <td class="text-center"><b>48,240</b></td>
+                                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+                <mat-card class="ui-g-12 background-grey" *ngIf="!taskInfo && !noTaskData" style="height: 278px;">
+                  <mat-grid-list cols="1" rowHeight="1:1">
+                    <mat-grid-tile>
+                      <h4 class="custom-no-selection">
+                        Please click on actions to view and manage action level details.
+                      </h4>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </mat-card>
+  
+  
+              </div>
+  
+            </div>
+        </p-accordionTab>
+
+      </p-accordion>
+
+      <!-- <mat-accordion>
+            <mat-expansion-panel class="margin-top-10 sky-blue-background">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div class="col-sm-6">
+                        <label>Site Name :</label>
+                        &nbsp; 71 Mearns Ct
+                      </div>
+                      <div class="col-sm-6 pull-right">
+                        <label>Estimate :</label>
+                        &nbsp; $44,000
+                      </div>
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+
+              <mat-form-field>
+                <input matInput placeholder="First name">
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="Age">
+              </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="margin-top-10 sky-blue-background" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+
+                    <div class="col-sm-6">
+                        <label>Site Name :</label>
+                        &nbsp; 71 Mearns Ct
+                      </div>
+                      <div class="col-sm-6 pull-right">
+                        <label>Estimate :</label>
+                        &nbsp; $44,000
+                      </div>
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="margin-top-10 sky-blue-background" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+
+                    <div class="col-sm-6">
+                        <label>Site Name :</label>
+                        &nbsp; 71 Mearns Ct
+                      </div>
+                      <div class="col-sm-6 pull-right">
+                        <label>Estimate :</label>
+                        &nbsp; $44,000
+                      </div>
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="margin-top-10 sky-blue-background" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+
+                    <div class="col-sm-6">
+                        <label>Site Name :</label>
+                        &nbsp; 71 Mearns Ct
+                      </div>
+                      <div class="col-sm-6 pull-right">
+                        <label>Estimate :</label>
+                        &nbsp; $44,000
+                      </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-card class="margin-top-10 sky-blue-background">
+            <div class="col-sm-12 no-padding">
+              <div class="col-sm-6">
+                <label>Site Name :</label>
+                &nbsp; 71 Mearns Ct
+              </div>
+              <div class="col-sm-6 pull-right">
+                <label>Estimate :</label>
+                &nbsp; $44,000
+              </div>
+            </div>
+          </mat-card>
+          <mat-card class="margin-top-10 sky-blue-background">
+            <div class="col-sm-12 no-padding">
+              <div class="col-sm-6">
+                <label>Site Name :</label>
+                &nbsp; 71 Mearns Ct
+              </div>
+              <div class="col-sm-6 pull-right">
+                <label>Estimate :</label>
+                &nbsp; $44,000
+              </div>
+            </div>
+          </mat-card>
+
+          <mat-card class="margin-top-10 sky-blue-background">
+            <div class="col-sm-12 no-padding">
+              <div class="col-sm-6">
+                <label>Site Name :</label>
+                &nbsp; 71 Mearns Ct
+              </div>
+              <div class="col-sm-6 pull-right">
+                <label>Estimate :</label>
+                &nbsp; $44,000
+              </div>
+            </div>
+          </mat-card>
+
+          <mat-card class="margin-top-10 sky-blue-background">
+            <div class="col-sm-12 no-padding">
+              <div class="col-sm-6">
+                <label>Site Name :</label>
+                &nbsp; 71 Mearns Ct
+              </div>
+              <div class="col-sm-6 pull-right">
+                <label>Estimate :</label>
+                &nbsp; $44,000
+              </div>
+            </div>
+          </mat-card> -->
+    </mat-card>
+
+
+  </div>
+</div>
+
+
+<div bsModal #addTaskModal="bs-modal" class="modal fade" tabindex="-1"role="dialog" 
+aria-labelledby="dialog-child-name">
+
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left"><b>Add Task</b></h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideAddTaskModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form >
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Task Name: </label>
+              <div class="col-sm-8">
+                  <input class="form-control" placeholder="Enter Task Name" type="text" >
+              </div>
+          </div>
+      </form>
+      </div>
+      <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+        <button mat-raised-button class="add-dark-hover btn-default" (click)="hideAddTaskModal()">Cancel</button>
+        <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideAddTaskModal()">Save</button>
+    </mat-dialog-actions>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #addActionModal="bs-modal" class="modal fade" tabindex="-1"role="dialog" 
+aria-labelledby="dialog-child-name">
+
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left"><b>Add Action</b></h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideAddActionModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form >
+            <div class="form-group col-sm-12">
+                <label class="col-sm-4 control-label col-sm-4 add-member-label">Action Title: </label>
+                <div class="col-sm-8">
+                    <input class="form-control" placeholder="Enter Action Title" type="text" >
+                </div>
+            </div>
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Job Code: </label>
+              <div class="col-sm-8">
+                <mat-select placeholder="--Select Job Code--" class="form-control" >
+                  <mat-option *ngFor="let option of JobCodes" [value]="option">{{option}}</mat-option>
+              </mat-select>
+              </div>
+          </div>
+          
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Plan Hours: </label>
+              <div class="col-sm-8">
+                  <input class="form-control" placeholder="Enter Plan Hours" type="text" >
+              </div>
+          </div>
+          <div class="form-group col-sm-12">
+              <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Due Date: </label>
+              <div class="col-sm-8">
+                  <input type="date" class="form-control" id="price" placeholder="Enter Due Date">
+              </div>
+          </div>
+          <div class="form-group col-sm-12">
+                <label class="col-sm-4 control-label col-sm-4 add-member-label">Action Details: </label>
+                <div class="col-sm-8">
+                    <textarea class="form-control txtarea" rows="2" placeholder="Enter Action Details" autocomplete="off"></textarea>
+
+                </div>
+            </div>
+      </form>
+
+      </div>
+      <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+        <button mat-raised-button class="add-dark-hover btn-default" (click)="hideAddActionModal()">Cancel</button>
+        <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideAddActionModal()">Save</button>
+    </mat-dialog-actions>
+    </div>
+  </div>
+</div>

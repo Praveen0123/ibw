@@ -1,0 +1,77 @@
+<div class="w-100">
+  <div class="flex-p" style="padding-left: 24px!important;padding-top:25px!important">
+    <div class="row wrap">
+      <div class="col-lg-3" style="background-color:#fff2f2;border:1px solid #cccccc;margin-right: 16px !important;min-width: 415px;">
+        <div  class="pills w-100 flex-p" style="padding-top: 15px!important;">
+          <a routerLink="/IBW/reports/work-in-process/action-per-type" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button tab-button"
+            tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+              Actions by Project Type
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+        </div>
+        <div class="pills w-100 flex-p">
+          <a routerLink="/IBW/reports/work-in-process/actions-hours-by-type" routerLinkActive = "active-css" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button tab-button"
+            tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+              Action hours by Project Type
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+          <!-- <button mat-button>Action Hours by Project Type</button> -->
+        </div>
+        <div class="pills w-100 flex-p">
+            <a routerLink="/IBW/reports/work-in-process/actions-completed-per-project" routerLinkActive = "active-css" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button tab-button"
+            tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+                Differents actions completed per project
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+          <!-- <button mat-button>Differents actions completed per project</button> -->
+        </div>
+        <div class="pills w-100 flex-p">
+            <a routerLink="/IBW/reports/work-in-process/billed-vs-unbilled" routerLinkActive = "active-css" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button tab-button"
+            tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+                Billed and Unbilled projects completion
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+        </div>
+        <div class="pills w-100 flex-p">
+            <a routerLink="/IBW/reports/work-in-process/billed-unbilled-expenses" routerLinkActive = "active-css" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button tab-button"
+            tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+              Billed and Unbilled expenses of projects
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+          <!-- <button mat-button>Different types of work</button> -->
+        </div>
+        <div class="pills w-100 flex-p">
+            <a routerLink="/IBW/reports/work-in-process/no-of-action-per-sow" routerLinkActive = "active-css" mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button tab-button"
+            tabindex="0" aria-disabled="false">
+            <span class="mat-button-wrapper">
+                Number of actions per SOW
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </a>
+          <!-- <button mat-button>Number of actions</button> -->
+        </div>
+      </div>
+      <div class="col-lg-8" style="background-color:#eaeaea;border:1px solid #cccccc">
+        <div class="col-sm-12" style="padding:15px 2px 14px 0px!important">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

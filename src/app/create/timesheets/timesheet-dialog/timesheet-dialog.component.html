@@ -1,0 +1,103 @@
+<div class="custom-header">
+  <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>Log Hours</h3>
+</div>
+<div mat-dialog-content>
+
+  <div class="col-sm-12 no-padding" style="margin-bottom: 10px">
+    <div class="col-sm-1 no-padding" style="margin-top: 6px">
+      <label class="add-member-label">Date</label>
+    </div>
+    <div class="col-sm-2 no-padding" style="margin-bottom: 5px">
+      <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+      <!-- <input type="text" placeholder="Select Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }"> -->
+    </div>
+    <div class="col-sm-3 pull-right no-padding">
+      <a (click)="BlockView()" style="border: solid 1px;padding: 5px;border-radius: 5px;cursor: pointer;" [class.active-link]="isBlockView"
+        class="inner-screen pull-right">Block View</a>
+      <a (click)="LineView()" style="border: solid 1px;padding: 5px;border-radius: 5px; margin-right: 10px;" [class.active-link]="isLineView"
+        class="inner-screen pull-right">Line View</a>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="col-sm-12" style="margin-bottom: 20px;border: solid 1px; padding: 10px 0px !important;border-radius: 10px;">
+    <div class="col-sm-11 no-padding">
+      <div class="col-sm-12" style="margin-bottom: 10px">
+        <div class="col-sm-5 no-padding">
+          <div class="col-sm-6 no-padding">
+            <div class="col-sm-12 div-padding">
+              <label class="add-member-label">Project</label>
+            </div>
+            <div class="col-sm-12 div-padding">
+              <mat-select placeholder="--Select Project--" class='form-control' required>
+                <mat-option class='option' *ngFor='let option of projects' [value]="option">{{option}}</mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div class="col-sm-6 no-padding">
+            <div class="col-sm-12 div-padding">
+              <label>Action</label>
+            </div>
+            <div class="col-sm-12 div-padding">
+              <mat-select placeholder="--Select Action--" class="form-control">
+                <mat-option *ngFor="let option of Actions" [value]="option">{{option}}</mat-option>
+              </mat-select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7 no-padding">
+         
+          <div class="col-sm-4 no-padding">
+            <div class="col-sm-12 div-padding">
+              <label class="add-member-label">Job Code</label>
+            </div>
+            <div class="col-sm-12 div-padding">
+              <mat-select placeholder="--Select Action--" class="form-control">
+                <mat-option *ngFor="let option of JobCodes" [value]="option">{{option}}</mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div class="col-sm-4 no-padding">
+            <div class="col-sm-12 div-padding">
+              <label class="add-member-label">Worked Hours</label>
+            </div>
+            <div class="col-sm-12 div-padding">
+              <input type="text" class="form-control" placeholder="Enter Worked Hours">
+            </div>
+          </div>
+          <div class="col-sm-4 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label >Remarks</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <input type="text" class="form-control" placeholder="Enter Remarks">
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <a class="button" matTooltip="Add New Row" (click)="createComponent()">
+        <mat-icon style="color: green;font-size: 25px;margin-top: 25px;cursor: pointer;">add</mat-icon>
+      </a>
+    </div>
+  </div>
+
+  <ng-template #viewContainerRef></ng-template>
+
+</div>
+
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+  <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">
+    <mat-icon>cancel</mat-icon>
+    <span>&nbsp;Cancel</span>
+  </button>
+  <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="close()">
+    <mat-icon>send</mat-icon>
+    <span>&nbsp;Save</span>
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,114 @@
+<h1 mat-dialog-title>
+    <span *ngIf="!oppurtunity.id">Add</span>
+    <span *ngIf="oppurtunity.id">Edit</span> Contact</h1>
+<hr>
+<div mat-dialog-content>
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Select Client:</label>
+            <div class="col-sm-8">
+                <div class="col-sm-10" style="padding-left: 0px !important">
+                    <mat-select placeholder="--Select Client--" class="form-control" style="min-width: 115%">
+                        <mat-option *ngFor="let option of clientsOptions" [value]="option">{{option}}</mat-option>
+                    </mat-select>
+                </div>
+                <button class="pull-right" (click)="openAddClientDialog(null)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Name:</label>
+            <div class="col-sm-8">
+                <input type="email" class="form-control" id="email" placeholder="Enter Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Job Title:</label>
+            <div class="col-sm-8">
+                <input type="email" class="form-control" id="email" placeholder="Enter Contact Job Title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Contact Phone:</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" id="phone" placeholder="Enter Contact Phone No.">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Contact Email:</label>
+            <div class="col-sm-8">
+                <input type="email" class="form-control" id="email" placeholder="Enter Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Country:</label>
+            <div class="col-sm-8">
+                <mat-select placeholder="--Select Country--" class="form-control">
+                    <mat-option *ngFor="let option of countries" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Provice / State:</label>
+            <div class="col-sm-8">
+                <mat-select placeholder="--Select Province/State--" class="form-control">
+                    <mat-option *ngFor="let option of provinceOptions" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Municipality:</label>
+            <div class="col-sm-8">
+                <mat-select placeholder="--Select Municipality--" class="form-control">
+                    <mat-option *ngFor="let option of munipalityOptions" [value]="option">{{option}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label" for="pwd">City : </label>
+            <div class="col-sm-8">
+                <input class="form-control" placeholder="Enter City" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label" for="pwd">Postal / Zip: : </label>
+            <div class="col-sm-8">
+                <input class="form-control" placeholder="Enter Postal / Zip" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label" for="pwd">Street Address: </label>
+            <div class="col-sm-8">
+                <textarea class="form-control txtarea" rows="2" placeholder="Enter Address" autocomplete="off"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Primary Contact:</label>
+            <div class="col-sm-8" style="padding-top: 10px;">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button color='warn' style="margin-right: 25px" value="1">Yes</mat-radio-button>
+                    <mat-radio-button color='warn' value="2">No</mat-radio-button>
+                </mat-radio-group>
+                (Current: John Doe)
+            </div>
+            <label class="control-label col-sm-4 add-member-label">Billing Contact:</label>
+            <div class="col-sm-8" style="padding-top: 10px;">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button color='warn' style="margin-right: 25px" value="1">Yes</mat-radio-button>
+                    <mat-radio-button color='warn' value="2">No</mat-radio-button>
+                </mat-radio-group>
+                (Current: None)
+            </div>
+        </div>
+    </form>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-hover btn-success" (click)="saveOpp()">
+        <span *ngIf="!oppurtunity.id">Save</span>
+        <span *ngIf="oppurtunity.id">Update</span>
+    </button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,368 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-xs-12 no-padding" style="margin-right: 8px;margin-top: 15px;margin-left: 8px;">
+                    <div class="col-xs-4">
+                        <div class="pills w-100">
+                            <ul class="nav nav-pills">
+                                <li>
+                                    <a (click)="Pending()" [ngClass]="{'tabActive': pending === true}" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button
+                                        class="remove_top_bottom_padding" tabindex="0" aria-disabled="false">
+                                        <span class="mat-button-wrapper">
+                                            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">
+                                                clear_all</mat-icon>
+                                            Time (15)
+                                        </span>
+                                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                        <div class="mat-button-focus-overlay"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a (click)="Archives()" [ngClass]="{'tabActive': archives === true}" style="margin-right: 8px; padding: 0px 10px;" mat-raised-button=""
+                                        class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                        <span class="mat-button-wrapper">
+                                            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">
+                                                blur_linear</mat-icon>
+                                            <span>Expenses (35)</span>
+                                        </span>
+                                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                        <div class="mat-button-focus-overlay"></div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-8">
+
+                        <div class="pills">
+                            <button *ngIf="isGridView" (click)="opengridColDialog(null)" mat-raised-button class="pull-right btn-primary" style="color:white; background:#3b7bb8">
+                                <mat-icon>view_column</mat-icon> Grid Columns
+                            </button>
+                        </div>
+                        <div class="" style="padding-right: 0px!important;">
+                            <button mat-raised-button color="primary" style="min-width: 110px;background-color: #e0e0e0;
+                                color: black;" class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+                                Next
+                                <mat-icon>skip_next</mat-icon>
+                            </button>
+                            <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="background-color: #e0e0e0;
+                                color: black;" (click)="scrollActions('right');">
+                                <mat-icon>skip_previous</mat-icon> Previous
+                            </button>
+                            <button mat-raised-button class="pull-right btn-danger" style="margin-right: 10px !important;">
+                                <mat-icon>cancel</mat-icon> Reject Selected
+                            </button>
+                            <button mat-raised-button class="pull-right btn-primary" style="margin: 0px 10px;color:white; background:#3b7bb8">
+                                <mat-icon>done</mat-icon> Approve Selected
+                            </button>
+
+                            <!-- <mat-select placeholder="Bulk Action" class="bulk_act form-control col-sm-2 pull-right bulk-action">
+                                <mat-option [value]=0>Approve Selected</mat-option>
+                                <mat-option [value]=1>Return Selected</mat-option>
+                            </mat-select> -->
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-sm-6 pull-right">
+                            <button mat-raised-button class="pull-right add-hover-help btn-success-help">
+                                    <mat-icon>help_outline</mat-icon> Help
+                                </button>
+                        <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="openoppurtunityDialog(null)">
+                            <mat-icon>add</mat-icon> Add Project
+                        </button>
+                        <button mat-raised-button color="primary" class="pull-right filter-hover margin-right-10"
+                            (click)="filterToggle = !filterToggle">
+                            <mat-icon>filter_list</mat-icon> Filter
+                        </button>
+                    </div> -->
+                </div>
+                <!-- <div fxLayout="row wrap" > -->
+                <div fxLayout="row wrap" *ngIf="filterToggle">
+                    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p">
+                        <mat-card class="filter">
+                            <mat-card-content>
+                                <div class="row col-lg-12">
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input type="text" class='select-option form-control' placeholder="Froaaam Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3">
+                                        <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <select class='select-option form-control' required [(ngModel)]='projectOptionSelected' (ngModelChange)='onProjectOptionsSelected($event)'>
+                                            <option class='option' [ngValue]="undefined" selected disabled>--By Client--
+                                            </option>
+                                            <option class='option' *ngFor='let option of projectOptions' [value]="option">{{option}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <select class='select-option form-control' required [(ngModel)]='projectOptionSelected' (ngModelChange)='onProjectOptionsSelected($event)'>
+                                            <option class='option' [ngValue]="undefined" selected disabled>--By Project Manager--
+                                            </option>
+                                            <option class='option' *ngFor='let option of projectOptions' [value]="option">{{option}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <select class='select-option form-control' required [(ngModel)]='projectOptionSelected' (ngModelChange)='onProjectOptionsSelected($event)'>
+                                            <option class='option' [ngValue]="undefined" selected disabled>--By Project--
+                                            </option>
+                                            <option class='option' *ngFor='let option of projectOptions' [value]="option">{{option}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <button type="button" class="btn btn-success add-hover pull-right">Search</button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-100 flex-p">
+    <div *ngIf='pending' class="col-sm-12 no-padding">
+        <div fxLayout="row wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" id="reviews" style="padding-left:0px!important;padding-right:0px!important">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th rowspan="2" style="width: 4%;" class="text-center">
+                                <mat-checkbox color='warn'></mat-checkbox>
+                            </th>
+                            <th rowspan="2" style="padding-left: 5px!important;min-width:150px">Action</th>
+                            <!-- <th rowspan="2" style="padding-left: 5px!important; text-align: center !important;">Approve
+                            </th>
+                            <th rowspan="2" style="padding-left: 5px!important;text-align: center !important;">Reject
+                            </th> -->
+                            <th rowspan="2" style="padding-left: 5px!important;">Project</th>
+                            <!-- <th rowspan="2" style="vertical-align: middle !important; min-width: 385px !important;">Hierarchy (Client / Project / Site /Scope of Work / Task)
+                            </th> -->
+                            <th rowspan="2" style="padding-left: 5px!important; min-width: 100px !important;">Site</th>
+                            <th rowspan="2" style="padding-left: 5px!important; min-width: 100px !important;">SOW</th>
+                            <th rowspan="2" style="padding-left: 5px!important; min-width: 100px !important;">Task</th>
+
+                            <th rowspan="2" style="padding-left: 5px!important; min-width: 100px !important;">User</th>
+                            <th rowspan="2" style="padding-left: 5px!important; min-width: 100px !important;">Job Code</th>
+                            <th colspan="3" style="padding-left: 5px!important; text-align: center !important;min-width: 105px !important;">
+                                Hours</th>
+                            <!-- <th style="padding-left: 5px!important; text-align: center !important;min-width: 107px !important;">
+                                Planned Hours</th>
+                            <th style="padding-left: 5px!important; text-align: center !important;min-width: 115px !important;">
+                                Actual Till Date</th> -->
+                            <th rowspan="2" style="padding-left: 5px!important;min-width:120px">Client</th>
+                            <th rowspan="2" style="padding-left: 5px!important;min-width: 120px !important;">Project Manager
+                            </th>
+                            <th rowspan="2" style="padding-left: 5px!important;">Status</th>
+                            <th rowspan="2" style="padding-left: 5px!important; min-width: 150px">Percent Completion
+                            </th>
+                            <th rowspan="2" style="padding-left: 5px!important;">Due Date</th>
+                            <th rowspan="2" style="padding-left: 5px!important; text-align: center !important;">Messages
+                            </th>
+
+                            <!-- <th style="padding-left: 5px!important;">Reviewed</th>
+                            <th style="padding-left: 5px!important;">Alert</th> -->
+                        </tr>
+                        <tr>
+                            <th style="padding-left: 5px!important; text-align: center !important;min-width: 105px !important;">
+                                Planned</th>
+                            <th style="padding-left: 5px!important; text-align: center !important;min-width: 107px !important;">
+                                Logged</th>
+                            <th style="padding-left: 5px!important; text-align: center !important;min-width: 115px !important;">
+                                Remaining</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of reviewData">
+                            <td class="text-center">
+                                <mat-checkbox color='warn' [checked]=item.isSelected></mat-checkbox>
+                            </td>
+                            <td style="padding-left: 5px!important;">{{item.Action}}</td>
+                            <!-- <td style="padding-left: 5px!important;text-align: center !important;">
+                                <mat-checkbox [(ngModel)]="isApproved[item.id]" (change)="isApprovedSelect($event.checked,item.id)"></mat-checkbox>
+                            </td>
+                            <td style="padding-left: 5px!important; text-align: center !important;">
+                                <mat-checkbox [(ngModel)]="isReturned[item.id]" (change)="isReturnedSelect($event.checked,item.id)"></mat-checkbox>
+                            </td> -->
+                            <td style="padding-left: 5px!important;">{{item.Project}}</td>
+                            <!-- <td style="padding-left: 5px!important;">{{item.columns}}</td> -->
+                            <td style="padding-left: 5px!important;">{{item.site}}</td>
+                            <td style="padding-left: 5px!important;">{{item.sow}}</td>
+                            <td style="padding-left: 5px!important;">{{item.task}}</td>
+
+                            <td style="padding-left: 5px!important;">{{item.LoggedBy}}</td>
+                            <td style="padding-left: 5px!important;">{{item.jobCode}}</td>
+                            <td style="padding-left: 5px!important; text-align: center !important;">{{item.PlanHours}}
+                            </td>
+                            <!-- <td style="padding-left: 5px!important;">{{item.DateTime}}</td>
+                            <td style="padding-left: 5px!important;">{{item.Site}}</td>
+                            <td style="padding-left: 5px!important;">{{item.SOW}}</td>
+                            <td style="padding-left: 5px!important;">{{item.Task}}</td> -->
+                            <td style="padding-left: 5px!important;text-align: center !important;">{{item.HoursLogged}}
+                            </td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">
+                                {{item.PlanHours - item.HoursLogged}}
+                            </td>
+                            <td style="padding-left: 5px!important;">{{item.Client}}</td>
+                            <td style="padding-left: 5px!important;">{{item.ProjectManager}}</td>
+                            <td style="padding-left: 5px!important;">
+                                <a class="anchor" [ngClass]="{green : item.Status == true}" (click)="item.Status = !item.Status">
+                                    {{item.Status == true ? 'Completed' : 'In Progress'}}</a>
+                            </td>
+                            <td style="padding-left: 5px!important; text-align: center !important;">
+                                {{item.PercentComplete}}
+                            </td>
+                            <!-- <td style="padding-left: 5px!important;text-align: center !important;">{{item.Updates}}</td>
+                            <td style="padding-left: 5px!important;">{{item.Expenses}}</td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">
+                                <a class="anchor" (click)="openTextEditorDialog(null)"> {{item.Instructions}}</a></td> -->
+                            <td style="padding-left: 5px!important;">{{item.DueDate}}</td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">
+                                <a class="anchor" (click)="openMessagesDiolog(null)"> {{item.Messages}}</a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='archives' class="col-sm-12 no-padding">
+        <div class="table-responsive w-100 col-sm-12" style="padding: 7px;">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="tbl-head">
+                    <tr class="tr-grid-header">
+                        <th style="width: 4%;" class="text-center">
+                            <mat-checkbox color='warn'></mat-checkbox>
+                        </th>
+
+                        <th style="min-width: 140px;vertical-align: middle !important;">Subject</th>
+                        <!-- <th rowspan="2" style="padding-left: 5px!important; text-align: center !important;">Approve
+                        </th>
+                        <th rowspan="2" style="padding-left: 5px!important;text-align: center !important;">Reject
+                        </th> -->
+                        <th style="min-width: 140px;vertical-align: middle !important;">Date Submitted</th>
+                        <th style="min-width: 140px;vertical-align: middle !important;">Date of Expense</th>
+                        <th style="vertical-align: middle !important; min-width: 385px !important;">Hierarchy (Client / Project / Site /Scope of Work / Task)
+                        </th>
+                        <th style="min-width: 105px;vertical-align: middle !important;">Claimed By </th>
+                        <th style="min-width: 105px;vertical-align: middle !important;">Role Title</th>
+                        <th style="min-width: 120px;vertical-align: middle !important;">Reviewed By</th>
+                        <th style="min-width: 80px;vertical-align: middle !important;" class="text-center">Amount</th>
+                        <th style="min-width: 120px;" class="text-center">Year To Date</th>
+                        <th style="min-width: 80px; vertical-align: middle !important;" class="text-center">Messages</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of dataSource">
+                        <td class="text-center">
+                            <mat-checkbox color='warn' [checked]=item.isSelected></mat-checkbox>
+                        </td>
+
+                        <td>{{item.subject}}</td>
+                        <!-- <td style="padding-left: 5px!important;text-align: center !important;">
+                            <mat-checkbox [(ngModel)]="isApproved[item.id]" (change)="isApprovedSelect($event.checked,item.id)"></mat-checkbox>
+                        </td>
+                        <td style="padding-left: 5px!important; text-align: center !important;">
+                            <mat-checkbox [(ngModel)]="isReturned[item.id]" (change)="isReturnedSelect($event.checked,item.id)"></mat-checkbox>
+                        </td> -->
+                        <td>{{item.dateSubmitted}}</td>
+                        <td>{{item.dateofExpense}}</td>
+                        <td>{{item.columns}}</td>
+                        <td>{{item.partyChief}}</td>
+                        <td>{{item.role}}</td>
+                        <td>{{item.validatedby}}</td>
+                        <td class="text-center">{{item.amount | number : '1.2-2' | currency : 'USD'}}</td>
+                        <td class="text-center">{{item.tillDateAmount | number : '1.2-2' | currency : 'USD'}}</td>
+                        <td style="padding-left: 5px!important;text-align: center !important;">
+                            <a class="anchor" (click)="openTimelineDiolog(null)"> {{item.Messages}}</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+        <!-- <div fxLayout="row wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" id="reviews"
+                style="padding-left:0px!important;padding-right:0px!important">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th style="padding-left: 5px!important;">Action</th>
+                            <th style="padding-left: 5px!important;">Project</th>
+                            <th style="padding-left: 5px!important; min-width: 95px !important;">Logged By</th>
+                            <th
+                                style="padding-left: 5px!important; text-align: center !important;min-width: 105px !important;">
+                                Hours Logged</th>
+                            <th style="padding-left: 5px!important; min-width: 150px !important;">Date Time</th>
+                            <th style="padding-left: 5px!important;">Site</th>
+                            <th style="padding-left: 5px!important;">SOW</th>
+                            <th style="padding-left: 5px!important;">Task</th>
+                            <th
+                                style="padding-left: 5px!important; text-align: center !important;min-width: 90px!important;">
+                                Plan Hours</th>
+                            <th
+                                style="padding-left: 5px!important; text-align: center !important;min-width: 115px !important;">
+                                Actual Till Date</th>
+                            <th style="padding-left: 5px!important;">Client</th>
+                            <th style="padding-left: 5px!important;min-width: 120px !important;">Project Manager</th>
+                            <th style="padding-left: 5px!important;min-width: 135px !important;">Percent Complete</th>
+                            <th style="padding-left: 5px!important; text-align: center !important;">Updates</th>
+                            <th style="padding-left: 5px!important;">Expenses</th>
+                            <th style="padding-left: 5px!important;text-align: center !important;">Instructions</th>
+                            <th style="padding-left: 5px!important;">Due Date</th>
+                            <th style="padding-left: 5px!important; text-align: center !important;">Messages</th>
+                            <th style="padding-left: 5px!important;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of reviewData">
+                            <td style="padding-left: 5px!important;">{{item.Action}}</td>
+                            <td style="padding-left: 5px!important;">{{item.Project}}</td>
+                            <td style="padding-left: 5px!important;">{{item.LoggedBy}}</td>
+                            <td style="padding-left: 5px!important; text-align: center !important;">{{item.HoursLogged}}
+                            </td>
+                            <td style="padding-left: 5px!important;">{{item.DateTime}}</td>
+                            <td style="padding-left: 5px!important;">{{item.Site}}</td>
+                            <td style="padding-left: 5px!important;">{{item.SOW}}</td>
+                            <td style="padding-left: 5px!important;">{{item.Task}}</td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">{{item.PlanHours}}
+                            </td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">
+                                {{item.ActualTillDate}}
+                            </td>
+                            <td style="padding-left: 5px!important;">{{item.Client}}</td>
+                            <td style="padding-left: 5px!important;">{{item.ProjectManager}}</td>
+                            <td style="padding-left: 5px!important; text-align: center !important;">
+                                {{item.PercentComplete}}
+                            </td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">{{item.Updates}}</td>
+                            <td style="padding-left: 5px!important;">{{item.Expenses}}</td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">
+                                <a class="anchor" (click)="openTextEditorDialog(null)"> {{item.Instructions}}</a></td>
+                            <td style="padding-left: 5px!important;">{{item.DueDate}}</td>
+                            <td style="padding-left: 5px!important;text-align: center !important;">
+                                <a class="anchor" (click)="openTimelineDiolog(null)"> {{item.Messages}}</a></td>
+                            <td style="padding-left: 5px!important;"><a class=""
+                                    [ngClass]="{green : item.Status == true, red : item.Status == false}">
+                                    {{item.Status == true ? 'Approved' : 'Returned'}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+    </div>
+</div>

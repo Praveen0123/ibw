@@ -1,0 +1,62 @@
+<div class="col-sm-12" style="margin-bottom: 20px; border:solid 1px;padding: 10px 0px !important;border-radius: 10px;">
+  <div class="col-sm-11 no-padding">
+    <div class="col-sm-12" style="margin-bottom: 10px">
+      <div class="col-sm-5 no-padding">
+        <div class="col-sm-6 no-padding">
+          <div class="col-sm-12 div-padding">
+            <label class="add-member-label">Project</label>
+          </div>
+          <div class="col-sm-12 div-padding">
+            <mat-select placeholder="--Select Project--" class='form-control' required>
+              <mat-option class='option' *ngFor='let option of projects' [value]="option">{{option}}</mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="col-sm-6 no-padding">
+          <div class="col-sm-12 div-padding">
+            <label>Action</label>
+          </div>
+          <div class="col-sm-12 div-padding">
+            <mat-select placeholder="--Select Action--" class="form-control">
+              <mat-option *ngFor="let option of Actions" [value]="option">{{option}}</mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 no-padding">
+       
+        <div class="col-sm-4 no-padding">
+          <div class="col-sm-12 div-padding">
+            <label class="add-member-label">Job Code</label>
+          </div>
+          <div class="col-sm-12 div-padding">
+            <mat-select placeholder="--Select Action--" class="form-control">
+              <mat-option *ngFor="let option of JobCodes" [value]="option">{{option}}</mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="col-sm-4 no-padding">
+          <div class="col-sm-12 div-padding">
+            <label class="add-member-label">Worked Hours</label>
+          </div>
+          <div class="col-sm-12 div-padding">
+            <input type="text" class="form-control" placeholder="Enter Worked Hours">
+          </div>
+        </div>
+        <div class="col-sm-4 no-padding">
+            <div class="col-sm-12 div-padding">
+              <label>Remarks</label>
+            </div>
+            <div class="col-sm-12 div-padding">
+              <input type="text" class="form-control" placeholder="Enter Remarks">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <a class="button" matTooltip="Delete This Row" (click)="removeMe(index)">
+      <mat-icon style="color: red;font-size: 25px;margin-top: 25px; cursor: pointer;">delete_forever</mat-icon>
+    </a>
+  </div>
+</div>

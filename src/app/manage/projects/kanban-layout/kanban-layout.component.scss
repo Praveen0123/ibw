@@ -1,0 +1,25 @@
+.paadding-r-7{
+    padding-right: 7px;
+}
+
+.labladjust{
+    margin-top: 5px !important;
+    margin-bottom: 0px !important;
+}
+
+/* style for checkbox color starts here*/
+::ng-deep .mat-pseudo-checkbox-checked::after {
+    top: 4.4px !important;
+    left: 2px !important;
+    width: 8px;
+    height: 3px;
+    border-left: 2px solid currentColor;
+    transform: rotate(-45deg);
+    opacity: 1;
+}
+
+::ng-deep .app.black-light .mat-pseudo-checkbox-checked, .app.black-light .mat-pseudo-checkbox-indeterminate, .app.black-light .mat-accent .mat-pseudo-checkbox-checked, .app.black-light .mat-accent .mat-pseudo-checkbox-indeterminate {
+    background: #145ee6ed;
+}
+
+  /* Ends here */

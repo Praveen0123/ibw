@@ -1,0 +1,22 @@
+<h2 class="example-h2" style="margin-left: 0px">
+    Grid view configuration</h2>
+  <small>Please select the required columns in the grid, to view grid with specific columns</small>
+  
+  
+  <div mat-dialog-content>
+      <form class="form-horizontal" style="margin-top: 20px">
+              <mat-checkbox *ngFor="let item of gridColumnsArray" class="col-sm-6">{{item}}</mat-checkbox>
+              <!-- <mat-checkbox class="col-sm-6">Client Name</mat-checkbox>
+              <mat-checkbox class="col-sm-6">Position Title</mat-checkbox>
+              <mat-checkbox class="col-sm-6">	Phone No.</mat-checkbox> -->
+      </form>
+  </div>
+  
+  
+  
+  
+  
+  <mat-dialog-actions align="end" class="col-sm-12">
+    <button mat-raised-button class="btn-success"  (click)="close()">Configure</button>
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+  </mat-dialog-actions>

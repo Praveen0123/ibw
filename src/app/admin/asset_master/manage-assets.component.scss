@@ -1,0 +1,35 @@
+.cust-label {
+  margin-top: 8px;
+  // text-align: right;
+}
+.btn-success-help {
+    background: #ecdf29 !important;
+    color: black !important;
+}
+.inner-screen {
+    color: #246ade !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+.upload{
+    margin-right: 10px;
+    height: 41px;
+    padding: 3px 9px 6px 7px!important;
+    font-weight: 600;
+  }
+  div.file{
+    position: relative;
+    overflow: hidden;
+  }
+  input.file {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }
+  .upload-icon{
+    padding-top: 5px;
+    padding-right: 30px!important;
+    vertical-align: text-bottom;
+  }

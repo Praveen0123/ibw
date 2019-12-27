@@ -1,0 +1,295 @@
+<div fxLayout="row wrap">
+        <div class="w-100">
+            <div class="flex-p">
+                <div class="row wrap margin-top-10">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="pills w-100">
+                            <ul class="nav nav-pills ">
+                                <li routerLinkActive="active">
+                                    <a (click)="isGridView = true" mat-raised-button routerLink="/IBW/manage/clients/gridview">
+                                        <mat-icon>grid_on</mat-icon> Grid View
+                                    </a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a (click)="isGridView = false" mat-raised-button routerLink="/IBW/manage/clients/mapview">
+                                        <mat-icon>place</mat-icon> Map View
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-9" style="margin-right:0px !important">
+                        <div class="w-100">
+                            <a (click)="openHelpVideo(null)" mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 10px;">
+                                <mat-icon>help_outline</mat-icon> Help
+                            </a>
+                            <button *ngIf="isGridView" (click)="opengridColDialog(null)" mat-raised-button class="pull-right btn-primary" style="margin-left: 10px;color:white; background:#3b7bb8">
+                                <mat-icon>view_column</mat-icon> Grid Columns
+                            </button>
+                            <button mat-raised-button class="pull-right add-hover btn-success" (click)="openleadDialog(null)" [ngClass]="{'disable-custom' : permissions.write == false}"  [matTooltip]="!permissions.write ? 'You dont have write permissions' : ''">
+                                <mat-icon>add</mat-icon> Add Client
+                            </button>
+                            <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                                <mat-icon>filter_list</mat-icon> Filter
+                            </button>
+                            <button *ngIf="isGridView" mat-raised-button color="primary" style="min-width: 110px;" class="pull-right filters-hover margin-right-10" (click)="scrollTable('left')">
+                                Next<mat-icon>skip_next</mat-icon>
+                            </button>
+                            <button *ngIf="isGridView" mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="scrollTable('right')">
+                                <mat-icon>skip_previous</mat-icon> Previous
+                            </button>
+                            <!-- <a class="pull-right" style="font-size: 15px; margin-left:10px" >
+                                    Next<i style="font-size: 25px;" class="fa fa-angle-double-right" aria-hidden="true"></i> 
+                            </a>
+                            <a class="pull-right" style="font-size: 15px; margin-right:10px">
+                                <i style="font-size: 25px;" class="fa fa-angle-double-left" aria-hidden="true"></i>Previous
+                            </a> -->
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-xs-6">
+                </div>
+            </div>
+    
+            <form [formGroup]="filterForm" (ngSubmit)="filterBy(filterForm.value)">
+            <div fxLayout="row wrap" *ngIf="filterToggle">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+                    <mat-card class="filter">
+                        <mat-card-content>
+                            <div class="row col-sm-12">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">Client Type</div>
+                                    <div class="col-sm-8">
+                                        <mat-select placeholder="--Select Client Type--" class="form-control" formControlName="clientTypeID" required>
+                                            <mat-option *ngFor="let option of clientTypes" [value]="option.clientTypeId">{{option.clientTypeName}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">Municipality</div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' formControlName="clientMuncipalityID" placeholder="--Search by Municipality--">
+                                            <mat-option *ngFor="let option of muncipalities" [value]="option.muncipalityId">{{option.muncipalityName}}</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">Status</div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' formControlName="clientbtStatus" placeholder="--Search by Status--">
+                                            <mat-option [value]=null>Any</mat-option>
+                                            <mat-option [value]=true>Active</mat-option>
+                                            <mat-option [value]=false>Inactive</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <div class="row col-sm-12" style="margin-top:20px">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">Date Range For</div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select Date Type--" formControlName="clientDateType" (selectionChange)="changedatetype($event.value)">
+                                            <mat-option [value]="1">Created Date</mat-option>
+                                            <mat-option [value]="2">Last Activity Date</mat-option>
+                                        </mat-select>
+                                    </div>
+    
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">From Date</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }"  formControlName="fromDate">
+    
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">To Date</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }"  formControlName="toDate">
+    
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <div class="row col-sm-12" style="margin-top:20px">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">Keyword</div>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" placeholder="Enter keyword" type="text"  formControlName="keyword">
+                                    </div>
+    
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 padtop">Flagged</div>
+                                    <div class="col-sm-8">
+                                        <mat-checkbox color="warn" formControlName="clientbtFlag"></mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                    </a>
+    
+                                    <button mat-raised-button class="pull-right" style="margin-left: 10px;margin-right: 8px;" (click)="ResetClients()">
+                                        <mat-icon>settings_backup_restore</mat-icon> Reset
+                                    </button>
+                                    <button mat-raised-button class="pull-right add-hover btn-success"(click)="exportAsExcel()">
+                                        <mat-icon>cloud_download</mat-icon> Download CSV
+                                    </button>
+                                    <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" type="submit">
+                                        <mat-icon>youtube_searched_for</mat-icon> Search
+                                    </button>
+                                </div>
+    
+                            </div>
+    
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </form>
+          
+        </div>
+    </div>
+
+
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div fxLayout="row wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" id="divTable">
+                <table id="tblClients" class="table table-striped table-bordered table-hover" [mfData]="clients" #mf="mfDataTable">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th *ngIf="gridColumns.indexOf('Client Code') > -1 || gridColumns.length==0" style="min-width:100px">Client Code</th>
+                            <th *ngIf="gridColumns.indexOf('Client Name') > -1 || gridColumns.length==0" style="min-width:95px">Client Name</th>
+                            <th *ngIf="gridColumns.indexOf('Client Type') > -1 || gridColumns.length==0" style="min-width:95px">Client Type</th>
+                            <th *ngIf="gridColumns.indexOf('Street Address') > -1 || gridColumns.length==0" style="min-width: 200px;">Street Address</th>
+                            <th *ngIf="gridColumns.indexOf('City') > -1 || gridColumns.length==0" style="width:1%">
+                                <mfDefaultSorter by="City">City</mfDefaultSorter>
+                            </th>
+                            <th *ngIf="gridColumns.indexOf('Muncipality') > -1 || gridColumns.length==0" style="width:1%">
+                                <mfDefaultSorter by="municipality">Municipality</mfDefaultSorter>
+                            </th>
+                            <th *ngIf="gridColumns.indexOf('Postal Code') > -1 || gridColumns.length==0" style="min-width: 100px;">Postal Code</th>
+                            <th *ngIf="gridColumns.indexOf('Phone') > -1 || gridColumns.length==0" style="min-width: 105px;">Phone</th>
+                            <th *ngIf="gridColumns.indexOf('Active (Inactive) Quotes') > -1 || gridColumns.length==0" style="min-width: 175px;">Active (Inactive) Quotes</th>
+                            <th *ngIf="gridColumns.indexOf('Active (Inactive) Projects') > -1 || gridColumns.length==0" style="min-width: 180px;">Active (Inactive) Projects</th>
+                            <th *ngIf="gridColumns.indexOf('Contact(s)') > -1 || gridColumns.length==0">Contact(s)</th>
+                            <th *ngIf="gridColumns.indexOf('Email') > -1 || gridColumns.length==0">Email</th>
+                            <th *ngIf="gridColumns.indexOf('Date Created') > -1 || gridColumns.length==0" style="min-width: 100px;">Date Created</th>
+                            <th *ngIf="gridColumns.indexOf('Activity') > -1 || gridColumns.length==0" style="min-width: 120px;">Activity</th>
+                            <th *ngIf="gridColumns.indexOf('Flag') > -1 || gridColumns.length==0" class="text-center">Flag</th>
+                            <th *ngIf="gridColumns.indexOf('Status') > -1 || gridColumns.length==0">Status</th>
+                            <!-- <th *ngFor="let thead of tableBinding">
+                                {{thead.columnName}}
+                            </th> -->
+                            <th style="min-width:70px" class="text-center">Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="allClients.length>0">
+                        <tr *ngFor="let item of allClients">
+                        <!-- <tr *ngFor="let item of allClients">
+                            <td *ngFor="let tdItem of tableBinding">
+                                {{item[tdItem.actualName]}}
+                            </td> -->
+                            <td *ngIf="gridColumns.indexOf('Client Code') > -1 || gridColumns.length==0">
+                                <span class="inner-screen" (click)="openleadDialog(item)">{{item.clientCode}}</span>
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Client Name') > -1 || gridColumns.length==0">{{item.clientName}}</td>
+                            <td *ngIf="gridColumns.indexOf('Client Type') > -1 || gridColumns.length==0">{{item.clientType}}</td>
+                            <td *ngIf="gridColumns.indexOf('Street Address') > -1 || gridColumns.length==0">
+                                <!-- <a href="https://www.google.com/maps/place/Ivan+B.+Wallace+Ontario+Land+Surveyor+Ltd./@43.8937737,-79.4774322,8z/data=!4m8!1m2!2m1!1sibw+surveyors!3m4!1s0x89d63df81dc6dd19:0xe3fe69a3e7d03a97!8m2!3d44.104552!4d-77.5607808" target="_blank"> -->
+                                    {{item.clientStreetAddress }}
+                                <!-- </a> -->
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('City') > -1 || gridColumns.length==0">{{ item.clientCity }}</td>
+                            <td *ngIf="gridColumns.indexOf('Muncipality') > -1 || gridColumns.length==0">{{item.clientMuncipality}}</td>
+                            <td *ngIf="gridColumns.indexOf('Postal Code') > -1 || gridColumns.length==0">{{item.clientZip}}</td>
+                            <td *ngIf="gridColumns.indexOf('Phone') > -1 || gridColumns.length==0">{{item.clientPhone}}</td>
+                            <td style="text-align: center!important" *ngIf="gridColumns.indexOf('Active (Inactive) Quotes') > -1 || gridColumns.length==0">
+                                <a target="_blank" routerLink="/IBW/manage/quotes/gridview">2(1)</a>
+                            </td>
+                            <td style="text-align: center!important" *ngIf="gridColumns.indexOf('Active (Inactive) Projects') > -1 || gridColumns.length==0">
+                                <a target="_blank" routerLink="/IBW/manage/project-dashboard">1(12)</a>
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Contact(s)') > -1 || gridColumns.length==0" style="text-align: center!important">
+                                <a target="_blank" routerLink="/IBW/manage/contacts">3</a>
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Email') > -1 || gridColumns.length==0">
+                                <!-- <a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                                    target="_blank"> -->
+                                    {{item.clientEmail}}
+                                <!-- </a> -->
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Date Created') > -1 || gridColumns.length==0">{{item.createdDate}}</td>
+                            <td *ngIf="gridColumns.indexOf('Activity') > -1 || gridColumns.length==0">{{item.datelastactive}}</td>
+                            <td class="text-center" *ngIf="gridColumns.indexOf('Flag') > -1 || gridColumns.length==0">
+                                <mat-checkbox class="dangerous" color="warn" (change) = "ChangeClientFlag(item)" [checked]="item.clientbtFlag" [ngClass]="{'disable-custom' : permissions.write == false}"  [matTooltip]="permissions.write==false ? 'You dont have write permissions' : ''"></mat-checkbox>
+                            </td>
+                            <td class="pad-left inner-screen" style="text-align: center!important" *ngIf="gridColumns.indexOf('Status') > -1 || gridColumns.length==0">
+                                <a (click)="changeClientStatus(item)" style="cursor: pointer" [ngClass]="{'red': item.clientbtStatus == false, 'green' : item.clientbtStatus == true, 'disable-custom' : permissions.write == false}"  [matTooltip]="permissions.write==false ? 'You dont have write permissions' : ''">
+                                    {{item.clientbtStatus == true ? 'Active' : 'Inactive'}}
+                                </a>
+                            </td>
+
+                            <td>
+
+                                <a matTooltip="Edit Details" [matTooltip]="permissions.write==false ? 'You dont have write permissions' : ''" (click)="openleadDialog(item)" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1" [ngClass]="{'disable-custom' : permissions.write == false}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a (click)="deleteModalToggle(item.clientID)" [matTooltip]="permissions.delete==false ? 'You dont have delete permissions' : ''" [ngClass]="{'disable-custom' : permissions.delete == false}">
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="allClients.length==0">
+                    <tr>
+                        <td colspan="17" class="text-center">
+                            <span style="font-size:20px; color: gray">No Data found.</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <!-- <tfoot>
+                        <tr>
+                            <td colspan="17">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot> -->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- For Delete Modal Popup -->
+<div class="modal fade" bsModal #deleteModal="bs-modal" [config]="{backdrop: 'static'}" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title titlemodal">
+                    Delete Record
+                </h4>
+            </div>
+            <div class="modal-body col-md-12">
+
+                <div class="col-sm-12">
+                    <label style="color: #534a4a; font-weight:600;">Are You Sure ? You want to delete record, this action can't be undone.</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="deleteClient()" class="btn btn-success"><i
+                  class="fa fa-check"></i>&nbsp;Delete</button>
+                <button type="button" class="btn btn-danger" (click)="deleteModalToggle(null)"><i
+                  class="fa fa-times"></i>&nbsp;Close</button>
+            </div>
+        </div>
+    </div>
+</div>

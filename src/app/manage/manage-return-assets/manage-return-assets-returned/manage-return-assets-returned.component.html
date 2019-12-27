@@ -1,0 +1,51 @@
+<div class="table-responsive w-100 col-sm-12" style="padding: 7px;">
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="tbl-head">
+        <tr class="tr-grid-header">
+            <th >Asset Name</th>
+            <th >Returned</th>
+            <th >Category</th>
+            <th >Reference</th>
+            <th >Issue Date</th>
+            <th >Due Date  </th>
+            <th >Returned Date</th>
+            <th >Assigned To</th>
+            <th >Previous Condition</th>
+            <th >Current Condition</th>
+            <!-- <th style="min-width: 80px;" >Returned By</th> -->
+            <th >Remarks</th>
+            <th >Messages</th>
+            <!-- <th style="min-width: 75px;" class="text-center">Approved </th> -->
+        </tr>
+      </thead>
+  <tbody>
+      <tr *ngFor="let item of Assets">
+          <td>{{item.assetName}}</td>
+          <td  class="text-center">
+                  <mat-checkbox class="primary" [disabled]="true" [(ngModel)] = "myModel"></mat-checkbox>
+            </td>
+          <td>{{item.assetCategory}}</td>
+          <td>{{item.assetReference}}</td>
+          <td>{{item.issueDate}}</td>
+          <td>{{item.dueDate}}</td>
+          <td>{{item.returnedDate}}</td>
+          <td>{{item.assignedTo}}</td>
+          <td>{{item.precondition}}</td>
+          <td>{{item.currentcondition}}</td>
+          <!-- <td>{{item.returnedBy}}</td> -->
+          <td>{{item.remarks}}</td>
+          <td class="text-center"><a class="inner-screen" (click)="openMessagesDiolog()">{{item.messages}}</a></td>
+          
+          <!-- <td class="text-center">
+              <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button [disabled]="true" color='warn' [checked]=item.isApproved value="2"></mat-radio-button>
+                </mat-radio-group>
+          </td> -->
+        </tr>
+  </tbody>
+    </table>
+  </div>
+  
+  
+  
+  

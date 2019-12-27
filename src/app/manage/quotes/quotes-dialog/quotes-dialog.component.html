@@ -1,0 +1,582 @@
+<!--This page is used to add or edit leads-->
+<div>
+    <h1 mat-dialog-title>{{addName}}</h1>
+    <div mat-dialog-content>
+        <mat-horizontal-stepper [linear]="isLinear" #stepper style="max-height: 400px;">
+            <mat-step [completed]="false" [stepControl]="profileFormGroup">
+                <ng-template matStepLabel>General</ng-template>
+                <!-- <mat-form-field>
+                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                            </mat-form-field> -->
+                <div class="col-sm-12" style="margin-top: 10px">
+                    <label class="col-sm-2 control-label col-sm-4">Quote Number: </label>
+                    <div class="col-sm-4">
+                        <label class="control-label">Q-190005</label>
+                    </div>
+                    <label class="col-sm-2 control-label col-sm-4 add-member-label">New or Related to Existing Project: </label>
+                    <div class="col-sm-4">
+                        <mat-radio-group>
+                            <mat-radio-button value="new" (click)="setradio('new')" [checked]='true'>
+                                <small style="font-size: 14px;padding-right: 12px;">New</small>
+                            </mat-radio-button>
+                            <mat-radio-button value="existing" (click)="setradio('existing')">
+                                <small style="font-size: 14px;">Existing</small>
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-top: 10px">
+                    <label class=" col-sm-2 control-label col-sm-4 add-member-label">Client: </label>
+                    <div class="col-sm-4">
+                        <div class="col-sm-11 no-padding">
+                            <mat-select placeholder="-- Select Client --" class='form-control' required>
+                                <mat-option class='option' *ngFor='let option of ClientOptions' [value]="option">{{option}}</mat-option>
+                            </mat-select>
+                        </div>
+                        <div class="col-sm-1 no-padding" style="margin-top:15px">
+                            <button class="pull-right " (click)="openAddClientDialog(null)">
+                                <mat-icon style="padding-left: 5px!important;">add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div *ngIf="isSelected('existing')">
+                        <label class="col-sm-2 control-label col-sm-4 add-member-label">Project:
+                        </label>
+                        <div class="col-sm-4">
+                            <mat-select class="form-control" placeholder="--Select Project--">
+                                <mat-option *ngFor="let option of options" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12" style="margin-top: 10px">
+                    <label class=" col-sm-2 control-label col-sm-4">Project Manager: </label>
+                    <div class="col-sm-4">
+                        <mat-select placeholder="-- Select Project Manager --" class='form-control' required>
+                            <mat-option class='option' *ngFor='let option of projectManagerOptions' [value]="option">{{option}}</mat-option>
+                        </mat-select>
+                    </div>
+                    <label class=" col-sm-2 control-label col-sm-4 add-member-label">Potential Level: </label>
+                    <div class="col-sm-4">
+                        <mat-select placeholder="-- Select Potential Level --" class='form-control' required>
+                            <mat-option [value]="1">
+                                <span class="mat-color-menu">
+                                    <i class="fa fa-circle dot-menu Green"></i>
+                                    &nbsp;&nbsp;Fast</span>
+                            </mat-option>
+                            <mat-option [value]="2">
+                                <span class="mat-color-menu">
+                                    <i class="fa fa-circle dot-menu Blue"></i>
+                                    &nbsp;&nbsp;Moderate</span>
+                            </mat-option>
+                            <mat-option [value]="3">
+                                <span class="mat-color-menu">
+                                    <i class="fa fa-circle dot-menu Gray"></i>
+                                    &nbsp;&nbsp;Slow</span>
+                            </mat-option>
+                            <mat-option [value]="4">
+                                <span class="mat-color-menu">
+                                    <i class="fa fa-circle dot-menu Red"></i>
+                                    &nbsp;&nbsp;Stagnant</span>
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-top: 10px">
+                    <label class=" col-sm-2 control-label col-sm-4 add-member-label">Project Type </label>
+                    <div class="col-sm-4">
+                        <mat-select placeholder="--Select Project Type--" class='form-control' required>
+                            <mat-option class='option' *ngFor='let option of ProjectTypes' [value]="option">{{option}}</mat-option>
+                        </mat-select>
+                    </div>
+                    <label class=" col-sm-2 control-label col-sm-4 add-member-label">How did you hear about us? </label>
+                    <div class="col-sm-4">
+                        <mat-select placeholder="--Select Option--" class='form-control' required>
+                            <mat-option class='option' *ngFor='let option of hearOptions' [value]="option">{{option}}</mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div class="pull-right" style="margin-top:20px;margin-right: 22px;">
+                    <!-- <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 5px" (click)="close()">Cancel</button> -->
+
+                    <button mat-raised-button class="btn-success" type="button" mat-button matStepperNext>Save & Continue
+                    </button>
+
+
+                </div>
+            </mat-step>
+            <mat-step [completed]="false" [stepControl]="addressFormGroup">
+                <ng-template matStepLabel>Contact</ng-template>
+                <div class="col-sm-12" style="margin-top: 10px">
+                    <label class="col-sm-2 control-label col-sm-4 add-member-label">Existing Contact:</label>
+                    <div class="col-sm-4">
+                        <mat-radio-group [(ngModel)]="isExistingContact">
+                            <mat-radio-button value="existing" (click)="setradio('new')">
+                                <small style="font-size: 14px;padding-right: 12px;">Yes</small>
+                            </mat-radio-button>
+                            <mat-radio-button value="new" (click)="setradio('existing')">
+                                <small style="font-size: 14px;">No</small>
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div *ngIf="isExistingContact == 'existing'">
+                        <div style="margin-top: 10px" class="col-sm-12 no-padding">
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">Select Contact:</label>
+                            <div class="col-sm-4">
+                                <!-- <input type="text" class="form-control" placeholder="Enter Contact Name" aria-label="Number" matInput [formControl]="myControl"
+                                            [matAutocomplete]="auto" value="Louis">
+                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                            <mat-option *ngFor="let option of filteredcontactOptions | async" [value]="contactoptions">
+                                                {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete> -->
+                                <mat-select class="form-control" [(ngModel)]="existingContactName">
+                                    <mat-option *ngFor="let option of contactoptions" [value]="option">
+                                        {{option}}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                            <label class="col-sm-2 control-label col-sm-4" style="margin-top:4px;">Job Title:</label>
+                            <div class="col-sm-4" style="margin-top:4px;">
+                                <input type="email" class="form-control" id="email" placeholder="Enter Contact Job Title" value="Account Manager">
+                            </div>
+
+                        </div>
+
+                        <div style="margin-top: 10px" class="col-sm-12 no-padding">
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">Email: </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Enter Email" required value="louis@gmail.com">
+                            </div>
+                            <label class=" col-sm-2 control-label col-sm-4 add-member-label">Phone: </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Enter Phone Number" required value="+1653329555">
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px" class="col-sm-12 no-padding">
+                            <label class=" col-sm-2 control-label col-sm-4 add-member-label">Street Address: </label>
+                            <div class="col-sm-4" style="padding: 0 8px!important;">
+                                <textarea class="form-control txtarea" rows="2" placeholder="Enter Address" autocomplete="off">1-655-45 </textarea>
+                            </div>
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">City: </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" placeholder="Enter City" type="text" value="British Columbia">
+                            </div>
+                            <!-- <label class="col-sm-2 control-label col-sm-4 add-member-label">Postal Code: </label>
+                                <div class="col-sm-4">
+                                    <input class="form-control" placeholder="Enter Postal Code" type="text">
+                                </div> -->
+                        </div>
+                        <div style="margin-top: 10px" class="col-sm-12 no-padding">
+
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">Province: </label>
+                            <div class="col-sm-4">
+                                <mat-select placeholder="--Select Province--" class="form-control" [(ngModel)]="slectedProvince">
+                                    <mat-option *ngFor="let option of provinceOptions" [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">Country: </label>
+                            <div class="col-sm-4">
+                                <mat-select [(value)]='selected' placeholder="--Select Country--" class="form-control">
+                                    <mat-option [value]="1">Canada</mat-option>
+                                    <mat-option [value]="2">USA</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="" *ngIf="isExistingContact == 'new'">
+
+
+                        <div class="col-sm-12 no-padding" style="margin-top: 10px">
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">Contact Name:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Enter Contact Name" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredcontactOptions | async" [value]="contactoptions">
+                                        {{option}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </div>
+                            <label class="col-sm-2 control-label col-sm-4" style="margin-top:4px;">Job Title:</label>
+                            <div class="col-sm-4" style="margin-top:4px;">
+                                <input type="email" class="form-control" id="email" placeholder="Enter Contact Job Title">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 no-padding" style="margin-top: 10px">
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">Email: </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Enter Email" required>
+                            </div>
+                            <label class=" col-sm-2 control-label col-sm-4 add-member-label">Phone: </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Enter Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 no-padding" style="margin-top: 10px">
+                            <label class=" col-sm-2 control-label col-sm-4 add-member-label">Street Address: </label>
+                            <div class="col-sm-4" style="padding: 0 8px!important;">
+                                <textarea class="form-control txtarea" rows="2" placeholder="Enter Address" autocomplete="off"></textarea>
+                            </div>
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">City: </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" placeholder="Enter City" type="text">
+                            </div>
+                            <!-- <label class="col-sm-2 control-label col-sm-4 add-member-label">Postal Code: </label>
+                                <div class="col-sm-4">
+                                    <input class="form-control" placeholder="Enter Postal Code" type="text">
+                                </div> -->
+                        </div>
+                        <div class="col-sm-12 no-padding" style="margin-top: 10px">
+
+                            <label class=" col-sm-2 control-label col-sm-4 add-member-label">Province: </label>
+                            <div class="col-sm-4">
+                                <mat-select placeholder="--Select Province--" class="form-control">
+                                    <mat-option *ngFor="let option of provinceOptions" [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                            </div>
+                            <label class="col-sm-2 control-label col-sm-4 add-member-label">Country: </label>
+                            <div class="col-sm-4">
+                                <mat-select [(value)]='selected' placeholder="--Select Country--" class="form-control">
+                                    <mat-option [value]="1">Canada</mat-option>
+                                    <mat-option [value]="2">USA</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- <div class="col-sm-12" style="margin-top: 10px">
+                    
+                </div> -->
+                <div class="pull-right" style="margin-top:20px;margin-right: 4px;">
+                    <!-- <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 5px" (click)="close()">Cancel</button> -->
+                    <button mat-raised-button class="btn-default" type="button" style="margin-right: 5px;" mat-button matStepperPrevious>Back</button>
+                    <button style="margin-right: 20px;margin-left: 5px;" mat-raised-button class="btn-success" type="button" mat-button matStepperNext>Save & Continue</button>
+                </div>
+            </mat-step>
+            <mat-step [completed]="false" [completed]="false" [stepControl]="reasonFormGroup">
+                <ng-template matStepLabel>Purpose</ng-template>
+
+                <div class="col-sm-12">
+                    <label class="col-sm-2 control-label col-sm-4 add-member-label">Purpose of Survey: </label>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <mat-select (selectionChange)="reasonQuestions()" placeholder="-- Select Purpose --" class='form-control' required>
+                            <mat-option class='option' *ngFor='let option of surveyOptions' [value]="option">{{option}}</mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div class="col-sm-12" [hidden]="isHideQuestions" style="margin-top: 15px">
+                    <div class="col-sm-12" *ngFor="let option of ReasonQuestions">
+                        <mat-checkbox color='warn'>{{option}}</mat-checkbox>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-top: 15px">
+                    <label class="col-sm-2 control-label col-sm-4 add-member-label">Details: </label>
+                </div>
+                <div class="col-sm-12" style="padding-left: 22px;">
+                    <app-ngx-editor height="100px" minHeight="50px" [config]='toolBar' [placeholder]="'Enter Details'" [spellcheck]="true"></app-ngx-editor>
+                    <!-- <textarea class="form-control txtarea" rows="3" placeholder="Enter Details" autocomplete="off"></textarea> -->
+                </div>
+                <div class="form-group">
+                    <input type="file" id="file" (change)="handleFileInput($event.target.files)" style="padding: 23px;" multiple>
+                    <div class="row">
+                        <label style="padding: 19px">Where did you hear about us?:</label>
+                        <input type="text" class="form-control" style="width: inherit;margin-top: 11px">
+                    </div>
+
+
+                </div>
+
+
+                <div class="pull-right" style="margin:20px 15px 0px 0px">
+                    <!-- <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 5px" (click)="close()">Cancel</button> -->
+                    <button mat-raised-button class="btn-default" type="button" style="margin-right: 10px;" mat-button matStepperPrevious>Back</button>
+                    <button mat-raised-button class="btn-success" type="button" mat-button matStepperNext>Save & Continue
+                    </button>
+                </div>
+            </mat-step>
+            <!-- <mat-step [completed]="false" [completed]="false" [stepControl]="siteFormGroup">
+                <ng-template matStepLabel>Sites</ng-template>
+                <div class="col-sm-12 no-padding">
+                    <div class="flex-p">
+                        <div class="row wrap">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="pills w-100 flex-p" style="padding-left: 6px!important;">
+                                    <ul class="nav nav-pills pull-right">
+                                        <li [ngClass]="{'active': newsite==true}">
+                                            <a (click)="settab('newsite')" style="margin-right: 8px; padding: 0px 16px 0 36px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button"
+                                                tabindex="0" aria-disabled="false">
+                                                <span class="mat-button-wrapper">
+                                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true" style="padding:0px 123px 40px 0 !important">add</mat-icon>
+                                                    Add New Site
+                                                </span>
+                                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                                <div class="mat-button-focus-overlay"></div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-xs-6">
+                        </div>
+                    </div>
+                    <div class="col-lg-12" *ngIf="selectedLinks == 'gridview'" style="padding-left: 20px;">
+                        <div class="row">
+                            <div fxLayout="row wrap" style="margin-top:-3px;">
+                                <div class="table-responsive flex-p" style="min-width:180.4%">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead class="tbl-head">
+                                            <tr class="tr-grid-header">
+                                                <th class="min-width120">Site Name</th>
+                                                <th class="min-width120">City</th>
+                                                <th style="min-width: 135px">Provice</th>
+                                                <th class="text-center">Status</th>
+                                                <th style="min-width: 73px;" class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of sites">
+                                                <td style="text-align: left !important">{{item.sitename}}</td>
+                                                <td style="text-align: left !important">{{item.city}}</td>
+                                                <td style="text-align: left !important">{{item.state}}</td>
+                                                <td class="pad-left inner-screen" style="text-align: center!important">
+                                                    <a (click)="item.status = ! item.status">
+                                                        <span *ngIf="!item.status">Active</span>
+                                                        <span *ngIf="item.status" style="color:red">Inactive</span>
+                                                    </a>
+                                                </td>
+                                                <td style="text-align: center!important">
+                                                    <a matTooltip="Edit Details" style="cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <a>
+                                                        <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="padding:0px 8px 0 0">
+                            <button style="margin-left: 9px;" mat-raised-button class="btn-success pull-right" type="button" mat-button matStepperNext>Save & Continue</button>
+                            <button mat-raised-button class="btn-default pull-right" type="button" mat-button matStepperPrevious>Back</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" *ngIf="selectedLinks == 'newsite'">
+                        <div class="row">
+                            <div class="col-sm-12" style="padding:9px 30px 0 21px">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label col-sm-4 add-member-label">Site Name:
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Enter Site Name" required>
+                                        </div>
+                            
+                                        <label class="col-sm-2 control-label col-sm-4 add-member-label">Location:
+                                        </label>
+                                        <div class="col-sm-4">
+                                            <ng4geo-autocomplete></ng4geo-autocomplete>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="footer col-sm-12" style="padding-right:7px">
+                            <mat-dialog-actions align="end">
+                                <button mat-raised-button class="pull-right add-dark-hover btn-default" (click)="settab('gridview')" style="margin-bottom: 3px!important;">Cancel</button>
+                                <button mat-raised-button class="pull-right add-hover btn-success" (click)="settab('gridview')">
+                                    <span>Save Site
+                                    </span>
+                                </button>
+
+                            </mat-dialog-actions>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-step> -->
+            <!-- <mat-step [completed]="false" [stepControl]="sowFormGroup">
+                <ng-template matStepLabel>SOW</ng-template>
+                <div class="col-sm-12 no-padding">
+                    <div class="col-sm-4">
+                        <mat-card class="mh-400 greyBackground">
+                            <div class="col-sm-12 no-padding">
+                                <button mat-raised-button class="col-sm-12 no-padding" style="margin-top: 10px;    background: #50636d !important;color: #fff !important;">71
+                                    Mearns / 249</button>
+                                <a matTooltip="Edit" (click)="addNewSite()" style="cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                </a>
+                            </div>
+                            <div class="col-sm-12 no-padding">
+                                <button mat-raised-button class="col-sm-12 no-padding" style="margin-top: 10px;">Site 1</button>
+                                <a matTooltip="Edit" (click)="addNewSite()" style="cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                </a>
+                            </div>
+                            <div class="col-sm-12 no-padding">
+                                <button mat-raised-button class="col-sm-12 no-padding" style="margin-top: 10px;">Site 2</button>
+                                <a matTooltip="Edit" (click)="addNewSite()" style="cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                </a>
+                     
+                            </div>
+                            <div class="col-sm-12 no-padding">
+                                <button mat-raised-button class="col-sm-12 no-padding" style="margin-top: 10px;">Site 3</button>
+                                <a matTooltip="Edit" (click)="addNewSite()" style="cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                </a>
+            
+                            </div>
+                            <div class="col-sm-12 no-padding">
+                                <button mat-raised-button class="col-sm-12 no-padding" style="margin-top: 10px;">Site 4</button>
+                                <a matTooltip="Edit" (click)="addNewSite()" style="cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                </a>
+                  
+                            </div>
+                        </mat-card>
+                    </div>
+                    <div class="col-sm-8">
+                        <mat-card *ngIf="isSiteAdding" class="">
+                            <div mat-dialog-content>
+                                <form>
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-4 control-label col-sm-4 add-member-label bold">Site Name:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" placeholder="Enter Site Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-4 control-label col-sm-4 add-member-label bold">Country:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <mat-select placeholder="--Select Country--" class="form-control">
+                                                <mat-option *ngFor="let option of countries" [value]="option">{{option}}</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-4 control-label col-sm-4 add-member-label bold">Provice:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <mat-select placeholder="--Select Province--" class="form-control">
+                                                <mat-option *ngFor="let option of provinceOptions" [value]="option">{{option}}</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-4 control-label col-sm-4 add-member-label">Municipality:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <mat-select placeholder="--Select Municipality--" class="form-control">
+                                                <mat-option *ngFor="let option of munipalityOptions" [value]="option">{{option}}</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-4 control-label col-sm-4 add-member-label">City: </label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" placeholder="Enter City" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-4 control-label col-sm-4 add-member-label">Postal Code:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" placeholder="Enter Postal Code" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <label class=" col-sm-4 control-label col-sm-4 add-member-label">Street
+                                            Address: </label>
+                                        <div class="col-sm-8" style="padding: 0 8px!important;">
+                                            <textarea class="form-control txtarea" rows="2" placeholder="Enter Street Address" autocomplete="off"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right" style="margin-top:20px;margin-bottom: 5px;">
+
+                                        <button mat-raised-button class="btn-default" type="button" (click)="Cancel()">Cancel</button>
+                                        <button style="margin-right: 20px;margin-left: 5px;" mat-raised-button class="btn-success" type="button" mat-button>Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </mat-card>
+
+                        <mat-card *ngIf="!isSiteAdding" style="height: 110px;margin-bottom: 20px;background: #0787f736;">
+                            <div mat-dialog-content>
+                                <div class="col-sm-12 no-padding">
+                                    <div class="col-sm-6 no-padding">
+                                        <div class="col-sm-6 no-padding bold">Site Name: </div>
+                                        <div class="col-sm-6 no-padding">71 Mearns / 249</div>
+                                    </div>
+                                    <div class="col-sm-6 no-padding">
+                                        <div class="col-sm-6 no-padding bold">Country: </div>
+                                        <div class="col-sm-6 no-padding">Canada</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 no-padding" style="margin-top: 10px">
+                                    <div class="col-sm-6 no-padding">
+                                        <div class="col-sm-6 no-padding bold">Province: </div>
+                                        <div class="col-sm-6 no-padding">Ontario</div>
+                                    </div>
+                                    <div class="col-sm-6 no-padding">
+                                        <div class="col-sm-6 no-padding bold">Municipality: </div>
+                                        <div class="col-sm-6 no-padding">Toronto</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 no-padding" style="margin-top: 10px">
+                                    <div class="col-sm-6 no-padding">
+                                        <div class="col-sm-6 no-padding bold">City:</div>
+                                        <div class="col-sm-6 no-padding">Toronto</div>
+                                    </div>
+                          
+                                </div>
+                            </div>
+                        </mat-card>
+
+                        <div class="col-sm-12 no-padding" *ngIf="!isSiteAdding">
+                            <button mat-raised-button class="btn-primary col-sm-12" (click)="addFieldValue()">ADD NEW SOW</button>
+                            <div class="col-sm-12 no-padding" style="margin-top: 20px;" *ngFor="let field of fieldArray; let i = index">
+                                <input [(ngModel)]="field.subject" placeholder="Enter SOW Name" class="form-control col-sm-4 margin-right" type="text" name="{{field.subject}}" />
+                                <mat-select placeholder="--Select Type--" class='form-control col-sm-3 margin-right' required>
+                                    <mat-option class='option' *ngFor='let option of typeOptions' [value]="option">{{option}}</mat-option>
+                                </mat-select>
+                                <a href="/#/IBW/manage/quotes-dashboard/sow/" style="background: #3971a0 !important; margin-top:-4px !important;" target="_blank" mat-raised-button class="btn-success" mat-button>Setup Budget</a>
+                                <a (click)="deleteFieldValue()">
+                                    <img src=".\assets\img\delete.png" style="width: 30px;padding-left: 14px;padding-top: 3px;">
+                                </a>
+                            </div>
+                            <div class="pull-right" style="margin-top:20px">
+                                <button mat-raised-button class="btn-default" type="button" mat-button matStepperPrevious>Back</button>
+                                <button style="margin-left: 5px;" mat-raised-button class="btn-success" type="button" mat-button matStepperNext>Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-step> -->
+        </mat-horizontal-stepper>
+    </div>
+
+    <mat-dialog-actions align="start" style="margin-bottom: -15px;margin-left: 31px;">
+        <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+        <button mat-raised-button class="btn-success">Save</button>
+    </mat-dialog-actions>
+</div>

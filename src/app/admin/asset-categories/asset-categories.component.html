@@ -1,0 +1,59 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="flex-p w-100">
+  
+        <div class="col-sm-7" style="padding: 0px 0px 20px 0px !important;">
+            <button mat-raised-button class="pull-right add-hover-help-job btn-success-help-job" style="margin-left: 2px;">
+                <mat-icon>help_outline</mat-icon> Help
+            </button>
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="OpenAssetCategoryModal(null)">
+                <mat-icon>add</mat-icon> Add Asset Category
+            </button>
+            <mat-select (selectionChange)="StatusFilter($event.value)" class='select-option  form-control pull-right' placeholder="--Select Status--" style="width: 20%;margin:5px 10px 0 10px">
+                <mat-option [value]=0>Any</mat-option>
+                <mat-option [value]=1>Active</mat-option>
+                <mat-option [value]=2>Inactive</mat-option>
+            </mat-select>
+                <label class=" pull-right" style="margin-top: 10px !important;">Select Status :</label>
+            
+        </div>
+        
+            <div class="table-responsive col-sm-7" style="padding:0px !important">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Asset Category</th>
+                            <th>Category Prefix</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of AssetCategoryData">
+                            <td>{{item.AssetCategoryName}}</td>
+                            <td>{{item.AssetCategoryPrefix}}</td>
+                            <td class="pad-left inner-screen" style="text-align: center !important;">
+                                <a (click)="changeStatus(item.AssetCategoryId)">
+                                  <span *ngIf="!item.IsActive" style="color:red">Inactive</span>
+                                  <span *ngIf="item.IsActive">Active</span>
+                              </a>
+                              </td>
+                            <td class="text-center">
+                                <a (click)="OpenAssetCategoryModal(item)" matTooltip="Update Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a (click)="deleteAssetCategory(item.AssetCategoryId)">
+                                    <i  style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                </a>
+                            </td>
+        
+                        </tr>
+                        <td *ngIf="AssetCategoryData?.length == 0" colspan="4" style="text-align: center !important"> No data available </td>
+
+                    </tbody>
+                    
+                </table>
+            </div>
+      
+    </div>
+  </div>
+  

@@ -1,0 +1,235 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-xs-12" style="margin-right:0px !important; margin-top: 15px">
+                    <div class="col-sm-4">
+                        <div class="pills w-100">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8 pull-right" style="padding: 0 0 0 0!important;">
+                        <button (click)="openHelpVideo(null)" mat-raised-button class="pull-right add-hover-help btn-success-help" style="margin-left: 0px;">
+                            <mat-icon>help_outline</mat-icon> Help
+                        </button>
+                        <button *ngIf="isGridView" (click)="opengridColDialog(null)" mat-raised-button class="pull-right btn-primary" style="margin-right: 10px;color:white; background:#3b7bb8">
+                            <mat-icon>view_column</mat-icon> Grid Columns
+                        </button>
+                        <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="openoppurtunityDialog(null)">
+                            <mat-icon>add</mat-icon> Add Contact
+                        </button>
+                        <button mat-raised-button class="pull-right add-hover btn-success margin-right-10" (click)="openAddClientDialog(null)">
+                            <mat-icon>add</mat-icon> Add Client
+                        </button>
+                        <button mat-raised-button color="primary" class="pull-right filter-hover margin-right-10" (click)="filterToggle = !filterToggle">
+                            <mat-icon>filter_list</mat-icon> Filter
+                        </button>
+                        <button *ngIf="isGridView" mat-raised-button color="primary" style="min-width: 110px;" class="pull-right filters-hover margin-right-10">
+                            Next
+                            <mat-icon>skip_next</mat-icon>
+                        </button>
+                        <button *ngIf="isGridView" mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                            <mat-icon>skip_previous</mat-icon> Previous
+                        </button>
+                    </div>
+                </div>
+                <!-- <div fxLayout="row wrap" > -->
+                <div fxLayout="row wrap" *ngIf="filterToggle">
+                    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="padding-15 w-100">
+
+
+                        <mat-card class="filter">
+                            <mat-card-content>
+                                <div class="row col-sm-12">
+                                    <!-- <div class="col-sm-4">
+                                                    <div class="col-sm-4">Client Type</div>
+                                                    <div class="col-sm-8">
+                                                        <select class='select-option form-control'>
+                                                            <option class='option' [ngValue]="undefined" selected disabled>--Search by Client Type--</option>
+                                                            <option value="Engineer">Engineer/Engineering firm</option>
+                                                            <option value="Private">Private land owner</option>
+                                                            <option value="Planner">Planner</option>
+                                                            <option value="Business">Business</option>
+                                                            <option value="Architect">Architect/architect firm</option>
+                                                            <option value="Government">Government</option>
+                                                            <option value="Home">Home builder</option>
+                                                            <option value="Law">Law firm</option>
+                                                            <option value="Utility">Utility company</option>
+                                                            <option value="Surveyor">Surveyor/Survey firm</option>
+                                                            <option value="Developer">Developer</option>
+                                                        </select>
+                                                    </div>
+                    
+                                                </div> -->
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Municipality</div>
+                                        <div class="col-sm-8">
+                                            <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                                <mat-option class='option' *ngFor='let option of municipalityOptions' [value]="option">{{option}}</mat-option>
+                                            </mat-select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">City</div>
+                                        <div class="col-sm-8">
+                                            <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                                <mat-option class='option' *ngFor='let option of municipalityOptions' [value]="option">{{option}}</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Status</div>
+                                        <div class="col-sm-8">
+                                            <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                                <mat-option class='option' *ngFor='let option of statusOptions' [value]="option">{{option}}</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row col-sm-12" style="margin-top:20px">
+
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">From Date</div>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">To Date</div>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Primary Contact</div>
+                                        <div class="col-sm-8">
+                                            <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                                <mat-option class='option' [value]="1">Yes</mat-option>
+                                                <mat-option class='option' [value]="2">No</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row col-sm-12" style="margin-top:20px">
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Billing Contact</div>
+                                        <div class="col-sm-8">
+                                            <mat-select name="survey" placeholder="--Please Select--" class='form-control' required>
+                                                <mat-option class='option' [value]="1">Yes</mat-option>
+                                                <mat-option class='option' [value]="2">No</mat-option>
+                                            </mat-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-4">Keyword</div>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" placeholder="Enter Keyword" type="text">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                            <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                        </a>
+
+                                        <button mat-raised-button class="pull-right" style="margin-left: 10px;margin-right: 8px;">
+                                            <mat-icon>settings_backup_restore</mat-icon> Reset
+                                        </button>
+                                        <button mat-raised-button class="pull-right add-hover btn-success">
+                                            <mat-icon>cloud_download</mat-icon> Download CSV
+                                        </button>
+                                        <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                                            <mat-icon>youtube_searched_for</mat-icon> Search
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" style="padding-left:-2px!important">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th style="min-width: 110px;text-align: left;">Contact Name</th>
+                            <th style="min-width: 100px;">Client Name</th>
+                            <th style="min-width: 150px;">Position Title</th>
+                            <th style="min-width: 120px; text-align: left;">Phone No.</th>
+                            <th style="min-width: 150px;">Email</th>
+                            <th style="min-width: 120px;">Primary Contact</th>
+                            <th style="min-width: 120px;">Billing Contact</th>
+                            <th style="min-width: 100px;">Municipality</th>
+                            <th style="min-width: 100px;">City</th>
+                            <th style="min-width: 110px;">Postal Code</th>
+                            <th style="min-width: 80px;" class="text-center">Quotes</th>
+                            <th style="min-width: 80px;" class="text-center">Projects</th>
+                            <th style="min-width: 110px;">Created Date</th>
+                            <th style="min-width: 100px;">Activity</th>
+                            <th style="min-width: 70px;" class="text-center">Status</th>
+                            <th style="min-width: 75px;" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of contacts">
+                            <td style="padding-left: 5px!important; text-align: left;">
+                                <a [title]="item.clientName" class="inner-screen" (click)="openoppurtunityDialog(null)">{{item.name}}</a>
+                            </td>
+                            <td style="padding-left: 5px!important;" class="inner-screen">{{item.client}}</td>
+                            <td style="padding-left: 5px!important;">{{item.designation}}</td>
+                            <td style="padding-left: 5px!important; text-align: left;">{{item.phone}}</td>
+                            <td class="inner-screen" style="padding-left: 5px!important;text-align: left !important;">
+                                <a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" target="_blank">{{item.email}}</a>
+                            </td>
+                            <td style="padding-left: 5px!important;" class="text-center">{{item.primarycontact}}</td>
+                            <td style="padding-left: 5px!important;" class="text-center">{{item.billingcontact}}</td>
+                            <td style="padding-left: 5px!important; text-align: left;">{{item.city}}</td>
+                            <td style="padding-left: 5px!important;">{{item.city}}</td>
+                            <td style="padding-left: 5px!important;">{{item.postcode}}</td>
+                            <td style="padding-left: 5px!important;" class="text-center">
+                                <a routerLink="/IBW/manage/quotes/gridview" target="_blank">{{item.quotes}}</a>
+                            </td>
+                            <td style="padding-left: 5px!important;" class="text-center">
+                                <a routerLink="/IBW/manage/project-dashboard" target="_blank">{{item.projects}}</a>
+                            </td>
+
+                            <td style="padding-left: 5px!important;">{{item.createddate}}</td>
+                            <td style="padding-left: 5px!important; text-align: left;">{{item.lastActivityddate}}</td>
+                            <td class="pad-left inner-screen" style="text-align: center!important">
+                                <a (click)="item.status = ! item.status">
+                                    <span *ngIf="!item.status" style="color:red">Inactive</span>
+                                    <span *ngIf="item.status">Active</span>
+                                </a>
+                            </td>
+                            <td style="text-align: center!important">
+                                <a matTooltip="Edit Details" (click)="openoppurtunityDialog(null)" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a>
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- <div *ngIf="!isGrid">
+              <app-map-view></app-map-view>
+          </div> -->
+    </div>
+</div>
+
+<!-- <div *ngIf="!leads" fxLayout="column" fxLayoutAlign="center center" class="lead-spinner">
+      <mat-spinner color="primary"></mat-spinner>
+    </div> -->

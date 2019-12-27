@@ -1,0 +1,27 @@
+<div fxLayout="row wrap">
+    <div class="w-100">
+        <div class="flex-p">
+            <div class="row wrap">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="pills w-100" style="padding-top: 10px">
+                        <ul class="nav nav-pills">
+                            <li routerLinkActive="active">
+                                <a (click)="isGridView = false" mat-raised-button routerLink="/IBW/create/timesheets">
+                                    <mat-icon>access_time</mat-icon> Timesheets
+                                </a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a (click)="isGridView = true" mat-raised-button routerLink="/IBW/create/expenses">
+                                    <mat-icon>money_off</mat-icon> Expenses
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

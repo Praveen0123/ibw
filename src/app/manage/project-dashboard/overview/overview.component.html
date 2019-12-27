@@ -1,0 +1,136 @@
+<div class="col-sm-12">
+
+
+        <ul style="margin: 0px 0px 20px 0px;" class="nav nav-pills ">
+                <li>
+                    <a [ngClass]="{'tabActive': isQuote === true}" (click)="fnQuote()"  class="mat-raised-button tab">
+                        <span class="mat-button-wrapper">
+                            Quote
+                        </span>
+                        <div class="mat-button-ripple mat-ripple"></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                </li>
+                <li>
+                    <a [ngClass]="{'tabActive': isProject === true}" (click)="fnProject()"  class="mat-raised-button tab">
+                        <span class="mat-button-wrapper">
+                            Project
+                        </span>
+                        <div class="mat-button-ripple mat-ripple"></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                </li>
+                </ul>
+
+
+  <table id="example2" *ngIf="isQuote" class="margin-top-20 table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Quote Number:</th>
+            <td>Q-190001</td>
+            <th>Quote Type: </th>
+            <td>New Project</td>
+        </tr>
+        <tr>
+            <th>Client Name: </th>
+            <td>Toronto Towers</td>
+            <th>Survey Type:</th>
+            <td>Reference Plan</td>
+        </tr>
+        <tr>
+            <th>Quote Admin:</th>
+            <td>James Smith</td>
+            <th>Account Manager: </th>
+            <td>Dwayne</td>
+        </tr>
+        <tr>
+            <th>Email: </th>
+            <td>james2136@gmail.com</td>
+            <th>Phone No: </th>
+            <td>(416) 920-5100</td>
+        </tr>
+        <tr>
+            <th>Country:</th>
+            <td>Canada</td>
+            <th>Province / State: </th>
+            <td>Ontario</td>
+        </tr>
+        <tr>
+            <th>Municipality:</th>
+            <td>Ottawa</td>
+            <th>City: </th>
+            <td>Ottawa </td>
+        </tr>
+       
+        <tr>
+            <th>Street Address: </th>
+            <td colspan="3">79GG+XC Gloucester</td>
+
+        </tr>
+    </thead>
+   
+</table>
+
+
+    <table id="example2" *ngIf="isProject" class="margin-top-20 table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Client:</th>
+                <td>TORON (Toronto Towers)</td>
+                <th>Project Manager: </th>
+                <td>Stephanle George </td>
+            </tr>
+            <tr>
+                <th>Contact Person: </th>
+                <td>Edward Joe</td>
+                <th>Phone Number:</th>
+                <td>(416) 920-5100</td>
+            </tr>
+            <tr>
+                <th>Contact Email:</th>
+                <td>edward_joe@hydroone.com</td>
+                <th>City: </th>
+                <td>Lake Louise</td>
+                <!-- <th>Region: </th>
+                <td>Central Canada</td> -->
+            </tr>
+            <tr>
+                    <th>Postal Code: </th>
+                    <td>MIR 0E9</td>
+                <th>Billing Type | Terms:</th>
+                <td>Fixed | Prepay</td>
+                
+            </tr>
+            <tr>
+                <th>Start Date:</th>
+                <td>20-Apr-2019</td>
+                <th>End Date: </th>
+                <td>21-Mar-2020</td>
+            </tr>
+            <tr>
+                <th>Sites:</th>
+                <td>71 Mearns,20 Mearns Ct,Mearns Ct 20</td>
+                <th>SOW: </th>
+                <td>35/60</td>
+            </tr>
+            <tr>
+                <th>Tasks:</th>
+                <td>40/62</td>
+                <th>Actions: </th>
+                <td>55/70</td>
+            </tr>
+            <tr>
+                <th>Budget ($): </th>
+                <td>2999</td>
+                <th>Client Address: </th>
+                <td>Innismore House, Saint Agnes Road, Crumlin Village, Dublin 12</td>
+            </tr>
+            <!-- <tr>
+                
+            </tr> -->
+        </thead>
+    </table>
+
+
+
+</div>

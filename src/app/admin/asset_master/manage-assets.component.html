@@ -1,0 +1,407 @@
+<div fxLayout="row wrap" #resizedDiv>
+    <div class="w-100" *ngIf="isExcelRecordsStatusDiv == false">
+
+        <div class="row" style="margin-bottom:14px;margin-top:15px;">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="w-100 flex-p">
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="w-100 flex-p">
+                    <button mat-raised-button class="pull-right add-hover-help btn-success-help"
+                        style="margin-left: 10px;">
+                        <mat-icon>help_outline</mat-icon> Help
+                    </button>
+                    <div class="file btn btn-lg btn-primary pull-right upload" style="margin-left: 10px;"
+                        (click)="dowloadBulkUploadAssetTemplate()">
+                        <mat-icon class="upload-icon">cloud_download</mat-icon><span>Download Template</span>
+                    </div>
+                    <div class="file btn btn-lg btn-primary pull-right upload" style="margin-left: 10px;">
+                        <mat-icon class="upload-icon">vertical_align_top</mat-icon> Bulk Upload Assets
+                        <input class="file" type="file" name="file" (change)="handleFileSelect($event)"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    </div>
+                    <button mat-raised-button class="pull-right add-hover btn-success"
+                        (click)="openAddAssetDialog(null)" [ngClass]="{'disable-custom' : permissions.write == false}"
+                        [matTooltip]="!permissions.write ? 'You dont have write permissions' : ''">
+                        <mat-icon>add</mat-icon> Add Asset
+                    </button>
+                    <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10"
+                        (click)="filterToggle = !filterToggle">
+                        <mat-icon>filter_list</mat-icon> Filter
+                    </button>
+                    <button (click)="opengridColDialog(null)" mat-raised-button class="pull-right btn-primary"
+                        style="margin-right: 10px;color:white; background:#3b7bb8">
+                        <mat-icon>view_column</mat-icon> Grid Columns
+                    </button>
+                    <button mat-raised-button color="primary" style="min-width: 110px;" (click)="scrollAseets('left')"
+                        class="pull-right filters-hover margin-right-10">
+                        Next
+                        <mat-icon>skip_next</mat-icon>
+                    </button>
+                    <button mat-raised-button color="primary" (click)="scrollAseets('right')"
+                        class="pull-right filters-hover margin-right-10">
+                        <mat-icon>skip_previous</mat-icon> Previous
+                    </button>
+
+                    <!-- <button mat-raised-button color="primary" style="color: white !important;" class="pull-right filter-hover margin-right-10"
+            (click)="filterToggle = !filterToggle">
+            <mat-icon>filter_list</mat-icon> Filter
+          </button> -->
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="filterForm" (ngSubmit)="filterBy(filterForm.value)">
+            <div fxLayout="row wrap" *ngIf="filterToggle" style="margin-top: 25px">
+                <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100">
+                    <mat-card class="filter">
+                        <mat-card-content>
+                            <div class="row col-sm-12">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 cust-label">Asset Category</div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control'
+                                            placeholder="--Select Asset Category--" formControlName="assetCategoryId">
+                                            <mat-option *ngFor="let catItem of AllAssetsCategories"
+                                                [value]="catItem.int_asset_category_id">{{catItem.vc_asset_category}}
+                                            </mat-option>
+                                            <!-- <mat-option [value]="1">Category A</mat-option>
+                                        <mat-option [value]="2">Category B</mat-option>
+                                        <mat-option [value]="3">Category C</mat-option> -->
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 cust-label">Asset Make</div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control'
+                                            placeholder="--Select Asset Make--" formControlName="make">
+                                            <mat-option *ngFor="let make of AllAssetsMakes" [value]="make">{{make}}
+                                            </mat-option>
+                                            <!-- <mat-option [value]="1">Make 1234 </mat-option>
+                                        <mat-option [value]="2">Make 2586 </mat-option>
+                                        <mat-option [value]="3">Make 5566</mat-option> -->
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 cust-label">Asset Model</div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control'
+                                            placeholder="--Search by Asset Model--" formControlName="model">
+                                            <mat-option *ngFor="let model of AllAssetsModels" [value]="model">{{model}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-sm-12" style="margin-top:20px">
+                                <!-- <div class="col-sm-4">
+                                <div class="col-sm-4">Date Range For</div>
+                                <div class="col-sm-8">
+                                    <select class='select-option form-control'>
+                                        <option class='option' [ngValue]="undefined" selected disabled>--Select Date Type--</option>
+                                        <option value="Engineer">Created Date</option>
+                                        <option value="Private">Last Active Date</option>
+                                    </select>
+                                </div>
+    
+                            </div> -->
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 cust-label">From Date</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select From Date" formControlName="fromDate"
+                                            class="form-control" bsDatepicker placement="bottom"
+                                            [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4 cust-label">To Date</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select To Date" formControlName="toDate"
+                                            class="form-control" bsDatepicker placement="bottom"
+                                            [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+
+                                    <div class="col-sm-4 cust-label">Keyword</div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class='form-control' formControlName="keyWord"
+                                            placeholder="Enter Keyword">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="row col-sm-12" style="margin-top:20px">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                    <a (click)="filterToggle = !filterToggle" class="pull-right"
+                                        style="font-size: 25px;">
+                                        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                    </a>
+
+                                    <button mat-raised-button class="pull-right" style="margin:0px 10px;" type="button"
+                                        (click)="resetFilter()">
+                                        <mat-icon>settings_backup_restore</mat-icon> Reset
+                                    </button>
+
+                                    <button mat-raised-button color="primary" class="pull-right filters-hover"
+                                        type="submit">
+                                        <mat-icon>youtube_searched_for</mat-icon>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </form>
+        <div fxLayout="row wrap" class="row flex-p" style="padding-left: 24px !important;">
+            <div class="table-responsive" id="assetsgrid">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th class="text-center" style="min-width:110px"
+                                *ngIf="gridColumns.indexOf('Asset Number') > -1 || this.gridColumns.length==0">Asset
+                                Number</th>
+                            <th style="min-width:120px"
+                                *ngIf="gridColumns.indexOf('Asset Category') > -1 || this.gridColumns.length==0">Asset
+                                Category</th>
+                            <th style="min-width:100px"
+                                *ngIf="gridColumns.indexOf('Asset Name') > -1 || this.gridColumns.length==0">Asset Name
+                            </th>
+                            <!-- <th class="text-center" style="min-width:121px">Asset Reference</th> -->
+                            <!-- <th style="min-width:100px">Condition</th> -->
+                            <th class="text-center" style="min-width:115px"
+                                *ngIf="gridColumns.indexOf('Purchase Date') > -1 || this.gridColumns.length==0">Purchase
+                                Date</th>
+                            <th style="min-width:85px"
+                                *ngIf="gridColumns.indexOf('Make') > -1 || this.gridColumns.length==0">Make</th>
+                            <th style="min-width:80px"
+                                *ngIf="gridColumns.indexOf('Model') > -1 || this.gridColumns.length==0">Model</th>
+                            <th class="text-center" style="min-width:110px"
+                                *ngIf="gridColumns.indexOf('Serial Number') > -1 || this.gridColumns.length==0">Serial
+                                Number</th>
+                            <th class="text-center" style="min-width:120px"
+                                *ngIf="gridColumns.indexOf('Purchase Price') > -1 || this.gridColumns.length==0">
+                                Purchase Price</th>
+                            <th style="min-width:115px"
+                                *ngIf="gridColumns.indexOf('Asset Timeline') > -1 || this.gridColumns.length==0">Asset
+                                Timeline</th>
+                            <th style="min-width:115px"
+                                *ngIf="gridColumns.indexOf('Assigned To') > -1 || this.gridColumns.length==0">Assigned
+                                To</th>
+                            <th style="min-width:285px"
+                                *ngIf="gridColumns.indexOf('Description') > -1 || this.gridColumns.length==0">
+                                Description</th>
+                            <th class="text-center"
+                                *ngIf="gridColumns.indexOf('Status') > -1 || this.gridColumns.length==0">Status</th>
+                            <th class="text-center" style="min-width:80px">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            
+                        <tr *ngFor="let item of AllAssets">
+                            <td class="text-center"
+                                *ngIf="gridColumns.indexOf('Asset Number') > -1 || this.gridColumns.length==0">
+                                {{item.Number}}</td>
+                            <!-- <td class="text-center">CO11568</td> -->
+                            <td *ngIf="gridColumns.indexOf('Asset Category') > -1 || this.gridColumns.length==0">
+                                {{item.Category}}</td>
+                            <td *ngIf="gridColumns.indexOf('Asset Name') > -1 || this.gridColumns.length==0">
+                                {{item.Name}}</td>
+                            <!-- <td>Excellent</td> -->
+                            <td *ngIf="gridColumns.indexOf('Purchase Date') > -1 || this.gridColumns.length==0"
+                                class="text-center">{{item.strPurchaseDate}}</td>
+                            <td *ngIf="gridColumns.indexOf('Make') > -1 || this.gridColumns.length==0">{{item.Make}}
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Model') > -1 || this.gridColumns.length==0">{{item.Model}}
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Serial Number') > -1 || this.gridColumns.length==0"
+                                class="text-center">{{item.SerialNumber}}</td>
+                            <td *ngIf="gridColumns.indexOf('Purchase Price') > -1 || this.gridColumns.length==0"
+                                class="text-center">{{item.PurchasePrice}}</td>
+                            <td *ngIf="gridColumns.indexOf('Asset Timeline') > -1 || this.gridColumns.length==0"
+                                class="text-center">
+                                <a class="inner-screen">5</a>
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Assigned To') > -1 || this.gridColumns.length==0">
+                                <a class="inner-screen">William Smith</a>
+                            </td>
+                            <td *ngIf="gridColumns.indexOf('Description') > -1 || this.gridColumns.length==0">
+                                {{item.assetDescription}}</td>
+                            <!-- <td class="pad-left inner-screen" style="text-align: center!important">
+                                <a (click)="status1 = ! status1">
+                                    <span *ngIf="!status1" style="color:red">Inactive</span>
+                                    <span *ngIf="status1">Active</span>
+                                </a>
+                            </td> -->
+                            <td *ngIf="gridColumns.indexOf('Status') > -1 || this.gridColumns.length==0"
+                                class="pad-left inner-screen" style="text-align: center!important"><a
+                                    (click)="changeStatus(item)" style="cursor: pointer"
+                                    [ngClass]="{'red': item.bt_status == false, 'green' : item.bt_status == true, 'disable-custom' : permissions.write == false}"
+                                    [matTooltip]="permissions.write==false ? 'You dont have write permissions' : ''">{{item.bt_status == true ? 'Active' : 'Inactive'}}</a>
+                            </td>
+                            <td class="text-center">
+                                <a matTooltip="Update Details"
+                                    style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1"
+                                    (click)="openAddAssetDialog(item)">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a style="cursor: pointer;font-size:16px!important;"
+                                    [matTooltip]="permissions.delete==false ? 'You dont have delete permissions' : 'Delete'"
+                                    [ngClass]="{'disable-custom' : permissions.delete == false}">
+                                    <i (click)="deleteAsset(item.assetId)" class="fa fa-trash red"></i>
+                                </a>
+                                <!-- <a>
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                </a> -->
+
+                            </td>
+
+                        </tr>
+                        <!-- <tr>
+                            <td class="text-center">VH-20</td>
+                            <td>Vechile</td>
+                            <td>Dioptra</td>
+                            <td>Excellent</td>
+                            <td class="text-center">2019-05-25</td>
+                            <td>Make 2586</td>
+                            <td>Model CD</td>
+                            <td class="text-center">156-7456-84</td>
+                            <td class="text-center">$250.00</td>
+                            <td class="text-center">
+                                <a class="inner-screen">3</a>
+                            </td>
+                            <td>
+                                <a class="inner-screen">Noah Centineo</a>
+                            </td>
+
+                            <td>Must needed thing</td>
+                            <td class="pad-left inner-screen" style="text-align: center!important">
+                                <a (click)="status2 = ! status2">
+                                    <span *ngIf="!status2" style="color:red">Inactive</span>
+                                    <span *ngIf="status2">Active</span>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a>
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                </a>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="text-center">TS-501</td>
+                            <td>Total Station</td>
+                            <td>Tachymeter</td>
+                            <td>Under Repair</td>
+                            <td class="text-center">2019-06-05</td>
+                            <td>Make 5566</td>
+                            <td>Model AD</td>
+                            <td class="text-center">475-5875-74</td>
+                            <td class="text-center">$200.00</td>
+                            <td class="text-center">
+                                <a class="inner-screen">2</a>
+                            </td>
+                            <td>
+                                <a class="inner-screen">Liam Hemsworth</a>
+                            </td>
+                            <td>Without this we cannot deliver the project</td>
+                            <td class="pad-left inner-screen" style="text-align: center!important">
+                                <a (click)="status3 = ! status3">
+                                    <span *ngIf="!status3" style="color:red">Inactive</span>
+                                    <span *ngIf="status3">Active</span>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a matTooltip="Edit Details" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a>
+                                    <i style="cursor: pointer;font-size:16px!important;" matTooltip="Delete" class="fa fa-trash red"></i>
+                                </a>
+
+                            </td>
+
+                        </tr> -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="w-100" *ngIf="isExcelRecordsStatusDiv == true">
+        <div fxLayout="row wrap" class="row flex-p" style="padding-left: 24px !important;">
+            <div class="table-responsive" id="assetsgrid">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr>
+                            <th>Asset Category</th>
+                            <th>Asset Name</th>
+                            <th>Purchase Date</th>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Serial Number</th>
+                            <th>Purchase Price</th>
+                            <th>Description</th>
+                            <th>Valid</th>
+                        </tr>
+                    </thead>
+
+
+
+                    <tbody>
+                        <tr *ngFor="let item of inValidRecords">
+                            <td>{{item.Category}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.strPurchaseDate}}</td>
+                            <td>{{item.Make}}</td>
+                            <td>{{item.Model}}</td>
+                            <td>{{item.SerialNumber}}</td>
+                            <td>{{item.PurchasePrice}}</td>
+                            <td>{{item.assetDescription}}</td>
+                            <td style="color: red">{{item.Message}}</td>
+                        </tr>
+                        <tr *ngFor="let item of validRecords">
+                            <td>{{item.Category}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.strPurchaseDate}}</td>
+                            <td>{{item.Make}}</td>
+                            <td>{{item.Model}}</td>
+                            <td>{{item.SerialNumber}}</td>
+                            <td>{{item.PurchasePrice}}</td>
+                            <td>{{item.assetDescription}}</td>
+                            <td>{{item.Message}}</td>
+                        </tr>
+                        <tr *ngIf="!validRecords.length > 0 && !inValidRecords.length > 0">
+                            <td class="text-center" colspan="9">No valid records found in the file</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div fxLayout="row wrap" class="row flex-p" style="padding-left: 24px !important;">
+        Note: The rows with valid column marked as 'No', won't be saved.
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-danger" (click)="excelRecordsCancel()">
+                <i class="fa fa-times"></i>&nbsp;Close</button>&nbsp;&nbsp;
+            <button *ngIf="validRecords.length > 0 && inValidRecords.length > 0" type="button" class="btn btn-primary" (click)="excelRecordsProceed()">
+                <i class="fa fa-check"></i>&nbsp;Proceed</button>
+        </div>
+    </div>
+</div>

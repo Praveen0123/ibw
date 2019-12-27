@@ -1,0 +1,40 @@
+<div fxLayout="row wrap" #resizedDiv style="margin-top: 25px">
+    <div class="flex-p w-100">
+        <div fxLayout="row wrap">
+            <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Screen Name</th>
+                            <th class="text-center">Read</th>
+                            <th class="text-center">Write</th>
+                            <th class="text-center">Delete</th>
+                            <th class="text-center">Approvals</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let permission of screenPermissions">
+                            <td>{{permission.screenName}}</td>
+                            <td class="text-center">
+                                <span *ngIf="!permission.isRead">NA</span>
+                                <mat-checkbox color='warn' *ngIf="permission.isRead" [(ngModel)]="permission.readAll" (change)="readPermission($event.checked,permission.screenId)"></mat-checkbox>
+                            </td>
+                            <td class="text-center"><span *ngIf="!permission.isWrite">NA</span>
+                                <mat-checkbox color='warn' *ngIf="permission.isWrite" [(ngModel)]="permission.writeAll" (change)="writePermission($event.checked,permission.screenId)"></mat-checkbox>
+                            </td>
+                            <td class="text-center"><span *ngIf="!permission.isDeletePermission">NA</span>
+                                <mat-checkbox color='warn' *ngIf="permission.isDeletePermission" [(ngModel)]="permission.deleteAll" (change)="deletePermission($event.checked,permission.screenId)"></mat-checkbox>
+                            </td>
+                            <td class="text-center"><span *ngIf="!permission.isApproval">NA</span>
+                                <mat-checkbox color='warn' *ngIf="permission.isApproval" [(ngModel)]="permission.approveAll" (change)="approvalPermission($event.checked,permission.screenId)"></mat-checkbox>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-12 pull-right" style="padding-right: 0px !important;">
+                <button class="btn btn-success pull-right" (click)="updatePermissions()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

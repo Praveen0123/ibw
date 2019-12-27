@@ -1,0 +1,131 @@
+  <div class="custom-header">
+      <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>{{data.AssetValue.assetId == null ? 'Add Asset' :'Update Asset'}}</h3>
+    </div>
+
+
+  
+    <form class="form-horizontal" [formGroup]="AssetForm">
+        <div mat-dialog-content>
+      <div class="form-group">
+        <label class="control-label col-sm-4 add-member-label">
+          <span style="font-size: 15px">Asset Category:</span>
+        </label>
+        <div class="col-sm-8">
+          <mat-select class='select-option form-control' placeholder="--Select Asset Category--" (selectionChange)="onCategoryChangeEvent($event)" formControlName="CategoryId">
+            <mat-option *ngFor="let catItem of Categories" [value]="catItem.int_asset_category_id">{{catItem.vc_asset_category}}</mat-option>
+            <!-- <mat-option [value]="1">Category A</mat-option>
+            <mat-option [value]="2">Category B</mat-option>
+            <mat-option [value]="3">Category C</mat-option> -->
+          </mat-select>
+          <mat-error *ngIf="AssetForm.controls.CategoryId.errors?.required && AssetForm.controls.CategoryId.touched">
+            Please select asset category</mat-error>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4">
+          <span style="font-size: 15px">Asset Number:</span>
+        </label>
+        <div class="col-sm-8">
+         <label controlName="Number">{{ AssetForm.get('Number').value==null?"-":AssetForm.get('Number').value }}</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Asset Name:</span>
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" formControlName="Name" maxlength="10" placeholder="Enter Asset Name" (keypress)="onlyAlphabets($event)">
+          <mat-error *ngIf="AssetForm.controls.Name.errors?.required && AssetForm.controls.Name.touched">
+          Please enter asset name</mat-error>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Make:</span>
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" formControlName="Make" maxlength="10" placeholder="Enter Make" (keypress)="onlyAlphabets($event)" >
+          <mat-error *ngIf="AssetForm.controls.Make.errors?.required && AssetForm.controls.Make.touched">
+              Please enter make</mat-error>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Model:</span>
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" formControlName="Model" maxlength="10" placeholder="Enter Model">
+          <mat-error *ngIf="AssetForm.controls.Model.errors?.required && AssetForm.controls.Model.touched">
+              Please enter model</mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Date Purchased:</span>
+        </label>
+        <div class="col-sm-8">
+            <input type="text" placeholder="Select Purchased Date" formControlName="strPurchaseDate"
+            class="form-control" bsDatepicker placement="bottom"
+            [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD' }">
+            <mat-error *ngIf="AssetForm.controls.strPurchaseDate.errors?.required && AssetForm.controls.strPurchaseDate.touched">
+            Please select date purchased</mat-error>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Dealer:</span>
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" placeholder="Enter Dealer" formControlName="Dealer" maxlength="10" (keypress)="onlyAlphabets($event)">
+          <mat-error *ngIf="AssetForm.controls.Dealer.errors?.required && AssetForm.controls.Dealer.touched">
+              Please enter dealer</mat-error>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Purchase Price<span>(&#36;)</span>:</span>
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" placeholder="Enter Purchase Price" formControlName="PurchasePrice" maxlength="10" (keypress)="isNumberKey($event,this)">
+          <mat-error *ngIf="AssetForm.controls.PurchasePrice.errors?.required && AssetForm.controls.PurchasePrice.touched">
+              Please enter purchase price</mat-error>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Serial Number:</span>
+        </label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" placeholder="Enter Serial Nunber" formControlName="SerialNumber" maxlength="10">
+          <mat-error *ngIf="AssetForm.controls.SerialNumber.errors?.required && AssetForm.controls.SerialNumber.touched">
+              Please enter serial number</mat-error>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 add-member-label">
+          <span style="font-size: 15px">Description:</span>
+        </label>
+        <div class="col-sm-8">
+          <textarea class="form-control txtarea" rows="2" formControlName="assetDescription" placeholder="Enter Description" maxlength="300" autocomplete="off"></textarea>
+          <mat-error *ngIf="AssetForm.controls.assetDescription.errors?.required && AssetForm.controls.assetDescription.touched">
+              Please enter description</mat-error>
+        </div>
+      </div>
+     
+    </div>
+    </form>
+
+    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button mat-raised-button class="add-dark-hover btn-default" (click)="close()" type="button">
+          <mat-icon>cancel</mat-icon>
+          <span>&nbsp;Cancel</span>
+        </button>
+        <button (click)="onSubmitAssetForm(AssetForm.value)" mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" type="submit">
+          <mat-icon>{{data.AssetValue.assetId == null ? 'send' :'update'}}</mat-icon>
+          <span>&nbsp;{{data.AssetValue.assetId == null ? 'Save' :'Update'}}</span>
+        </button>
+      </mat-dialog-actions>
+ 
+
+  

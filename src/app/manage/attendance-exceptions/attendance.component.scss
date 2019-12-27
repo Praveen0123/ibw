@@ -1,0 +1,48 @@
+.blue{
+    color: #007ad9 !important;
+    text-decoration: none !important;
+}
+
+.green {
+    color: green !important;
+}
+
+.blue-c{
+    color: #007ad9 !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+}
+
+.reset-button{
+    margin-left: 10px;
+    margin-right: 8px;
+    background: #686968fa !important;
+    color: white !important;
+}
+
+::ng-deep .active_btn{
+    background: #50636d!important;
+    color: #fff !important;
+}
+
+.pills>.nav>li.active>a {
+    background: #50636d!important;
+    color: #fff;
+}
+
+.bulk_act{
+    height: 36px !important;
+    margin-top: 3px;
+
+}
+
+
+::ng-deep .mat-checkbox-inner-container-no-side-margin {
+    margin-left: 0;
+    margin-right: 0;
+    background: white;
+}
+
+::ng-deep .mat-disabled .mat-slide-toggle-bar {
+       background-color: #2e6792 !important;
+    }

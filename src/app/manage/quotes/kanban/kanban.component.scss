@@ -1,0 +1,56 @@
+.kanban-table-container {
+    width: 100%!important;
+    overflow-x: auto!important;
+    display: flex;
+    height: 550px;
+}
+.kanban-header{
+    background-color: #222 !important;
+    color: #fff !important;
+    text-align: center !important;
+    font-weight: 500 !important;
+    font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-size: 14px !important;
+    line-height: 30px;
+    min-width: 186px;
+    max-width: 220px;
+}
+.inner-screen {
+    color: #246ade !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+.kanban-item-container {
+    background-color: rgb(189, 215, 238);
+}
+.kanban-table {
+    min-width: 190px !important;
+    max-width: 220px !important;
+    height: 100%;
+    border-right: 5px solid #ddd;
+}
+.kanban-item {
+    cursor: pointer;
+    touch-action: none;
+    position: relative;
+    top: 0;
+    padding: 8px;
+    background-color: rgb(255, 255, 255);
+    width: 95%;
+    height: auto;
+    margin: 10px 5px 0px 5px;
+    box-shadow: #888 2px 2px 5px;
+    border-radius: 6px!important;
+}
+.mat-menu-item {
+    line-height:28px !important;
+    height: 28px !important;
+}
+.mat-menu-item:hover {
+    background-color: #ddd !important;
+}
+.inner-screens {
+    color: #246ade !important;
+    // text-decoration: underline !important;
+    cursor: pointer;
+}

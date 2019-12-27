@@ -1,0 +1,60 @@
+<h2 class="example-h2" style="margin: 0px 0px 0px 15px;">
+    Messages</h2>
+<small></small>
+
+
+<div mat-dialog-content>
+    <div class="form-horizontal" style="margin-top: 20px">
+        <div class="col-sm-12">
+            <div class="table-responsive w-100 flex-p" id="reviews" style="padding-left:0px!important;padding-right:0px!important">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th>Date Time</th>
+                            <th>Posted By</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding-left: 5px!important;">2019-06-25 12:00 PM</td>
+                            <td style="padding-left: 5px!important;">John</td>
+                            <td style="padding-left: 5px!important;">Went for field inspection</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 5px!important;">2019-06-25 3:00 PM</td>
+                            <td style="padding-left: 5px!important;">Nicholas</td>
+                            <td style="padding-left: 5px!important;">Approved</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 5px!important;">2019-06-25 3:10 PM</td>
+                            <td style="padding-left: 5px!important;">John</td>
+                            <td style="padding-left: 5px!important;">Thank You</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12" [ngClass]="{'hide':isaddMessage==true}">
+            <div class="form-group col-sm-12">
+                <label style="padding: 0px !important;" class="col-sm-3 control-label add-member-label">Enter Your Message: </label>
+                <div class="col-sm-6">
+                    <textarea class="form-control txtarea" rows="2" placeholder="Enter Your Message"></textarea>
+                </div>
+                <div class="col-sm-2">
+                    <a (click)="isaddMessage=true" matTooltip="Save Message" style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                        <i class="fa fa-save green"></i>
+                    </a>
+                    <a (click)="isaddMessage=true" matTooltip="Cancel">
+                        <i style="cursor: pointer;font-size:16px!important;"  class="fa fa-window-close red"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<mat-dialog-actions align="end" class="col-sm-12" style="margin-bottom: -10px;">
+    <button mat-raised-button class="btn-success" (click)="isaddMessage=false">Add Message</button>
+    <button mat-raised-button class="add-dark-hover btn-default" style="margin-right: 15px" (click)="close()">Close</button>
+</mat-dialog-actions>

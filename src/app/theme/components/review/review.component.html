@@ -1,0 +1,27 @@
+<button mat-icon-button [matMenuTriggerFor]="messagesMenu" (click)="openMessagesMenu()">
+    <mat-icon>rate_review</mat-icon>(12)
+      
+</button>
+<mat-menu #messagesMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu messages">
+    <mat-tab-group backgroundColor="primary" (click)="stopClickPropagate($event)" [selectedIndex]="selectedTab">
+        <mat-tab class="mat-custom-tab">
+            <ng-template mat-tab-label>
+                Review
+            </ng-template>
+            <mat-card class="content" perfectScrollbar style="height:100% !important;">
+                <div fxLayout="column" fxLayoutAlign="none">
+                    <button [routerLink]="message.url" style="padding-left: 15px !important; padding-right: 15px !important;" [ngClass]="{'alt-color' : i % 2 == 0}" mat-button *ngFor="let message of messages; let i = index">  
+                          <div fxLayout="column" fxLayoutAlign="none" class="w-100">
+                              <div fxLayout="row" fxLayoutAlign="space-between start">
+                                  <span class="name">{{message.name}}</span>
+                                  <span class="name"><b>&nbsp;&nbsp;&nbsp;&nbsp;({{message.number}})</b></span>
+                              </div>
+                              <!-- <span class="text muted-text">{{message.text}}</span> -->
+                          </div>
+                      </button>
+                </div>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+    <!--</span>-->
+</mat-menu>

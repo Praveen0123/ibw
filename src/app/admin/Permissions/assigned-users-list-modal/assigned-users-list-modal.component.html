@@ -1,0 +1,25 @@
+<div class="custom-header">
+    <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>Assigned Users List</h3>
+</div>
+<div mat-dialog-content>
+    <div class="col-sm-12 no-padding" style="margin-bottom: 25px;border-bottom: double;">
+        <label class="control-label">Permission Level: </label> {{data['roleMasterName']}}
+    </div>
+    <div class="col-sm-12 no-padding">
+        <div class="col-sm-12">
+            <div class="col-sm-4" *ngFor="let item of allUsers">
+                <mat-checkbox name="{{item.userId}}" [(ngModel)]="this.selectedUsers[item.userId]" (change)="autoSelectPermissions($event.checked,item.userId)">{{item.userName}}</mat-checkbox>
+            </div>
+        </div>
+    </div>
+</div>
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">
+    <mat-icon>cancel</mat-icon>
+    <span>&nbsp;Cancel</span>
+  </button>
+    <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success" (click)="saveAll()">
+    <mat-icon>update</mat-icon>
+    <span>&nbsp;Update</span>
+  </button>
+</mat-dialog-actions>

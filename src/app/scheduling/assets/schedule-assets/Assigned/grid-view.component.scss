@@ -1,0 +1,32 @@
+.inner-screen {
+    color: #246ade !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+::ng-deep .cal-open-day-events{
+    display: none !important;
+}
+
+::ng-deep .cal-events{
+    display: none !important;
+}
+
+.col-sm-7 {
+    width: 13.97%;
+    margin: 0 2px 0 2px;
+}
+.padding-top{
+    padding-top:14px!important;
+}
+.schedule{
+    background-color:#1797c7 !important;
+    color: #fff !important;
+}
+.available{
+    background-color:#1cb12f !important;
+    color: #fff !important;
+}
+.gray{
+    background-color:#494c4d !important;
+    color: #fff !important;
+}

@@ -1,0 +1,259 @@
+<div class="col-sm-12">
+    <div class="pull-right col-sm-12 no-padding" style="margin-bottom: 10px;">
+
+        <ul style="margin: 0px 0px 10px 0px;" class="nav nav-pills ">
+                <li>
+                        <a [ngClass]="{'tabActive': isInvoices === true}" (click)="fnInvoices()" class="mat-raised-button tab">
+                            <span class="mat-button-wrapper">
+                                Invoices
+                            </span>
+                            <div class="mat-button-ripple mat-ripple"></div>
+                            <div class="mat-button-focus-overlay"></div>
+                        </a>
+                    </li>
+            <li>
+                <a [ngClass]="{'tabActive': isUnbilled === true}" (click)="fnUnbilled()" class="mat-raised-button tab">
+                    <span class="mat-button-wrapper">
+                        Unbilled
+                    </span>
+                    <div class="mat-button-ripple mat-ripple"></div>
+                    <div class="mat-button-focus-overlay"></div>
+                </a>
+            </li>
+            <!-- <li>
+                <a [ngClass]="{'tabActive': isBilled === true}" (click)="fnBilled()" class="mat-raised-button tab">
+                    <span class="mat-button-wrapper">
+                        Billed
+                    </span>
+                    <div class="mat-button-ripple mat-ripple"></div>
+                    <div class="mat-button-focus-overlay"></div>
+                </a>
+            </li> -->
+        </ul>
+
+
+
+        <button *ngIf="isUnbilled" mat-raised-button class="pull-right add-hover btn-success" (click)="showEstimateModal()">
+            <mat-icon>add</mat-icon> Assign to Invoice
+        </button>
+        <button *ngIf="isBilled" mat-raised-button class="pull-right margin-right-10 btn-primary">
+            <mat-icon>send</mat-icon> Send Invoice to Finance
+        </button>
+        <button *ngIf="isBilled" color="primary" class="filters-hover btn btn-success pull-right margin-right-10" style="background-color: #179617!important;padding-top:6px!important;padding-bottom: 5px!important;margin-top: 4px;">
+            Go
+        </button>
+        <mat-select *ngIf="isBilled" [(value)]='Selectedtab' class="pull-right margin-right-10 form-control" style="width: 10%;margin-top: 5px;"
+            placeholder="Please Select">
+            <mat-option [value]="1">Inv - 0001</mat-option>
+            <mat-option [value]="2">Inv - 0002</mat-option>
+            <mat-option [value]="3">Inv - 0003</mat-option>
+        </mat-select>
+        <span *ngIf="isBilled" class="pull-right margin-right-10" style="margin-top: 10px">
+            <b>Select Invoice : </b>
+        </span>
+
+    </div>
+</div>
+
+<div *ngIf="!isInvoices" class="table-responsive w-100 col-sm-12">
+    <table id="example2" class="table table-bordered table-hover">
+        <thead class="tbl-head">
+            <tr class="tr-grid-header">
+                <th *ngIf="isUnbilled" style="width: 4%;" class="text-center">
+                    <mat-checkbox color='warn'></mat-checkbox>
+                </th>
+                <th style="min-width: 120px;">Description</th>
+                <th style="min-width: 75px;">Type</th>
+                <th style="min-width: 105px;">Claimed Date</th>
+                <th style="min-width: 120px;">Claimed By</th>
+                <th style="min-width: 120px;">Approved Date</th>
+                <th style="min-width: 100px;">Approved By</th>
+                <th style="min-width: 80px;">Amount</th>
+                <th style="min-width: 120px;">Task</th>
+                <th style="min-width: 120px;">SOW</th>
+                <th style="min-width: 120px;">Site</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of InvocesData">
+                <td *ngIf="isUnbilled" class="text-center">
+                    <mat-checkbox color='warn' [checked]=item.isSelected></mat-checkbox>
+                </td>
+                <td>{{item.description}}</td>
+                <td>{{item.itemType}}</td>
+                <td>{{item.claimedDate}}</td>
+                <td>{{item.claimedBy}}</td>
+                <td>{{item.approvedDate}}</td>
+                <td>{{item.approvedBy}}</td>
+                <td>{{item.amount | currency:'USD'}}</td>
+                <td>{{item.task}}</td>
+                <td>{{item.sow}}</td>
+                <td>{{item.site}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="isInvoices" class="table-responsive w-100 col-sm-12">
+        
+    <button  style="margin-bottom:10px" mat-raised-button class="pull-right add-hover btn-success">
+                <mat-icon>add</mat-icon> Add New Invoice
+            </button>
+
+
+
+    <table id="example2" class="table table-bordered table-hover">
+        <thead class="tbl-head">
+            <tr class="tr-grid-header">
+                <th style="min-width: 120px;">Invoice Number</th>
+                <th style="min-width: 120px;">Invoice Name</th>
+                <th style="min-width: 75px;">Site</th>
+                <th style="min-width: 75px;">SOW</th>
+                 <th style="min-width: 105px;">Invoice Total</th>
+                <!--<th style="min-width: 120px;">Expense Total</th>
+                <th style="min-width: 120px;">Hours Total</th>
+                <th style="min-width: 100px;">Profit / Loss</th> -->
+                <th style="min-width: 120px;" class="text-center">&nbsp;&nbsp;Paid &nbsp;&nbsp;| &nbsp; Unpaid</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of InvocesData2">
+                <td>{{item.invoiceNumber}}</td>
+                <td>{{item.invoiceName}}</td>
+                <td>{{item.site}}</td>
+                <td>{{item.sow}}</td>
+                <td>{{item.invoiceTotal | currency}}</td>
+                <!-- <td>{{item.expenseTotal | currency}}</td>
+                <td>{{item.hoursTotal | currency}}</td>
+                <td>{{item.invoiceTotal - item.hoursTotal - item.expenseTotal | currency}}</td> -->
+                <td class="text-center">
+                    <mat-radio-group aria-label="Select an option">
+                        <mat-radio-button color='warn' value="1" ></mat-radio-button>
+                        <span style="padding-right: 15px;padding-left: 15px;font-size:25px;">|</span>
+                        <mat-radio-button color='primary' class="approve" value="2"></mat-radio-button>
+                      </mat-radio-group>    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div bsModal #assignEstimateModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">
+                    <b>Assign to Invoice</b>
+                </h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideEstimateModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-3 control-label add-member-label">Invoice Type: </label>
+                    <div class="col-sm-4">
+                        <mat-radio-group aria-label="Select an option" [(ngModel)]="InvoiceType" (change)="fnInvoiceType($event.value)">
+                            <mat-radio-button value="new" color="warn" style="margin-right: 12px;">New</mat-radio-button>
+                            <mat-radio-button value="existing" color="warn">Existing</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12" *ngIf="isNew">
+                    <label class="col-sm-3 control-label add-member-label">Invoice Ref Number: </label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="price" placeholder="Enter Ref Number">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12" *ngIf="!isNew">
+                    <label class="col-sm-3 control-label add-member-label">Select Invoice: </label>
+                    <div class="col-sm-4">
+                        <mat-select placeholder="--Select Invoice--" class="form-control">
+                            <mat-option [value]="option1">INV 1</mat-option>
+                            <mat-option [value]="option2">INV 2</mat-option>
+                            <mat-option [value]="option3">INV 3</mat-option>
+                            <mat-option [value]="option4">INV 4</mat-option>
+
+                        </mat-select>
+                    </div>
+                </div>
+
+                <div class="table-responsive w-100 col-sm-12">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead class="tbl-head">
+                            <tr class="tr-grid-header">
+                                <th style="width: 4%;" class="text-center">
+                                    <mat-checkbox color='warn'></mat-checkbox>
+                                </th>
+                                <th style="min-width: 120px;">Description</th>
+                                <th style="min-width: 75px;">Type</th>
+                                <th style="min-width: 105px;">Claimed Date</th>
+                                <th style="min-width: 120px;">Claimed By</th>
+                                <th style="min-width: 120px;">Approved Date</th>
+                                <th style="min-width: 105px;">Approved By</th>
+                                <th style="min-width: 80px;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of InvocesData">
+                                <td>
+                                    <mat-checkbox color='warn'></mat-checkbox>
+                                </td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.itemType}}</td>
+                                <td>{{item.claimedDate}}</td>
+                                <td>{{item.claimedBy}}</td>
+                                <td>{{item.approvedDate}}</td>
+                                <td>{{item.approvedBy}}</td>
+                                <td>{{item.amount | currency:'USD'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+            <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+                <button mat-raised-button class="add-dark-hover btn-default" (click)="hideEstimateModal()">Cancel</button>
+                <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideEstimateModal()">Assign</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>
+
+
+<div bsModal #addSowModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">
+                    <b>Log Invoice</b>
+                </h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-6 control-label add-member-label">Invoice Reference number: </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="price" placeholder="Invoice Reference number">
+                        </div>
+                    </div>
+                </form>
+
+
+
+            </div>
+            <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+                <button mat-raised-button class="add-dark-hover btn-default" (click)="hideChildModal()">Cancel</button>
+                <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideChildModal()">Log</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<!-- <div fxLayout="row wrap">
+    <div fxFlex="100" class="flex-p"> 
+        
+    </div>
+</div> -->
+
+
+
+<div fxLayout="column">
+        <!-- <div class="flex-p">  -->
+            <mat-card>
+                
+                
+                <div class="w-100 h-500p">
+                    <agm-map [fullscreenControl]="true" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false">
+                        <agm-marker [latitude]="lat" [longitude]="lng" (markerClick)="openWindow($event)" [markerDraggable]="true" ></agm-marker>
+                        <agm-marker  [latitude]="latnew" [longitude]="lngnew" (markerClick)="openWindow($event)"  [markerDraggable]="true"></agm-marker>
+                        <agm-marker [latitude]="latnew2" [longitude]="lngnew2" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+                        <agm-marker [latitude]="latnew3" [longitude]="lngnew3" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+                        <agm-marker [latitude]="latnew4" [longitude]="lngnew4" (markerClick)="openWindow($event)" [markerDraggable]="true"></agm-marker>
+                    </agm-map>                  
+                </div>
+            </mat-card>
+       <!--  </div>   -->
+    </div>

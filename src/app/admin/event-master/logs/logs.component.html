@@ -1,0 +1,41 @@
+<div fxLayout="row wrap">
+    <div class="w-100 flex-p">
+        <div fxLayout="wrap" style="margin-top:-3px;">
+            <div class="table-responsive w-100 flex-p" style="padding-left:0px!important;padding-right:0px!important">
+                <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th >Date & Time</th>
+                            <th >User</th>
+                            <th >Role</th>
+                            <th >URL</th>
+                            <th >Error</th>
+                            <th class="text-center" >Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let log of logs; let i = index" >
+                            <td >
+                                <div class="col-sm-6" style="margin-left: 0px">
+                                    {{log.Date}}
+                                </div>
+                                <div class="col-sm-6" style="align-content: flex-end" >
+                                    {{log.time}}
+                                </div>
+                            </td>
+                            <td >{{log.user}}</td>
+                            <td >{{log.role}}</td>
+                            <td >{{log.url}}</td>
+                            <td >{{log.error}}</td>
+                            <td class="text-center">
+                                <a>
+                                    <i style="cursor: pointer;font-size:16px!important;" title="Debug" class="fa fa-dot-circle-o red"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

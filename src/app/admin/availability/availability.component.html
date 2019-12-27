@@ -1,0 +1,81 @@
+<div class="w-100">
+  <div class="flex-p">
+    <div class="row wrap">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="pills w-100 flex-p">
+          <ul class="nav nav-pills ">
+            <!-- <li routerLinkActive="active">
+              <a  routerLink="/IBW/admin/availability/weekdays" style="margin-right: 10px!important; padding: 0px 10px;"
+                mat-raised-button="gray" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">today</mat-icon>
+                  Weekdays
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li> -->
+            <li routerLinkActive="active">
+                <!-- (click)="isGridView = false" -->
+              <a  routerLink="/IBW/admin/availability/holidays" style="margin-right: 10px!important; padding: 0px 10px;"
+                mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">transfer_within_a_station</mat-icon>
+                  Holidays
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li>
+            <!-- (click)="isGridView = false" -->
+            <!-- <li  routerLinkActive="active">
+              <a routerLink="/IBW/admin/availability/leave" style="padding: 0px 11px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button"
+                tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">time_to_leave</mat-icon>
+                  Leave
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li> -->
+            <!-- <li  routerLinkActive="active">
+              <a routerLink="/IBW/admin/availability/sick-days" style="padding: 0px 11px;margin-right: 0px!important" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button"
+                tabindex="0" aria-disabled="false">
+                <span class="mat-button-wrapper">
+                  <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">local_hospital</mat-icon>
+                  Exceptions
+                </span>
+                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6" style="margin-right:0px !important">
+        <div class="w-100 flex-p">
+          <button mat-raised-button  class="pull-right add-hover-help btn-success-help"
+            style="margin-left: 10px;">
+            <!-- (click)="openHelpVideo(null)" -->
+            <mat-icon>help_outline</mat-icon> Help
+          </button>
+          <!-- <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+            <mat-icon>filter_list</mat-icon> Filter
+          </button> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-xs-6">
+
+    </div>
+
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

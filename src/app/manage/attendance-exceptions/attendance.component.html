@@ -1,0 +1,197 @@
+<div fxLayout="row wrap">
+  <div class="w-100">
+
+    <div class="flex-p">
+      <div class="row wrap">
+        <div class="col-xs-12" style="margin-top: 10px">
+          <div class="col-md-6 no-padding">
+            <div class="pills w-100 flex-p no-padding" *ngIf="userType == 'admin'">
+              <ul class="nav nav-pills ">
+                <li [ngClass]="{'active': isPending == true}" style="margin-right: 2px;">
+                  <a (click)="pending()" class="remove_top_bottom_padding mat-raised-button" mat-raised-button>
+                    <mat-icon>dns</mat-icon> Pending
+                  </a>
+                </li>
+                <li [ngClass]="{'active': isApproved == true}" style="margin-right: 3px;">
+                  <a (click)="approved()" class="remove_top_bottom_padding mat-raised-button" mat-raised-button>
+                    <mat-icon>done</mat-icon> Reviewed
+                  </a>
+                </li>
+                <li [ngClass]="{'active': isActivity == true}" style="margin-right: 3px;">
+                  <a (click)="activity()" class="remove_top_bottom_padding mat-raised-button" mat-raised-button>
+                    <mat-icon>local_activity</mat-icon> Activity
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-6 pull-right no-padding">
+            <button mat-raised-button class="pull-right add-hover-help btn-success-help" style="background: #ecdf29">
+              <mat-icon>help_outline</mat-icon> Help
+            </button>
+
+            <button mat-raised-button class="pull-right add-hover btn-success margin-right-10"
+              (click)="openLeaveRequestDailog(null)">
+              <mat-icon>add</mat-icon> Exception
+            </button>
+            <button mat-raised-button color="primary" class="pull-right filter-hover margin-right-10"
+              (click)="filterToggle = !filterToggle">
+              <mat-icon>filter_list</mat-icon> Filter
+            </button>
+            <button *ngIf="isPending && userType == 'admin'" mat-raised-button
+              class="pull-right btn-primary" style="margin: 0px 10px;;color:white; background:#3b7bb8">
+              <mat-icon>send</mat-icon> Complete & Submit
+            </button>
+            <!-- <mat-select *ngIf="isPending && userType == 'admin'" placeholder="Bulk Action"
+              class="bulk_act form-control col-sm-2 pull-right bulk-action">
+              <mat-option [value]=0>Approve Selected</mat-option>
+              <mat-option [value]=1>Decline Selected</mat-option>
+            </mat-select> -->
+          </div>
+        </div>
+        <!-- <div fxLayout="row wrap" > -->
+        <div class="col-sm-12 no-padding" *ngIf="filterToggle">
+          <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+            <mat-card class="filter">
+              <mat-card-content>
+                <div class="row col-sm-12">
+                  <div class="col-sm-4">
+                    <div class="col-sm-4">Exception Type</div>
+                    <div class="col-sm-8">
+                      <mat-select class='select-option form-control' placeholder="--Search by Exception Type--">
+                        <mat-option [value]="1">Late Attendance</mat-option>
+                        <mat-option [value]="2">Leave and Return</mat-option>
+                        <mat-option [value]="3">Leave Early</mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="col-sm-4">From Time</div>
+                    <div class="col-sm-8">
+                      <input type="text" class='select-option form-control' placeholder="From Date"
+                        onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="col-sm-4">To Time</div>
+                    <div class="col-sm-8">
+                      <input type="text" class='select-option form-control' placeholder="To Date"
+                        onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row col-sm-12" style="margin-top:20px">
+                  <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-4">
+                    <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                      <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                    </a>
+
+                    <button mat-raised-button class="pull-right reset-button"
+                      style="margin-left: 10px;margin-right: 8px;">
+                      <mat-icon>settings_backup_restore</mat-icon> Reset
+                    </button>
+                    <button mat-raised-button color="primary" class="pull-right filters-hover">
+                      <mat-icon>youtube_searched_for</mat-icon> Search
+                    </button>
+                  </div>
+
+                </div>
+
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
+  <div class="w-100 flex-p">
+    <div fxLayout="wrap" style="margin-top:-3px;">
+      <div class="table-responsive w-100 flex-p" style="padding-left:0px!important;padding-right:0px!important">
+        <table id="example2" class="table table-bordered table-hover table-striped">
+          <thead class="tbl-head">
+            <tr class="tr-grid-header">
+              <th *ngIf="userType =='admin' && isPending" style="width: 4%;" class="text-center">
+                <mat-checkbox color='warn'></mat-checkbox>
+              </th>
+
+              <th *ngIf="userType=='admin' && !isActivity" style="padding-left: 5px!important;">User Name</th>
+              <th *ngIf="userType =='admin' && !isActivity" class="text-center">Reviewed </th>
+              <th style="padding-left: 5px!important;">Exception Type</th>
+              <th style="padding-left: 5px!important;">Date</th>
+              <th style="padding-left: 5px!important;" class="text-center">From Time</th>
+              <th style="padding-left: 5px!important;" class="text-center">To Time</th>
+              <th style="padding-left: 5px!important;" class="text-center">Duration (Minutes)</th>
+              <th style="padding-left: 5px!important;" class="text-center">Messages</th>
+              <th *ngIf="(userType=='admin' && isActivity) || userType == 'user'" style="padding-left: 5px!important;"
+                class="text-center">Status</th>
+              <th style="padding-left: 5px!important;" class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of leaves">
+              <td *ngIf="userType =='admin' && isPending" class="text-center">
+                <mat-checkbox color='warn' [checked]=item.isSelected></mat-checkbox>
+              </td>
+
+              <td *ngIf="userType=='admin' && !isActivity" style="padding-left: 5px!important;">{{item.userName}}</td>
+              <td *ngIf="userType =='admin' && !isActivity" class="text-center">
+                <mat-slide-toggle *ngIf="isPending" value="1" color="warn"></mat-slide-toggle>
+                <mat-slide-toggle *ngIf="isApproved" value="1" color="warn" disabled="true" checked="true">
+                </mat-slide-toggle>
+              </td>
+              <td style="padding-left: 5px!important;">{{item.exceptionType}}</td>
+              <td style="padding-left: 5px!important;">{{item.date}}</td>
+              <td style="padding-left: 5px!important;" class="text-center">{{item.fromTime}}</td>
+              <td style="padding-left: 5px!important;" class="text-center">{{item.toTime}}</td>
+
+              <td style="padding-left: 5px!important;" class="text-center">{{item.duration}} Minutes</td>
+              <td style="padding-left: 5px!important;" class="text-center"><a class="blue-c"
+                  (click)="openMessages(null)">{{item.messages}}</a></td>
+              <td *ngIf="(userType=='admin' && isActivity) || userType == 'user'" style="text-align: center!important"
+                class="text-center"><a
+                  [ngClass]="{green : item.status == 'Reviewed', red : item.status == 'Declined', blue : item.status == 'Pending'}">{{item.status}}</a>
+              </td>
+              <td *ngIf="(userType == 'user' && item.status == 'Pending') || (userType == 'admin' && !isActivity)"
+                style="text-align: center!important">
+                <a title="Edit project Details"
+                  style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a>
+                  <i style="cursor: pointer;font-size:16px!important;" title="Delete" class="fa fa-trash red"></i>
+                </a>
+              </td>
+
+              <td
+                *ngIf="(userType == 'user' && item.status != 'Pending') || (userType == 'admin' &&  isActivity && item.status != 'Pending')"
+                style="text-align: center!important">
+                --
+              </td>
+
+              <td *ngIf="userType == 'admin' &&  isActivity && item.status == 'Pending'"
+                style="text-align: center!important">
+                <a title="Edit project Details"
+                  style="margin-right: 10px; cursor: pointer;font-size:16px!important;color:#0987e8d1">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a>
+                  <i style="cursor: pointer;font-size:16px!important;" title="Delete" class="fa fa-trash red"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="custom-header">
+  <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+    <span *ngIf="!data['expenseCode'].ExpenseCodeId">Add</span>
+    <span *ngIf="data['expenseCode'].ExpenseCodeId">Update</span> Expense Code</h3>
+</div>
+<div mat-dialog-content>
+  <form [formGroup]="expenseCodeForm" class="form-horizontal">
+
+    <div class="form-group">
+      <label class="control-label col-sm-4 add-member-label">Expense Code:</label>
+      <div class="col-sm-8">
+        <input type="text" formControlName='ExpenseCode' class="form-control" id="email" placeholder="Enter Expense Code">
+        <mat-error *ngIf="expenseCodeForm.controls.ExpenseCode.errors?.required && expenseCodeForm.controls.ExpenseCode.touched">Please enter expense code</mat-error>
+        <mat-error *ngIf="expenseCodeForm.controls.ExpenseCode.hasError('invalidInput') && expenseCodeForm.controls.ExpenseCode.touched">Please enter valid input</mat-error>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4">Expense Unit:</label>
+      <div class="col-sm-8">
+        <mat-select formControlName='ExpenseUnitId' placeholder="--Select Expense Type--" class="form-control">
+          <mat-option *ngFor="let option of expenseUnits" [value]="option.LookupId">{{option.LookupName}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4">Expense Limit Type:</label>
+      <div class="col-sm-8">
+        <mat-select formControlName='ExpenseLimitTypeId' placeholder="--Select Expense Type--" class="form-control">
+          <mat-option *ngFor="let option of expenseLimitTypes" [value]="option.LookupId">{{option.LookupName}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4 ">Expense Limit Amount:</label>
+      <div class="col-sm-8">
+        <input formControlName='ExpenseLimitAmount' type="text" maxlength="6" (keypress)="onlyNumbers($event)" class="form-control"
+          placeholder="Enter Expense Limit Amount">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4">Rate:</label>
+      <div class="col-sm-8">
+        <input type="text" maxlength="6" (keypress)="onlyNumbers($event)" formControlName='Rate' class="form-control" placeholder="Enter Rate">
+      </div>
+    </div>
+  </form>
+</div>
+
+<mat-dialog-actions align="center" style="padding-top: 17px !important;">
+  <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">
+    <mat-icon>cancel</mat-icon>
+    <span>&nbsp;Cancel</span>
+  </button>
+  
+  <button mat-raised-button style="background: #286ba5 !important" 
+  class="add-hover btn-success" (click)="submitExpenseCodeForm(expenseCodeForm.value)">
+
+    <mat-icon *ngIf="!data['expenseCode'].ExpenseCodeId">send</mat-icon>
+    <span *ngIf="!data['expenseCode'].ExpenseCodeId">&nbsp;Save</span>
+    <mat-icon *ngIf="data['expenseCode'].ExpenseCodeId">update</mat-icon>
+    <span *ngIf="data['expenseCode'].ExpenseCodeId">&nbsp;Update</span>
+
+  </button>
+</mat-dialog-actions>

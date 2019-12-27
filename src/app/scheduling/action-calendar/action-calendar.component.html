@@ -1,0 +1,1097 @@
+<div class="w-100">
+    <div class="flex-p">
+        <div class="row wrap">
+            <div class="col-lg-8">
+                <div class="col-sm-12" style="padding-left: 6px; margin-top: 7px !important">
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            All
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Quotes
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Research
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Field
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Calcs
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Drafting
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Quality Control
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Management
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+                    <a style="margin-right: 8px; padding: 0px 10px;" mat-raised-button class="remove_top_bottom_padding filterBtns" tabindex="0" aria-disabled="false">
+                        <span class="mat-button-wrapper">
+                            Admin
+                        </span>
+                        <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="col-xs-4 no-padding" style="margin-right:0px !important;margin-top: 5px">
+                <div class="col-sm-12 no=padding">
+                    <button mat-raised-button class="pull-right add-hover-help btn-success-help">
+                        <mat-icon>help_outline</mat-icon> Help
+                    </button>
+                    <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="filterFunction()">
+                        <mat-icon>filter_list</mat-icon> Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="row wrap" *ngIf="filterToggle">
+        <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+            <mat-card class="filter">
+                <mat-card-content>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 m-t-5">Project</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="--Search by Project--">
+                                    <mat-option [value]="1">5-12356</mat-option>
+                                    <mat-option [value]="2">4-98765</mat-option>
+                                    <mat-option [value]="3">3-56789</mat-option>
+                                    <mat-option [value]="4">5-12376</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 m-t-5">Job Code</div>
+                            <div class="col-sm-8">
+                                <mat-select class='select-option form-control' placeholder="--Search by Job Code--" multiple>
+                                    <mat-option [value]="1">LPC1</mat-option>
+                                    <mat-option [value]="2">CPC1</mat-option>
+                                    <mat-option [value]="3">OLS</mat-option>
+                                    <mat-option [value]="4">EPC1</mat-option>
+                                </mat-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="col-sm-4 m-t-5">Keyword</div>
+                            <div class="col-sm-8">
+                                <input class="form-control" placeholder="Enter keyword" type="text">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row col-sm-12" style="margin-top:20px">
+                        <div class="col-sm-4">
+                            <!-- <div class="col-sm-4">Keyword</div>
+                            <div class="col-sm-8">
+                                <input class="form-control" placeholder="Enter keyword" type="text">
+                            </div> -->
+
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
+                            <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                            </a>
+
+                            <button mat-raised-button class="pull-right" style="margin:0px 10px">
+                                <mat-icon>settings_backup_restore</mat-icon> Reset
+                            </button>
+                            <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                <mat-icon>youtube_searched_for</mat-icon>
+                                Search
+                            </button>
+                        </div>
+
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+
+    <div class="col-sm-12 margin-top-10" style="padding-right: 6px !important;">
+        <mat-tab-group>
+            <mat-tab label="Grid View">
+                <div class="w-100 ">
+                    <div class="col-sm-12" style="padding-right: 0px; margin-bottom: 17px; margin-top: 15px;">
+                        <div class="row">
+                            <!-- <div class="col-sm-6">
+                                <a mat-raised-button class="pull-right remove_top_bottom_padding filterBtns margin-right-10"
+                                    (click)="this.activeButton = 1" [class.Active]="activeButton==1">
+                                    Last Week
+                                </a>
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding"
+                                    (click)="this.activeButton = 2" [class.Active]="activeButton==2">
+                                    This Week
+                                </a>
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding"
+                                    (click)="this.activeButton = 3" [class.Active]="activeButton==3">
+                                    Next Week
+                                </a>
+                            </div> -->
+                            <div class="col-sm-12">
+                                <button mat-raised-button color="primary" style="min-width: 110px;background-color: #e0e0e0;color: black;" class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+                                    Next<mat-icon>skip_next</mat-icon>
+                                </button>
+                                <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="background-color: #e0e0e0;color: black;" (click)="scrollActions('right');">
+                                    <mat-icon>skip_previous</mat-icon> Previous
+                                </button>
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 3;showWeek = true;showDay = false" [class.Active]="activeButton==3">
+                                    Next Week
+                                </a>
+
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 2;showWeek = true;showDay = false" [class.Active]="activeButton==2">
+                                    This Week
+                                </a>
+                                <a mat-raised-button class="pull-right remove_top_bottom_padding filterBtns margin-right-10" (click)="this.activeButton = 1;showWeek = true;showDay = false" [class.Active]="activeButton==1">
+                                    Last Week
+                                </a>
+                                <a mat-raised-button class="pull-right remove_top_bottom_padding filterBtns margin-right-10" (click)="this.activeButton = 4;showDay = true;showWeek = false" [class.Active]="activeButton==4">
+                                    Day View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="col-sm-4" style="min-height: 500px !important">
+
+                            <table style="min-height: 500px !important" class="table table-striped  table-hover">
+                                <thead class="tbl-head">
+                                    <tr class="tr-grid-header text-center">
+                                        <th class="text-center">Unassigned Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <div *ngFor="let user of staffUsers; let i = index">
+                                            <div *ngIf="i == 0" class="drag-container">
+                                                <div class="section-heading"></div>
+
+                                                <div cdkDropList id="{{user.id}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)">
+
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab-master" [ngClass]="action.colour" *ngFor="let action of user.actions; let j = index" cdkDrag>
+                                                        <span class="col-sm-3">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action.name}}</span>
+                                                        <span class="col-sm-1">{{action.projectmanagername}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+                        <!-- <div class="col-sm-4">
+                                        <div *ngFor="let user of staffUsers; let i = index">
+                                            <div *ngIf="i == 0" class="drag-container">
+                                                <div class="section-heading"></div>
+                                
+                                                <div cdkDropList id="{{user.id}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)">
+                                
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab-master" *ngFor="let action of user.actions; let j = index" cdkDrag>
+                                                        <span class="col-sm-4">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                        <div class="col-sm-8" *ngIf="showWeek">
+                            <div class="col-sm-12 table-responsive" id="actioncalendar" style="height: 500px !important;">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="tbl-head">
+                                        <tr class="tr-grid-header">
+                                            <th></th>
+                                            <th>Monday</th>
+                                            <th>Tuesday</th>
+                                            <th>Wednesday</th>
+                                            <th>Thursday</th>
+                                            <th>Friday</th>
+                                            <th>Saturday </th>
+                                            <th>Sunday</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Emily</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList id="{{a > 0 ? user.id : 'monday'}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsers; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <!-- <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()"
+                                                            [ngClass]="action.colour+'-icon'" class="material-icons"
+                                                            style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i> -->
+                                                        <i (click)="openAddPhoneNotesDialog(action);" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <!-- <i *ngIf="action.isnotificationsent" class="material-icons"
+                                                            style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i> -->
+                                                        <i *ngIf=" action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock_open</i>
+                                                        <i *ngIf=" !action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                            <td class="text-center">6hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">8hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">11hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Joe</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList id="{{a > 0 ? user.id : 'tuesday'}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsers2; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <!-- <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()"
+                                                            [ngClass]="action.colour+'-icon'" class="material-icons"
+                                                            style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i> -->
+                                                        <i (click)="openAddPhoneNotesDialog(action);" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <!-- <i *ngIf="action.isnotificationsent" class="material-icons"
+                                                            style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i> -->
+                                                        <i *ngIf=" action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock_open</i>
+                                                        <i *ngIf=" !action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">11hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">12hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Kate</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList id="{{a > 0 ? user.id : 'wednesday'}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsers3; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <!-- <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()"
+                                                            [ngClass]="action.colour+'-icon'" class="material-icons"
+                                                            style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i> -->
+                                                        <i (click)="openAddPhoneNotesDialog(action);" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <!-- <i *ngIf="action.isnotificationsent" class="material-icons"
+                                                            style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i> -->
+                                                        <i *ngIf=" action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock_open</i>
+                                                        <i *ngIf=" !action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">11hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">12hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">John</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList id="{{a > 0 ? user.id : 'thursday'}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsers4; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <!-- <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()"
+                                                            [ngClass]="action.colour+'-icon'" class="material-icons"
+                                                            style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i> -->
+                                                        <i (click)="openAddPhoneNotesDialog(action);" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <!-- <i *ngIf="action.isnotificationsent" class="material-icons"
+                                                            style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i> -->
+                                                        <i *ngIf=" action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock_open</i>
+                                                        <i *ngIf=" !action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">11hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">12hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Peter</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList id="{{a > 0 ? user.id : 'friday'}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsers5; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <!-- <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()"
+                                                            [ngClass]="action.colour+'-icon'" class="material-icons"
+                                                            style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i> -->
+                                                        <i (click)="openAddPhoneNotesDialog(action)" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <!-- <i *ngIf="action.isnotificationsent" class="material-icons"
+                                                            style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i> -->
+                                                        <i *ngIf=" action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock_open</i>
+                                                        <i *ngIf=" !action.lock" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">lock</i>
+                                                    </mat-card>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">11hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">12hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+
+                                <!-- Old Code for Drag and Drop Feature Div based -->
+                                <!-- <div class="" *ngFor="let user of staffUsers; let j = index">
+                                    <div *ngIf="j > 0" class="col-md-3 drag-container">
+                                        <div class="section-heading">{{user.id}}</div>
+                        
+                                        <div cdkDropList id="{{user.id}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)">
+                                            <mat-card class="item-box space-tab" *ngFor="let action of user.actions" cdkDrag>Action {{action}}</mat-card>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div cdkDropList #DaveList="cdkDropList" [cdkDropListData]="Dave" [cdkDropListConnectedTo]="[EmilyList,JoeList,KateList,ScottList,DanList,todoList]" class="example-list col-sm-2" (cdkDropListDropped)="drop($event)">
+                                    <div class="example-box" *ngFor="let item of Dave" cdkDrag>{{item}}</div>
+                                </div> -->
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-sm-8 outer" *ngIf="showDay">
+                            <div class="col-sm-12 table-responsive inner" id="actioncalendar" style="height: 500px !important;">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="tbl-head">
+                                        <tr class="tr-grid-header">
+                                            <th></th>
+                                            <th>Monday</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Emily</td>
+                                            <td cdkDropList [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsersDayView">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab full-width" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i>
+                                                        <i (click)="openAddPhoneNotesDialog(null)" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <i *ngIf="action.isnotificationsent" class="material-icons" style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Joe</td>
+
+                                            <td cdkDropList [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsersDayView2">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab full-width" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i>
+                                                        <i (click)="openAddPhoneNotesDialog(null); " [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <i *ngIf="action.isnotificationsent" class="material-icons" style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Kate</td>
+                                            <td cdkDropList [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsersDayView3">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab full-width" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i>
+                                                        <i (click)="openAddPhoneNotesDialog(null)" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <i *ngIf="action.isnotificationsent" class="material-icons" style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">John</td>
+                                            <td cdkDropList [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsersDayView4">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab full-width" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i>
+                                                        <i (click)="openAddPhoneNotesDialog(null)" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <i *ngIf="action.isnotificationsent" class="material-icons" style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-vertically week-min-width">Peter</td>
+                                            <td cdkDropList [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="connectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffUsersDayView5">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab full-width" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}}&nbsp;&nbsp;
+                                                        <i *ngIf="!action.isnotificationsent" (click)="openNotificationModal()" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important;margin-right: 5px; vertical-align: top !important;cursor: pointer !important;">send</i>
+                                                        <i (click)="openAddPhoneNotesDialog(null)" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">phone</i>
+                                                        <i *ngIf="action.isnotificationsent" class="material-icons" style="font-size: 18px !important;margin-left: 5px; vertical-align: top !important;">done</i>
+                                                    </mat-card>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Map View">
+                <!-- <div class="w-100 "> -->
+                <div class="col-sm-12" style="padding-right: 0px; margin-bottom: 17px; margin-top: 15px;">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 3;showWeek = true;showDay = false" [class.Active]="activeButton==3">
+                                Next Week
+                            </a>
+
+                            <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 2;showWeek = true;showDay = false" [class.Active]="activeButton==2">
+                                This Week
+                            </a>
+                            <a mat-raised-button class="pull-right remove_top_bottom_padding filterBtns margin-right-10" (click)="this.activeButton = 1;showWeek = true;showDay = false" [class.Active]="activeButton==1">
+                                Last Week
+                            </a>
+                            <a mat-raised-button class="pull-right remove_top_bottom_padding filterBtns margin-right-10" (click)="this.activeButton = 4;showDay = true;showWeek = false" [class.Active]="activeButton==4">
+                                Day View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div fxFlex="100">
+                    <div class="w-100">
+                        <mat-card>
+                            <div class="w-100 h-500p">
+                                <agm-map [fullscreenControl]="true" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false">
+                                    <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true">
+                                    </agm-marker>
+                                    <agm-marker [latitude]="latnew" [longitude]="lngnew" [markerDraggable]="true">
+                                    </agm-marker>
+                                    <agm-marker [latitude]="latnew2" [longitude]="lngnew2" [markerDraggable]="true">
+                                    </agm-marker>
+                                    <agm-marker [latitude]="latnew3" [longitude]="lngnew3" [markerDraggable]="true">
+                                    </agm-marker>
+                                    <agm-marker [latitude]="latnew4" [longitude]="lngnew4" [markerDraggable]="true">
+                                    </agm-marker>
+                                </agm-map>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                </div>
+                <!-- </div> -->
+            </mat-tab>
+            <mat-tab label="Summary View">
+                <div class="w-100 ">
+                    <div class="col-sm-12" style="margin-bottom: 17px; margin-top: 15px;">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 3" [class.Active]="activeButton==3">
+                                    Next Week
+                                </a>
+
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 2" [class.Active]="activeButton==2">
+                                    This Week
+                                </a>
+                                <a mat-raised-button class="pull-right remove_top_bottom_padding filterBtns margin-right-10" (click)="this.activeButton = 1" [class.Active]="activeButton==1">
+                                    Last Week
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="tbl-head">
+                                <tr class="tr-grid-header text-center">
+                                    <th class="text-center">User</th>
+                                    <th class="text-center">Monday</th>
+                                    <th class="text-center">Tuesday</th>
+                                    <th class="text-center">Wednesday</th>
+                                    <th class="text-center">Thursday</th>
+                                    <th class="text-center">Friday</th>
+                                    <th class="text-center">Saturday</th>
+                                    <th class="text-center">Sunday</th>
+                                    <th class="text-center">Total Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="text-center">Emily</th>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">0</td>
+                                    <th class="text-center">40</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">John</th>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <th class="text-center">56</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Charles</th>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">10</td>
+                                    <td class="text-center">9</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">0</td>
+                                    <th class="text-center">43</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Joe</th>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">6</td>
+                                    <td class="text-center">7</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">0</td>
+                                    <th class="text-center">29</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Kate</th>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">0</td>
+                                    <th class="text-center">40</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Scott</th>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <th class="text-center">56</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Peter</th>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">10</td>
+                                    <td class="text-center">9</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">0</td>
+                                    <th class="text-center">43</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">Dave</th>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">6</td>
+                                    <td class="text-center">7</td>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">0</td>
+                                    <th class="text-center">29</th>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Staff View">
+                <div class="w-100 ">
+                    <div class="col-sm-12" style="padding-right: 0px; margin-bottom: 17px; margin-top: 15px;">
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <button mat-raised-button color="primary" style="min-width: 110px;background-color: #e0e0e0;color: black;" class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+                                    Next<mat-icon>skip_next</mat-icon>
+                                </button>
+                                <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="background-color: #e0e0e0;color: black;" (click)="scrollActions('right');">
+                                    <mat-icon>skip_previous</mat-icon> Previous
+                                </button>
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 3" [class.Active]="activeButton==3">
+                                    Next Week
+                                </a>
+
+                                <a mat-raised-button class="pull-right margin-right-10 remove_top_bottom_padding" (click)="this.activeButton = 2" [class.Active]="activeButton==2">
+                                    This Week
+                                </a>
+                                <a mat-raised-button class="pull-right remove_top_bottom_padding filterBtns margin-right-10" (click)="this.activeButton = 1" [class.Active]="activeButton==1">
+                                    Last Week
+                                </a>
+                                <div class="col-sm-3 pull-right no-padding margin-right-10" style="margin-top: 5px;">
+                                    <span class="m-t-5 col-sm-4"> <b> Select Staff</b></span>
+                                    <div class=" col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select Staff--">
+                                            <mat-option [value]="1">Emily</mat-option>
+                                            <mat-option [value]="2">Joe</mat-option>
+                                            <mat-option [value]="3">Kate</mat-option>
+                                            <mat-option [value]="4">Scott</mat-option>
+                                            <mat-option [value]="5">Dan</mat-option>
+                                            <mat-option [value]="6">John</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="">
+                        <div class="col-sm-4" style="min-height: 500px !important;position: relative;">
+
+                            <table style="min-height: 500px !important; position: sticky;top: 0;" class="table table-striped  table-hover">
+                                <thead class="tbl-head">
+                                    <tr class="tr-grid-header text-center">
+                                        <th class="text-center">Unassigned Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <div *ngFor="let user of staffViewUser; let i = index">
+                                            <div *ngIf="i == 0" class="drag-container">
+                                                <div class="section-heading"></div>
+
+                                                <div cdkDropList id="{{user.id}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="StaffViewconnectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)">
+
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab-master" [ngClass]="action.colour" *ngFor="let action of user.actions; let j = index" cdkDrag>
+
+                                                        <span class="col-sm-3">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action.name}}</span>
+                                                        <span class="col-sm-1">{{action.projectmanagername}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+
+
+                        <div class="col-sm-8">
+                            <div class="col-sm-12 table-responsive" id="actioncalendar">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="tbl-head">
+                                        <tr class="tr-grid-header">
+                                            <th></th>
+                                            <th class="text-center">Monday</th>
+                                            <th class="text-center">Tuesday</th>
+                                            <th class="text-center">Wednesday</th>
+                                            <th class="text-center">Thursday</th>
+                                            <th class="text-center">Friday</th>
+                                            <th class="text-center">Saturday</th>
+                                            <th class="text-center">Sunday</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-horizontal week-min-width">Emily</td>
+                                            <!-- <td [ngClass]="{'noDisplay': a == 0}" cdkDropList
+                                                id="{{a > 0 ? user.id : 'monday1'}}" [cdkDropListData]="user.actions"
+                                                [cdkDropListConnectedTo]="StaffViewconnectedTo" class="item-list min-ht"
+                                                (cdkDropListDropped)="drop($event)"
+                                                *ngFor="let user of staffViewUser; let a = index">
+                                                <div>
+
+                                                    <mat-card (dblclick)="getDetails(null)"
+                                                        class="item-box space-tab-master" [ngClass]="action.colour"
+                                                        *ngFor="let action of user.actions; let j = index" cdkDrag>
+                                                        <span class="col-sm-4">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action.name}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+                                                </div>
+                                            </td> -->
+
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList id="{{a > 0 ? user.id : 'friday1'}}" [cdkDropListData]="user.actions" [cdkDropListConnectedTo]="StaffViewconnectedTo" class="item-list min-ht" (cdkDropListDropped)="drop($event)" *ngFor="let user of staffViewUser; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)" class="item-box space-tab" [ngClass]="action.colour" *ngFor="let action of user.actions" cdkDrag>{{user.projectNum}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{action.projectmanagername}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{user.duration}} &nbsp;&nbsp;
+                                                        <i *ngIf="!action.isnotificationsent" (click)="action.isnotificationsent = true" [ngClass]="action.colour+'-icon'" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;cursor: pointer !important;">send</i>
+                                                        <i *ngIf="action.isnotificationsent" class="material-icons" style="font-size: 18px !important; vertical-align: top !important;">done</i>
+                                                    </mat-card>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">11hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">10hrs</td>
+                                            <td class="text-center">9hrs</td>
+                                            <td class="text-center">12hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <!-- <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-horizontal week-min-width">Tuesday</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList
+                                                id="{{a > 0 ? user.id : 'tuesday1'}}" [cdkDropListData]="user.actions"
+                                                [cdkDropListConnectedTo]="StaffViewconnectedTo" class="item-list min-ht"
+                                                (cdkDropListDropped)="drop($event)"
+                                                *ngFor="let user of staffViewUser2; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)"
+                                                        class="item-box space-tab-master" [ngClass]="action.colour"
+                                                        *ngFor="let action of user.actions; let j = index" cdkDrag>
+                                                        <span class="col-sm-4">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action.name}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-horizontal week-min-width">Wednesday</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList
+                                                id="{{a > 0 ? user.id : 'wednesday1'}}" [cdkDropListData]="user.actions"
+                                                [cdkDropListConnectedTo]="StaffViewconnectedTo" class="item-list min-ht"
+                                                (cdkDropListDropped)="drop($event)"
+                                                *ngFor="let user of staffViewUser3; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)"
+                                                        class="item-box space-tab-master" [ngClass]="action.colour"
+                                                        *ngFor="let action of user.actions; let j = index" cdkDrag>
+                                                        <span class="col-sm-4">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action.name}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-horizontal week-min-width">Thursday</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList
+                                                id="{{a > 0 ? user.id : 'thursday1'}}" [cdkDropListData]="user.actions"
+                                                [cdkDropListConnectedTo]="StaffViewconnectedTo" class="item-list min-ht"
+                                                (cdkDropListDropped)="drop($event)"
+                                                *ngFor="let user of staffViewUser4; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)"
+                                                        class="item-box space-tab-master" [ngClass]="action.colour"
+                                                        *ngFor="let action of user.actions; let j = index" cdkDrag>
+                                                        <span class="col-sm-4">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action.name}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-horizontal week-min-width">Friday</td>
+                                            <td [ngClass]="{'noDisplay': a == 0}" cdkDropList
+                                                id="{{a > 0 ? user.id : 'friday1'}}" [cdkDropListData]="user.actions"
+                                                [cdkDropListConnectedTo]="StaffViewconnectedTo" class="item-list min-ht"
+                                                (cdkDropListDropped)="drop($event)"
+                                                *ngFor="let user of staffViewUser5; let a = index">
+                                                <div>
+                                                    <mat-card (dblclick)="getDetails(null)"
+                                                        class="item-box space-tab-master" [ngClass]="action.colour"
+                                                        *ngFor="let action of user.actions; let j = index" cdkDrag>
+                                                        <span class="col-sm-4">{{user.projectNum}}</span>
+                                                        <span class="col-sm-6">{{action.name}}</span>
+                                                        <span class="col-sm-2">{{user.duration}}</span>
+                                                    </mat-card>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cust-foot">
+                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8hrs</td>
+                                        </tr>
+                                    </tfoot>
+                                </table> -->
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="" style="margin-top: 15px !important">
+                    <div class="">
+                        <div fxFlex="100">
+
+                            <div id="actions" class="table-responsive w-100" style="padding-top:17px!important;">
+                                <table id="action" class="table table-striped table-bordered table-hover">
+                                    <thead class="tbl-head">
+                                        <tr class="tr-grid-header">
+                                            <th style="min-width:127px!important">Action Title</th>
+                                            <th>Task</th>
+                                            <th>Action Type</th>
+                                            <th style="min-width:56px!important">SOW</th>
+                                            <th style="min-width:115px!important">Site</th>
+                                            <th>Job Code(s)</th>
+                                            <th style="min-width:65px!important">Project</th>
+                                            <th style="min-width:125px!important">Project Manager</th>
+                                            <th>Due Date</th>
+                                            <th style="min-width:105px!important">Date Created</th>
+                                            <th class="text-center">Planned Hours</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of Actions">
+                                            <td>{{item.actiontitle}}</td>
+                                            <td>{{item.task}}</td>
+                                            <td>{{item.actiontype}}</td>
+                                            <td>{{item.sow}}</td>
+                                            <td>{{ item.site }}</td>
+                                            <td>{{ item.jobcodes }}</td>
+                                            <td>{{ item.project }}</td>
+                                            <td>{{ item.projectmanager }}</td>
+                                            <td>{{ item.duedate }}</td>
+                                            <td>{{item.datecreated}}</td>
+                                            <td class="text-center">{{ item.plannedhours }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> -->
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
+
+
+<div bsModal #addNotificationModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title">
+                    <b>Send Email</b>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <!-- <div class="form-group col-sm-12 no-padding">
+                            <label class="col-sm-5 control-label add-member-label">Subject: </label>
+                            
+                        </div> -->
+                    <div class="form-group col-sm-12">
+                        <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                    <!-- <div class="form-group col-sm-12  no-padding">
+                            <label class="col-sm-5 control-label add-member-label">Compose Email: </label>
+                            
+                        </div> -->
+                    <div class="form-group col-sm-12">
+                        <app-ngx-editor height="200px" minHeight="50px" [placeholder]="'Compose Email'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+                    </div>
+                </div>
+            </div>
+            <mat-dialog-actions align="end" style="margin: 0px 20px 20px 0px;">
+                <button mat-raised-button class="add-dark-hover btn-default" (click)="hideChildModal()" style="margin-right: 3px;">Cancel</button>
+                <button mat-raised-button style="margin-left: 5px;margin-right: 20px;" class="btn-success" (click)="hideChildModal()">
+                    <i class="material-icons">send</i>Send</button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</div>

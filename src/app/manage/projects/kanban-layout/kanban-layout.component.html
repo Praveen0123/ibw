@@ -1,0 +1,456 @@
+<div class="flex-p">
+    <div class="row wrap">
+        <div class="col-xs-12">
+            <div class="col-md-6 no-padding">
+                <div class="pills w-100">
+                    <ul class="nav nav-pills ">
+                        <li class="">
+                            <a routerLink="/IBW/manage/projects/kanban-view/project" routerLinkActive="tabActive" style="padding: 0px 10px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">swap_horiz</mat-icon>
+                                    Project Kanban
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a routerLink="/IBW/manage/projects/kanban-view/site" routerLinkActive="tabActive" style="padding: 0px 10px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">swap_horiz</mat-icon>
+                                    Site Kanban
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a routerLink="/IBW/manage/projects/kanban-view/sow" routerLinkActive="tabActive" style="padding: 0px 10px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">swap_horiz</mat-icon>
+                                    SOW Kanban
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a routerLink="/IBW/manage/projects/kanban-view/task" routerLinkActive="tabActive" style="padding: 0px 10px;" mat-raised-button="" class="remove_top_bottom_padding mat-raised-button" tabindex="0" aria-disabled="false">
+                                <span class="mat-button-wrapper">
+                                    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">swap_horiz</mat-icon>
+                                    Task Kanban
+                                </span>
+                                <div class="mat-button-ripple mat-ripple" matripple=""></div>
+                                <div class="mat-button-focus-overlay"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-6 pull-right no-padding">
+                <button mat-raised-button color="primary" class="pull-right filter-hover" (click)="filterToggle = !filterToggle">
+                    <mat-icon>filter_list</mat-icon> Filter
+                </button>
+                <!-- <div class="" style="padding-right: 0px!important;">
+                    <button mat-raised-button color="primary" style="min-width: 110px;background-color: #e0e0e0;
+                                color: black;" class="pull-right filters-hover margin-right-10" (click)="scrollActions('left');">
+                        Next
+                        <mat-icon>skip_next</mat-icon>
+                    </button>
+                    <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" style="background-color: #e0e0e0;
+                                color: black;" (click)="scrollActions('right');">
+                        <mat-icon>skip_previous</mat-icon> Previous
+                    </button>
+                </div> -->
+
+            </div>
+        </div>
+        <!-- <div fxLayout="row wrap" > -->
+        <div fxLayout="row wrap w-100p" style="width: 100%;" *ngIf="filterToggle && isProjectFilter">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-3">
+                                        <label class="labladjust">From Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <!-- <input type="text" class='select-option form-control' placeholder="From Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                        <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-3">
+                                        <label class="labladjust">To Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <!-- <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                        <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-3">
+                                        <label class="labladjust">Filter by</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Filter by--">
+                                            <mat-option [value]="1">Due Date</mat-option>
+                                            <mat-option [value]="2">Date Created</mat-option>
+
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12" style="margin-top:20px">
+                            <div class="col-sm-offset-8 col-sm-4">
+                                <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                </a>
+
+                                <button mat-raised-button class="pull-right" style="margin-left: 10px;margin-right: 8px;">
+                                    <mat-icon>settings_backup_restore</mat-icon> Reset
+                                </button>
+                                <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                                <mat-icon>cloud_download</mat-icon> Download CSV
+                                            </button> -->
+                                <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                    <mat-icon>youtube_searched_for</mat-icon> Search
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap w-100p" style="width: 100%;" *ngIf="filterToggle && isTaskFilter">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Select Project (s)</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select Projects--" multiple>
+                                            <mat-option [value]="1">5-12564</mat-option>
+                                            <mat-option [value]="2">4-24642</mat-option>
+                                            <mat-option [value]="3">4-82324</mat-option>
+                                            <mat-option [value]="4">6-10235</mat-option>
+                                            <mat-option [value]="5">2-51152</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Select Site (s)</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select Sites--" multiple>
+                                            <mat-option [value]="1">20 Baker Street</mat-option>
+                                            <mat-option [value]="2">36 Williams Bay</mat-option>
+                                            <mat-option [value]="3">16 Hebella</mat-option>
+                                            <mat-option [value]="4">115 Bruce Wayen</mat-option>
+                                            <mat-option [value]="5">006 Rob killy Bay</mat-option>
+                                        </mat-select>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Select SOW</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select SOW--" multiple>
+                                            <mat-option [value]="1">SoW 1</mat-option>
+                                            <mat-option [value]="2">SoW 2</mat-option>
+                                            <mat-option [value]="3">SoW 3</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">From Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                        <!-- <input type="text" class='select-option form-control' placeholder="From Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">To Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <!-- <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                        <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Filter by</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Filter by--">
+                                            <mat-option [value]="1">Due Date</mat-option>
+                                            <mat-option [value]="2">Date Created</mat-option>
+
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12" style="margin-top:20px">
+
+                            <div class="col-sm-offset-8 col-sm-4">
+                                <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                </a>
+
+                                <button mat-raised-button class="pull-right" style="margin-left: 10px;margin-right: 8px;">
+                                    <mat-icon>settings_backup_restore</mat-icon> Reset
+                                </button>
+                                <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                                    <mat-icon>cloud_download</mat-icon> Download CSV
+                                                </button> -->
+                                <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                    <mat-icon>youtube_searched_for</mat-icon> Search
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+
+        <div fxLayout="row wrap w-100p" style="width: 100%;" *ngIf="filterToggle && isSowFilter">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Select Project (s)</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select Projects--" multiple>
+                                            <mat-option [value]="1">5-12564</mat-option>
+                                            <mat-option [value]="2">4-24642</mat-option>
+                                            <mat-option [value]="3">4-82324</mat-option>
+                                            <mat-option [value]="4">6-10235</mat-option>
+                                            <mat-option [value]="5">2-51152</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Select Site (s)</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select Sites--" multiple>
+                                            <mat-option [value]="1">20 Baker Street</mat-option>
+                                            <mat-option [value]="2">36 Williams Bay</mat-option>
+                                            <mat-option [value]="3">16 Hebella</mat-option>
+                                            <mat-option [value]="4">115 Bruce Wayen</mat-option>
+                                            <mat-option [value]="5">006 Rob killy Bay</mat-option>
+                                        </mat-select>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">From Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                        <!-- <input type="text" class='select-option form-control' placeholder="From Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-sm-12">
+
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">To Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                        <!-- <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Filter by</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Filter by--">
+                                            <mat-option [value]="1">Due Date</mat-option>
+                                            <mat-option [value]="2">Date Created</mat-option>
+
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12" style="margin-top:20px">
+
+                            <div class="col-sm-offset-8 col-sm-4">
+                                <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                </a>
+
+                                <button mat-raised-button class="pull-right" style="margin-left: 10px;margin-right: 8px;">
+                                    <mat-icon>settings_backup_restore</mat-icon> Reset
+                                </button>
+                                <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                                    <mat-icon>cloud_download</mat-icon> Download CSV
+                                                </button> -->
+                                <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                    <mat-icon>youtube_searched_for</mat-icon> Search
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap w-100p" style="width: 100%;" *ngIf="filterToggle && isSiteFilter">
+            <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 padding-15">
+                <mat-card class="filter">
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Select Project (s)</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Select Projects--" multiple>
+                                            <mat-option [value]="1">5-12564</mat-option>
+                                            <mat-option [value]="2">4-24642</mat-option>
+                                            <mat-option [value]="3">4-82324</mat-option>
+                                            <mat-option [value]="4">6-10235</mat-option>
+                                            <mat-option [value]="5">2-51152</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">From Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Select From Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                        <!-- <input type="text" class='select-option form-control' placeholder="From Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">To Date</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <!-- <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"> -->
+                                        <input type="text" placeholder="Select To Date" class="form-control" bsDatepicker placement="bottom" [bsConfig]="{containerClass: 'theme-dark-blue',dateInputFormat: 'YYYY-MM-DD'  }">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-sm-12">
+
+                                <div class="col-sm-4">
+                                    <div class="col-sm-4">
+                                        <label class="labladjust">Filter by</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <mat-select class='select-option form-control' placeholder="--Filter by--">
+                                            <mat-option [value]="1">Due Date</mat-option>
+                                            <mat-option [value]="2">Date Created</mat-option>
+
+                                        </mat-select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12" style="margin-top:20px">
+
+                            <div class="col-sm-offset-8 col-sm-4">
+                                <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                                    <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+                                </a>
+
+                                <button mat-raised-button class="pull-right" style="margin-left: 10px;margin-right: 8px;">
+                                    <mat-icon>settings_backup_restore</mat-icon> Reset
+                                </button>
+                                <!-- <button mat-raised-button class="pull-right add-hover btn-success">
+                                                        <mat-icon>cloud_download</mat-icon> Download CSV
+                                                    </button> -->
+                                <button mat-raised-button color="primary" class="pull-right filters-hover">
+                                    <mat-icon>youtube_searched_for</mat-icon> Search
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <router-outlet></router-outlet>
+
+
+</div>

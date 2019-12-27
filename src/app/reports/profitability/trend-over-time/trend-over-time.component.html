@@ -1,0 +1,129 @@
+<div class="w-100">
+  <div class="flex-p" style="padding-top:0px!important;padding-bottom: 0px!important;">
+    <div class="row wrap">
+      <div class="col-sm-12" style="margin-right:0px !important;padding: 9px;">
+        <div class="w-100 flex-p">
+          <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10" (click)="filterToggle = !filterToggle">
+            <mat-icon>filter_list</mat-icon> Filter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-xs-6">
+    </div>
+  </div>
+  <div fxLayout="row wrap" *ngIf="filterToggle">
+    <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100" style="padding-left:15px!important;padding-top:15px!important">
+      <mat-card class="filter">
+        <mat-card-content>
+          <div class="row col-sm-12">
+            <div class="col-sm-4">
+              <div class="col-sm-4">Type:</div>
+              <div class="col-sm-8">
+                <mat-select multiple class='select-option form-control' placeholder="--Select Type--">
+                  <mat-option [value]="1">Legal</mat-option>
+                  <mat-option [value]="2">Engineering</mat-option>
+                  <mat-option [value]="3">Construction</mat-option>
+                  <mat-option [value]="4">Planning</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="col-sm-4">Project Manager:</div>
+              <div class="col-sm-8">
+                <mat-select multiple class='select-option form-control' placeholder="--Select Project Manager--">
+                  <mat-option [value]="1">James Robin</mat-option>
+                  <mat-option [value]="2">Mark Davis</mat-option>
+                  <mat-option [value]="3">Jason Milller</mat-option>
+                  <mat-option [value]="4">Fiona Francis </mat-option>
+                  <mat-option [value]="4">Erica Joel</mat-option>
+                  <mat-option [value]="4">Erick Smith </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="col-sm-4">Account Manager:</div>
+              <div class="col-sm-8">
+                <mat-select multiple class='select-option form-control' placeholder="--Select Accounts Manager--">
+                  <mat-option [value]="1">Dwayne</mat-option>
+                  <mat-option [value]="2">Dave</mat-option>
+                </mat-select>
+              </div>
+            </div>
+
+            <!-- <div class="col-sm-4">
+                  <div class="col-sm-4">From Date</div>
+                  <div class="col-sm-8">
+                      <input type="text" class='select-option form-control' placeholder="From Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                  </div>
+                </div> -->
+            <!-- <div class="col-sm-4">
+                  <div class="col-sm-4">To Date</div>
+                  <div class="col-sm-8">
+                      <input type="text" class='select-option form-control' placeholder="To Date" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}">
+                  </div>
+                </div> -->
+          </div>
+          <div class="row col-sm-12" style="margin-top:20px;">
+            <div class="col-sm-4">
+              <div class="col-sm-4">Year:</div>
+              <div class="col-sm-8">
+                <mat-select [(value)]="year" class='select-option form-control' placeholder="--Select Year--">
+                  <mat-option [value]="1">2016</mat-option>
+                  <mat-option [value]="2">2017</mat-option>
+                  <mat-option [value]="3">2018</mat-option>
+                  <mat-option [value]="4">2019</mat-option>
+                  <mat-option [value]="5">2020</mat-option>
+                  <mat-option [value]="6">2021</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <a (click)="filterToggle = !filterToggle" class="pull-right" style="font-size: 25px;">
+                <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+              </a>
+              <button mat-raised-button class="pull-right btn-success-gray" style="margin-left: 10px;margin-right: 8px;">
+                <mat-icon>settings_backup_restore</mat-icon> Reset
+              </button>
+
+              <button mat-raised-button color="primary" class="pull-right filters-hover margin-right-10">
+                <mat-icon>youtube_searched_for</mat-icon> Search
+              </button>
+            </div>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <mat-card style="width:100% !important">
+          <mat-card-header fxLayoutAlign="center center" >                
+              <mat-card-subtitle><h2 style="margin-top: 0px;">Trend Graph Over Time</h2></mat-card-subtitle>
+          </mat-card-header>
+        <mat-card-content>
+          <div class="w-100 h-300p">
+              <div class="col-sm-12" [chart]="barChart"></div>
+            <!-- <ngx-charts-bar-vertical 
+                [scheme]="colorScheme" 
+                [results]="trendovertime" 
+                [gradient]="gradient" 
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis" 
+                [legend]="showLegend" 
+                [showXAxisLabel]="showXAxisLabel" 
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel" 
+                [yAxisLabel]="yAxisLabel" 
+                (select)="onSelect($event)">
+                </ngx-charts-bar-vertical> -->
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,78 @@
+
+<h1 mat-dialog-title>New Action</h1>
+<div mat-dialog-content>
+  <div class="form-horizontal">
+      <div class="form-group col-sm-12">
+          <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Project: </label>
+          <div class="col-sm-8">
+              <mat-select [(ngModel)]="projectNumber" placeholder="--Select Project--" class="form-control" >
+                  <mat-option *ngFor="let option of projects" [value]="option">{{option}}</mat-option>
+              </mat-select>
+          </div>
+      </div>
+      <div *ngIf="projectNumber != null" class="form-group col-sm-12">
+          <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Site: </label>
+          <div class="col-sm-8">
+            <mat-select [(ngModel)]="siteNum" placeholder="--Select Site--" class="form-control" >
+              <mat-option *ngFor="let option of Sites" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          </div>
+      </div>
+      <div *ngIf="siteNum != null" class="form-group col-sm-12">
+          <label class="col-sm-4 control-label col-sm-4 add-member-label">Select SOW: </label>
+          <div class="col-sm-8">
+            <mat-select [(ngModel)]="sowNum" placeholder="--Select SOW--" class="form-control" >
+              <mat-option *ngFor="let option of SOWs" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          </div>
+      </div>
+      <div *ngIf="sowNum != null" class="form-group col-sm-12">
+          <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Task: </label>
+          <div class="col-sm-8">
+            <mat-select [(ngModel)]="taskNum" placeholder="--Select Task--" class="form-control" >
+              <mat-option *ngFor="let option of Tasks" [value]="option">{{option}}</mat-option>
+          </mat-select>
+          </div>
+      </div>
+      <div *ngIf="taskNum != null" class="form-group col-sm-12">
+          <label class="col-sm-4 control-label col-sm-4 add-member-label">Action Title: </label>
+          <div class="col-sm-8">
+              <input [(ngModel)]="actionTitle" class="form-control" placeholder="Enter Action Title" type="text" >
+          </div>
+      </div>
+    <div *ngIf="actionTitle != null" class="form-group col-sm-12">
+        <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Job Code: </label>
+        <div class="col-sm-8">
+          <mat-select [(ngModel)]="jobCode" placeholder="--Select Job Code--" class="form-control" >
+            <mat-option *ngFor="let option of JobCodes" [value]="option">{{option}}</mat-option>
+        </mat-select>
+        </div>
+    </div>
+    <div *ngIf="jobCode != null" class="form-group col-sm-12">
+        <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Action Type: </label>
+        <div class="col-sm-8">
+          <mat-select [(ngModel)]="actionType" placeholder="--Select Action Type--" class="form-control" >
+            <mat-option *ngFor="let option of ActionTypes" [value]="option">{{option}}</mat-option>
+        </mat-select>
+        </div>
+    </div>
+ 
+    <div *ngIf="actionType != null" class="form-group col-sm-12">
+        <label class="col-sm-4 control-label col-sm-4 add-member-label">Plan Hours: </label>
+        <div class="col-sm-8">
+            <input [(ngModel)]="planHours" class="form-control" placeholder="Enter Plan Hours" type="text" >
+        </div>
+    </div>
+    <div *ngIf="planHours != null" class="form-group col-sm-12">
+        <label class="col-sm-4 control-label col-sm-4 add-member-label">Select Due Date: </label>
+        <div class="col-sm-8">
+            <input type="date" class="form-control" id="price" placeholder="Enter Due Date">
+        </div>
+    </div>
+</div>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Cancel</button>
+  <button mat-raised-button class="add-hover btn-success" (click)="saveInfo()"><span>Save</span></button>
+</mat-dialog-actions>

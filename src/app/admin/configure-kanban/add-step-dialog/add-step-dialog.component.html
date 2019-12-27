@@ -1,0 +1,41 @@
+<div class="custom-header">
+    <h3 style="font-weight: 300; margin-bottom: 10px !important;" mat-dialog-title>
+       <span *ngIf="step.ConfigureKanbanId">Update</span> <span *ngIf="!step.ConfigureKanbanId">Add</span> Stage</h3>
+       <!-- <span>Add</span> Stage</h3> -->
+    </div>
+<form [formGroup]="kanbanStageForm">
+
+    <div mat-dialog-content>
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">Stage Name:</label>
+            <div class="col-sm-8 margin-bottom-15px">
+                <input type="text" class="form-control" formControlName="KanbanStageName" placeholder="Enter Stage Name">
+                <mat-error *ngIf="kanbanStageForm.controls.KanbanStageName.errors?.required && kanbanStageForm.controls.KanbanStageName.touched">Please enter stage name</mat-error>
+            </div>
+        </div>
+    </div>
+
+    <mat-dialog-actions align="center" style="padding-top: 17px !important;">
+        <button type="button" mat-raised-button class="add-dark-hover btn-default" (click)="close()" style="cursor: pointer;">
+            <mat-icon>cancel</mat-icon>
+            <span>&nbsp;Cancel</span>
+        </button>
+        <button mat-raised-button style="background: #286ba5 !important" class="add-hover btn-success"
+        (click)="submitKanbanStage(kanbanStageForm.value)">
+            
+
+        <!-- <mat-icon >send</mat-icon>
+        
+        <span >&nbsp;Save</span> -->
+
+        <mat-icon *ngIf="!step.ConfigureKanbanId">send</mat-icon>
+        
+        <span *ngIf="!step.ConfigureKanbanId">&nbsp;Save</span>
+
+        <mat-icon *ngIf="step.ConfigureKanbanId">update</mat-icon>
+        
+        <span *ngIf="step.ConfigureKanbanId">&nbsp;Update</span>
+
+        </button>
+    </mat-dialog-actions>
+</form>

@@ -1,0 +1,63 @@
+<h1 mat-dialog-title class="custom-header"><span *ngIf="!user">Update </span><span *ngIf="user">Edit</span>Profile</h1>
+<form [formGroup]="formProfile" (ngSubmit)="onSubmitProfile(formProfile.value)" class="form-horizontal">
+    <div mat-dialog-content>
+
+
+        <div class="form-group">
+            <label class="control-label col-sm-4 add-member-label">User Name&nbsp;:&nbsp;</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-user"></i>
+                    <input type="text" formControlName="userName" class="form-control" placeholder="Enter User Name" (keypress)="onlyAlphabets($event)">
+                    <mat-error
+                        *ngIf="formProfile.controls.userName.errors?.required  && formProfile.controls.userName.touched">
+                        User Name is Required</mat-error>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Alias
+                Name&nbsp;:&nbsp;</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-user"></i>
+                    <input type="text" formControlName="aliasName" class="form-control" placeholder="Enter Alias Name" (keypress)="onlyAlphabets($event)">
+                    <mat-error
+                        *ngIf="formProfile.controls.aliasName.errors?.required  && formProfile.controls.aliasName.touched">
+                        Alias Name is Required</mat-error>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Email&nbsp;:&nbsp;</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" formControlName="email" class="form-control" placeholder="Enter Email ID">
+                    <mat-error
+                        *ngIf="formProfile.controls.email.errors?.required  && formProfile.controls.email.touched">
+                        Email is Required</mat-error>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-4 col-md-4 col-sm-4 col-xs-4 add-member-label">Phone
+                Number&nbsp;:&nbsp;</label>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="input-icon right">
+                    <i class="fa fa-mobile"></i>
+                    <input type="text" formControlName="phoneNumber" [textMask]="{mask: phoneNumberMask}" class="form-control" placeholder="Enter Mobile Number">
+                    <mat-error *ngIf="formProfile.controls.phoneNumber.errors?.required && formProfile.controls.phoneNumber.touched">
+                        Phone Number is required</mat-error>
+                    <mat-error *ngIf="formProfile.controls.phoneNumber.hasError('invalidPhoneNumber') && formProfile.controls.phoneNumber.touched">
+                        Invalid Phone Number</mat-error>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <mat-dialog-actions align="center">
+        <button mat-raised-button class="btn-default" style="margin-bottom:2px" type="button" (click)="close()">Cancel</button>
+        <button mat-raised-button class="add-hover btn-primary" type="submit"><span>Update</span></button>
+    </mat-dialog-actions>
+</form>

@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>
+    <span>Add</span> Update</h1>
+<div mat-dialog-content>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="table-responsive w-100 flex-p">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead class="tbl-head">
+                        <tr class="tr-grid-header">
+                            <th style="min-width: 85px;">Date Time</th>
+                            <th>Notes</th>
+                            <th style="min-width: 100px;">Recorded by</th>
+                            <th >Progress</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td >2910-05-20 05:00 PM</td>
+                        <td>Client is expressing interest to work with us</td>
+                        <td>Jhon Miller</td>
+                        <td>Qualified</td>
+                    </tr>
+                    <tr>
+                            <td>2910-05-25 10:00 AM</td>
+                            <td>Discussed with the client over the phone, about his requirements</td>
+                            <td>Smith</td>
+                            <td>Phone Call</td>
+                    </tr>
+                    <tr>
+                            <td>2910-05-30 09:00 AM</td>
+                            <td>Organized an in-person meeting with client</td>
+                            <td>David</td>
+                            <td>First Meeting</td>
+                    </tr>
+
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="add-dark-hover btn-default" (click)="close()">Close</button>
+    <!-- <button mat-raised-button class="add-hover btn-success" (click)="saveInfo()">
+        <span>Save</span>
+    </button> -->
+</mat-dialog-actions>

@@ -1,0 +1,91 @@
+
+<div class="col-sm-12" style="margin-bottom: 20px;border: solid 1px; padding: 10px 0px !important;border-radius: 10px;">
+  <div class="col-sm-11 no-padding">
+    <div class="col-sm-12" style="margin-bottom: 10px">
+      <div class="col-sm-5 no-padding">
+          <div class="col-sm-6 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label class="add-member-label">Project</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <mat-select placeholder="--Select Project--" class='form-control' required>
+                  <mat-option class='option' *ngFor='let option of projects' [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <!-- <div class="col-sm-2 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label>Site</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <mat-select placeholder="--Select Site--" class="form-control">
+                  <mat-option *ngFor="let option of Sites" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div> -->
+            <!-- <div class="col-sm-6 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label>SOW</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <mat-select placeholder="--Select SOW--" class="form-control">
+                  <mat-option *ngFor="let option of SOWs" [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div> -->
+            <div class="col-sm-6 no-padding">
+                <div class="col-sm-12 div-padding">
+                  <label>Action</label>
+                </div>
+                <div class="col-sm-12 div-padding">
+                  <mat-select placeholder="--Select Action--" class="form-control">
+                    <mat-option *ngFor="let option of Actions" [value]="option">{{option}}</mat-option>
+                  </mat-select>
+                </div>
+              </div> 
+      </div>
+      <div class="col-sm-7 no-padding">
+          <div class="col-sm-4 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label class="add-member-label">Expense Subject</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <input type="text" class="form-control" placeholder="Enter Expense Subject">
+              </div>
+            </div>
+            <div class="col-sm-4 no-padding">
+              <div class="col-sm-12 div-padding">
+                <label class="add-member-label">Expense Code</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <mat-select (selectionChange)="ExpenseCodeChange($event.value)" placeholder="--Select Action--" class="form-control">
+                  <mat-option *ngFor="let option of ExpenseCodes"  [value]="option">{{option}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="col-sm-4 no-padding" [ngClass]="ExpenseCode_nonMileage">
+              <div class="col-sm-12 div-padding">
+                <label>Expense Amount</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <input type="number" class="form-control" placeholder="Enter Expense Amount">
+              </div>
+            </div>
+            <div class="col-sm-4 no-padding" [ngClass]="ExpenseCode_Mileage">
+              <div class="col-sm-12 div-padding">
+                <label>Kilometers Travelled</label>
+              </div>
+              <div class="col-sm-12 div-padding">
+                <input type="number" class="form-control" placeholder="Enter no of killometers">
+              </div>
+            </div>
+          </div>
+      </div>
+      
+  </div>
+  <div class="col-sm-1">
+    <a class="button" matTooltip="Delete This Row"  (click)="removeMe(index)" >
+      <mat-icon style="color: red;font-size: 25px;margin-top: 25px; cursor: pointer;">delete_forever</mat-icon>
+    </a>
+  </div>
+</div>
